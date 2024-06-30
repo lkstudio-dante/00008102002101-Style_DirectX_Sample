@@ -20,9 +20,12 @@
 #include <Windows.h>
 #include <tchar.h>
 
-#define STR_EMPTY						(std::string(""))
-#define VER_EFFECT						(std::string("fx_4_0"))
-#define SEMANTIC_POS					(std::string("POSITION"))
+#define STR_EMPTY				(std::string(""))
+#define VER_EFFECT				(std::string("fx_4_0"))
+#define SEMANTIC_POS			(std::string("POSITION"))
+
+#define NAME_COLOR					(std::string("g_stColor"))
+#define NAME_COLOR_LIGHT			(std::string("g_stColor_Light"))
 
 #define NAME_NORMAL_MAP_CBUFFER				(std::string("g_oNormalMap"))
 #define NAME_DIFFUSE_MAP_CBUFFER			(std::string("g_oDiffuseMap"))
@@ -33,6 +36,9 @@
 
 #define FLAGS_CPU_ACCESS_NONE			((D3D10_CPU_ACCESS_FLAG)0)
 #define MAX_NUM_SFXS_DUPLICATE			(10)
+
+#define COLOR_BLACK			(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f))
+#define COLOR_WHITE			(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f))
 
 #define VEC_WORLD_RIGHT				(D3DXVECTOR3(1.0f, 0.0f, 0.0f))
 #define VEC_WORLD_UP				(D3DXVECTOR3(0.0f, 1.0f, 0.0f))
@@ -115,19 +121,32 @@ enum class EBtnMouse
 	MAX_VAL
 };
 
+/** 본 정보 */
+struct STInfo_Bone : D3DXFRAME
+{ 
+	D3DXMATRIXA16 m_stMatrix_CombineTrans;
+};
+
 /** 메쉬 정보 */
 struct STInfo_Mesh
 {
-	ID3DX10Mesh* m_pMesh;
+	ID3DX10Mesh* m_pXMesh;
 
 	std::vector<D3DMATERIAL9> m_oVectorMaterials;
 	std::vector<ID3D10ShaderResourceView*> m_oVectorViews_SR;
 };
 
-/** 이펙트 정보 */
-struct STInfo_Effect
+/** 스켈레톤 메쉬 정보 */
+struct STInfo_SkeletonMesh : public STInfo_Mesh
 {
+	LPD3DXFRAME m_pstXFrame;
+	LPD3DXANIMATIONCONTROLLER m_pXController_Anim;
+};
 
+/** 메쉬 컨테이너 정보 */
+struct STInfo_MeshContainer : D3DXMESHCONTAINER
+{
+	// Do Something
 };
 
 /** 웨이브 사운드 정보 */

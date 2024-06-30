@@ -40,6 +40,18 @@
     <Filter Include="Classes\Global\Utility\Mesh">
       <UniqueIdentifier>{a7d3d52c-7264-40a8-97e2-6e9b0208c05c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Scene_Sample">
+      <UniqueIdentifier>{09e3ab4f-22e0-4fa0-805b-5703713bf75c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Global\Utility\Material">
+      <UniqueIdentifier>{ae4429ba-59e0-489c-a782-064c4e6c4068}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Global\Utility\Light">
+      <UniqueIdentifier>{4ad74b9e-42f9-43df-aea4-5fe6bf100414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Global\Utility\Loader">
+      <UniqueIdentifier>{d7e89f33-fbd0-40f2-8368-25f4be071816}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code_DirectX_Sample.cpp" />
@@ -84,6 +96,21 @@
     </ClCompile>
     <ClCompile Include="Classes\Global\Utility\Base\CObj_Render.cpp">
       <Filter>Classes\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Scene_Sample\CManager_SampleScene.cpp">
+      <Filter>Classes\Scene_Sample</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Utility\Material\CMat.cpp">
+      <Filter>Classes\Global\Utility\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh_Skeleton.cpp">
+      <Filter>Classes\Global\Utility\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkeletonMesh.cpp">
+      <Filter>Classes\Global\Utility\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Utility\Light\CLight.cpp">
+      <Filter>Classes\Global\Utility\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,6 +167,21 @@
     </ClInclude>
     <ClInclude Include="Classes\Global\Utility\Base\CObj_Render.h">
       <Filter>Classes\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Scene_Sample\CManager_SampleScene.h">
+      <Filter>Classes\Scene_Sample</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Material\CMat.h">
+      <Filter>Classes\Global\Utility\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Light\CLight.h">
+      <Filter>Classes\Global\Utility\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skeleton.h">
+      <Filter>Classes\Global\Utility\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkeletonMesh.h">
+      <Filter>Classes\Global\Utility\Loader</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

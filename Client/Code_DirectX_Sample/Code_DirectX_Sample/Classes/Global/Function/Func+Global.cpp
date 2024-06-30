@@ -25,7 +25,7 @@ namespace Func
 		return stDesc_InputElement;
 	}
 
-	ID3DX10Mesh* Mesh9ToMesh(LPD3DXMESH a_pXMesh9)
+	ID3DX10Mesh* XMesh9ToXMesh(LPD3DXMESH a_pXMesh9)
 	{
 		D3DVERTEXELEMENT9 astElements_Vertex[MAX_FVF_DECL_SIZE];
 		a_pXMesh9->GetDeclaration(astElements_Vertex);
