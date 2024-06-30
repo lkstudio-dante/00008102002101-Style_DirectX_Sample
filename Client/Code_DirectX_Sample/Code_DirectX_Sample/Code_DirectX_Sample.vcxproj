@@ -132,25 +132,31 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Classes\Global\Access\Access+Global.cpp" />
     <ClCompile Include="Classes\Global\Factory\Factory+Global.cpp" />
     <ClCompile Include="Classes\Global\Function\Func+Global.cpp" />
     <ClCompile Include="Classes\Global\Utility\Base\CApp_D3D.cpp" />
     <ClCompile Include="Classes\Global\Utility\Base\CApp_Wnd.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Base\CObj.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Base\CObj_Render.cpp" />
     <ClCompile Include="Classes\Global\Utility\Camera\CCamera.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Input.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Res.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Snd.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Time.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh.cpp" />
     <ClCompile Include="Classes\Global\Utility\Sound\CSnd.cpp" />
-    <ClCompile Include="Classes\Sample\CSample.cpp" />
     <ClCompile Include="Code_DirectX_Sample.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Classes\Global\Access\Access+Global.h" />
     <ClInclude Include="Classes\Global\Define\KDefine+Global.h" />
     <ClInclude Include="Classes\Global\Factory\Factory+Global.h" />
     <ClInclude Include="Classes\Global\Function\Func+Global.h" />
     <ClInclude Include="Classes\Global\Utility\Base\CApp_D3D.h" />
     <ClInclude Include="Classes\Global\Utility\Base\CApp_Wnd.h" />
+    <ClInclude Include="Classes\Global\Utility\Base\CObj.h" />
+    <ClInclude Include="Classes\Global\Utility\Base\CObj_Render.h" />
     <ClInclude Include="Classes\Global\Utility\Camera\CCamera.h" />
     <ClInclude Include="Classes\Global\Utility\Interface\IReleasable.h" />
     <ClInclude Include="Classes\Global\Utility\Interface\IRenderable.h" />
@@ -159,8 +165,8 @@
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Res.h" />
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Snd.h" />
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Time.h" />
+    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh.h" />
     <ClInclude Include="Classes\Global\Utility\Sound\CSnd.h" />
-    <ClInclude Include="Classes\Sample\CSample.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

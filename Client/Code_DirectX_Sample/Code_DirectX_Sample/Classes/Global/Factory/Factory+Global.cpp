@@ -8,18 +8,18 @@ namespace Factory
 	ID3D10Buffer* CreateBuffer(int a_nNumBytes,
 		D3D10_BIND_FLAG a_eFlagsBind, D3D10_CPU_ACCESS_FLAG a_eFlagsCPUAccess, D3D10_USAGE a_eUsage, D3D10_SUBRESOURCE_DATA* a_pDataSubResource)
 	{
-		D3D10_BUFFER_DESC stDescBuffer;
-		ZeroMemory(&stDescBuffer, sizeof(stDescBuffer));
+		D3D10_BUFFER_DESC stDesc_Buffer;
+		ZeroMemory(&stDesc_Buffer, sizeof(stDesc_Buffer));
 
-		stDescBuffer.Usage = a_eUsage;
-		stDescBuffer.ByteWidth = a_nNumBytes;
+		stDesc_Buffer.Usage = a_eUsage;
+		stDesc_Buffer.ByteWidth = a_nNumBytes;
 
-		stDescBuffer.BindFlags = a_eFlagsBind;
-		stDescBuffer.CPUAccessFlags = a_eFlagsCPUAccess;
-		stDescBuffer.MiscFlags = 0;
+		stDesc_Buffer.BindFlags = a_eFlagsBind;
+		stDesc_Buffer.CPUAccessFlags = a_eFlagsCPUAccess;
+		stDesc_Buffer.MiscFlags = 0;
 
 		ID3D10Buffer* pBuffer = nullptr;
-		GET_APP_D3D()->GetDevice()->CreateBuffer(&stDescBuffer, a_pDataSubResource, &pBuffer);
+		GET_APP_D3D()->GetDevice()->CreateBuffer(&stDesc_Buffer, a_pDataSubResource, &pBuffer);
 
 		return pBuffer;
 	}
@@ -52,14 +52,21 @@ namespace Factory
 		return pTexture2D;
 	}
 
-	LPDIRECTSOUNDBUFFER8 CreateBufferSnd(void)
+	LPDIRECTSOUNDBUFFER8 CreateBuffer_Snd(int a_nNumBytes, const WAVEFORMATEX& a_rstInfo_Wave, DWORD a_nFlags)
 	{
-		DSBUFFERDESC stDescBuffer;
-		ZeroMemory(&stDescBuffer, sizeof(stDescBuffer));
+		DSBUFFERDESC stDesc_Buffer;
+		ZeroMemory(&stDesc_Buffer, sizeof(stDesc_Buffer));
 
-		LPDIRECTSOUNDBUFFER8 pBufferSnd = nullptr;
-		GET_MANAGER_SND()->GetDSnd()->CreateSoundBuffer(&stDescBuffer, (LPDIRECTSOUNDBUFFER*)&pBufferSnd, nullptr);
+		stDesc_Buffer.dwSize = sizeof(stDesc_Buffer);
+		stDesc_Buffer.dwBufferBytes = a_nNumBytes;
+		stDesc_Buffer.lpwfxFormat = (LPWAVEFORMATEX)&a_rstInfo_Wave;
+		stDesc_Buffer.dwFlags = a_nFlags;
 
-		return pBufferSnd;
+		LPDIRECTSOUNDBUFFER8 pBuffer_Snd = nullptr;
+
+		GET_MANAGER_SND()->GetDSnd()->CreateSoundBuffer(&stDesc_Buffer,
+			(LPDIRECTSOUNDBUFFER*)&pBuffer_Snd, nullptr);
+
+		return pBuffer_Snd;
 	}
 }

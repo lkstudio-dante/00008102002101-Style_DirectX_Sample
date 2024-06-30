@@ -12,8 +12,8 @@ class CApp_D3D : public CApp_Wnd
 {
 public:
 
-	using CApp_Wnd::OnRender;
-	using CApp_Wnd::OnLateRender;
+	using CApp_Wnd::Render;
+	using CApp_Wnd::LateRender;
 
 public:			// IReleasable
 
@@ -23,15 +23,15 @@ public:			// IReleasable
 public:			// IUpdatable
 
 	/** 상태를 갱신한다 */
-	virtual void OnUpdate(const float a_fTimeDelta) override;
+	virtual void Update(float a_fTime_Delta) override;
 
 public:			// IRenderable
 
 	/** 객체를 그린다 */
-	virtual void OnRender(HDC a_hDC) final override;
+	virtual void Render(HDC a_hDC) final override;
 
 	/** 객체를 그린다 */
-	virtual void OnLateRender(HDC a_hDC) final override;
+	virtual void LateRender(HDC a_hDC) final override;
 
 public:   // public 함수
 
@@ -51,16 +51,16 @@ public:   // public 함수
 	GETTER_PROPERTY_WITH_INIT(ID3D10Device*, Device, m_pDevice, nullptr);
 
 	/** 렌더 타겟 뷰 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10RenderTargetView*, ViewRT, m_pViewRT, nullptr);
+	GETTER_PROPERTY_WITH_INIT(ID3D10RenderTargetView*, View_RT, m_pView_RT, nullptr);
 
 	/** 깊이 스텐실 뷰 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10DepthStencilView*, ViewDS, m_pViewDS, nullptr);
+	GETTER_PROPERTY_WITH_INIT(ID3D10DepthStencilView*, View_DS, m_pView_DS, nullptr);
 
 	/** 깊이 스텐실 상태 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10DepthStencilState*, StateDS, m_pStateDS, nullptr);
+	GETTER_PROPERTY_WITH_INIT(ID3D10DepthStencilState*, State_DS, m_pState_DS, nullptr);
 
 	/** 래스터라이저 상태 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10RasterizerState*, StateRasterizer, m_pStateRasterizer, nullptr);
+	GETTER_PROPERTY_WITH_INIT(ID3D10RasterizerState*, State_Rasterizer, m_pState_Rasterizer, nullptr);
 
 	/** 폰트 프로퍼티 */
 	GETTER_PROPERTY_WITH_INIT(ID3DX10Font*, XFont, m_pXFont, nullptr);
@@ -77,7 +77,7 @@ public:   // public 함수
 public:			// public 함수
 
 	/** 생성자 */
-	CApp_D3D(HINSTANCE a_hInst, int a_nOptShow, const SIZE& a_rstSizeWnd);
+	CApp_D3D(HINSTANCE a_hInst, int a_nOpt_Show, const SIZE& a_rstSize_Wnd);
 
 	/** 소멸자 */
 	virtual ~CApp_D3D(void);
@@ -100,12 +100,12 @@ protected:			// protected 함수
 	virtual void SetupViewport(void);
 
 	/** 크기 메세지를 처리한다 */
-	virtual void HandleMsgSize(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams) override;
+	virtual void HandleMsg_Size(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams) override;
 
 protected:			// protected 접근 함수
 
 	/** 이펙트 경로를 반환한다 */
-	virtual std::string GetPathEffect(void);
+	virtual std::string GetPath_Effect(void);
 
 protected:			// protected 팩토리 함수
 
@@ -122,16 +122,16 @@ protected:			// protected 팩토리 함수
 	virtual ID3D10Device* CreateDevice(void);
 
 	/** 렌더 타겟 뷰를 생성한다 */
-	virtual ID3D10RenderTargetView* CreateViewRT(void);
+	virtual ID3D10RenderTargetView* CreateView_RT(void);
 
 	/** 깊이 스텐실 뷰를 생성한다 */
-	virtual ID3D10DepthStencilView* CreateViewDS(void);
+	virtual ID3D10DepthStencilView* CreateView_DS(void);
 
 	/** 깊이 스텐실 상태를 생성한다 */
-	virtual ID3D10DepthStencilState* CreateStateDS(void);
+	virtual ID3D10DepthStencilState* CreateState_DS(void);
 
 	/** 래스터라이저 상태를 생성한다 */
-	virtual ID3D10RasterizerState* CreateStateRasterizer(void);
+	virtual ID3D10RasterizerState* CreateState_Rasterizer(void);
 
 	/** 폰트를 생성한다 */
 	virtual ID3DX10Font* CreateXFont(void);
@@ -152,5 +152,5 @@ private:			// private 함수
 
 private:			// private 변수
 
-	std::string m_oStrDebugInfo = "";
+	std::string m_oStrDebugInfo = STR_EMPTY;
 };

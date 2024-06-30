@@ -6,17 +6,18 @@
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "dinput8.lib")
 #pragma comment(lib, "dsound.lib")
+#pragma comment(lib, "winmm.lib")
 
-#include "Classes/Sample/CSample.h"
+#include "Classes/Global/Utility/Base/CApp_D3D.h"
 
 /** 메인 함수 */
-int WINAPI _tWinMain(HINSTANCE a_hInst, HINSTANCE a_hInstPrev, LPTSTR a_pszCmdLine, int a_nOptShow)
+int WINAPI _tWinMain(HINSTANCE a_hInst, HINSTANCE a_hInstPrev, LPTSTR a_pszCmdLine, int a_nOpt_Show)
 {
-	SIZE stSizeWnd =
+	SIZE stSize_Wnd =
 	{
 		GetSystemMetrics(SM_CXSCREEN) / 2,
 		GetSystemMetrics(SM_CYSCREEN) / 2
 	};
 
-	return std::shared_ptr<CSample>(new CSample(a_hInst, a_nOptShow, stSizeWnd))->Run();
+	return std::shared_ptr<CApp_D3D>(new CApp_D3D(a_hInst, a_nOpt_Show, stSize_Wnd))->Run();
 }

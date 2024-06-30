@@ -13,27 +13,27 @@ class CApp_Wnd : public virtual IReleasable, public virtual IUpdateable, public 
 public:   // public 함수
 
 	/** 윈도우 크기 프로퍼티 */
-	GETTER_PROPERTY(SIZE, SizeWnd, m_stSizeWnd);
+	GETTER_PROPERTY(SIZE, Size_Wnd, m_stSize_Wnd);
 
 	/** 윈도우 영역 프로퍼티 */
-	GETTER_PROPERTY(RECT, RectWnd, m_stRectWnd);
+	GETTER_PROPERTY(RECT, Rect_Wnd, m_stRect_Wnd);
 
 	/** 윈도우 클래스 프로퍼티 */
-	GETTER_PROPERTY(WNDCLASS, ClassWnd, m_stWndClass);
+	GETTER_PROPERTY(WNDCLASS, WndCls, m_stWndCls);
 
 	/** 출력 옵션 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(int, OptShow, m_nOptShow, 0);
+	GETTER_PROPERTY_WITH_INIT(int, Opt_Show, m_nOpt_Show, 0);
 
-	/** 윈도우 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(HWND, HandleWnd, m_hWnd, nullptr);
+	/** 윈도우 핸들 프로퍼티 */
+	GETTER_PROPERTY_WITH_INIT(HWND, Handle_Wnd, m_hWnd, nullptr);
 
-	/** 앱 인스턴스 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(HINSTANCE, HandleInst, m_hInst, nullptr);
+	/** 인스턴스 핸들 프로퍼티 */
+	GETTER_PROPERTY_WITH_INIT(HINSTANCE, Handle_Inst, m_hInst, nullptr);
 
 public:			// public 함수
 
 	/** 생성자 */
-	CApp_Wnd(HINSTANCE a_hInst, int a_nOptShow, const SIZE& a_rstSizeWnd);
+	CApp_Wnd(HINSTANCE a_hInst, int a_nOpt_Show, const SIZE& a_rstSize_Wnd);
 
 	/** 소멸자 */
 	virtual ~CApp_Wnd(void);
@@ -58,18 +58,18 @@ public:			// public 접근 함수
 protected:			// protected 함수
 
 	/** 메세지 루프를 실행한다 */
-	virtual int RunLoopMsg(void);
+	virtual int RunLoop_Msg(void);
 
 	/** 크기 메세지를 처리한다 */
-	virtual void HandleMsgSize(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams);
+	virtual void HandleMsg_Size(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams);
 
 	/** 제거 메세지를 처리한다 */
-	virtual void HandleMsgDestroy(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams);
+	virtual void HandleMsg_Destroy(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams);
 
 protected:			// protected 팩토리 함수
 
 	/** 윈도우를 생성한다 */
-	virtual HWND CreateWnd(WNDCLASS* a_pstOutClassWnd);
+	virtual HWND CreateWnd(WNDCLASS* a_pstOutWndCls);
 
 private:			// private 함수
 

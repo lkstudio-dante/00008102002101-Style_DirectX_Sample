@@ -8,6 +8,7 @@
 #include <memory>
 #include <chrono>
 #include <vector>
+#include <functional>
 #include <unordered_map>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -19,8 +20,25 @@
 #include <Windows.h>
 #include <tchar.h>
 
+#define STR_EMPTY						(std::string(""))
 #define VER_EFFECT						(std::string("fx_4_0"))
+#define SEMANTIC_POS					(std::string("POSITION"))
+
+#define NAME_NORMAL_MAP_CBUFFER				(std::string("g_oNormalMap"))
+#define NAME_DIFFUSE_MAP_CBUFFER			(std::string("g_oDiffuseMap"))
+
+#define NAME_WORLD_MATRIX_CBUFFER				(std::string("g_stMatrix_World"))
+#define NAME_VIEW_MATRIX_CBUFFER				(std::string("g_stMatrix_View"))
+#define NAME_PROJECTION_MATRIX_CBUFFER			(std::string("g_stMatrix_Projection"))
+
 #define FLAGS_CPU_ACCESS_NONE			((D3D10_CPU_ACCESS_FLAG)0)
+#define MAX_NUM_SFXS_DUPLICATE			(10)
+
+#define VEC_WORLD_RIGHT				(D3DXVECTOR3(1.0f, 0.0f, 0.0f))
+#define VEC_WORLD_UP				(D3DXVECTOR3(0.0f, 1.0f, 0.0f))
+#define VEC_WORLD_FORWARD			(D3DXVECTOR3(0.0f, 0.0f, 1.0f))
+
+#define ELEMENT_END_VERTEX			(D3DVERTEXELEMENT9(D3DDECL_END()))
 
 // 메모리 관리 {
 #define SAFE_FREE(TARGET)			if((TARGET) != nullptr) { free((TARGET)); (TARGET) = nullptr; }
@@ -42,8 +60,8 @@
 #define GET_MANAGER_TIME()			(CManager_Time::GetInst())
 #define GET_MANAGER_INPUT()			(CManager_Input::GetInst())
 
-#define GET_HANDLE_WND()			(GET_APP_WND()->GetHandleWnd())
-#define GET_HANDLE_INST()			(GET_APP_WND()->GetHandleInst())
+#define GET_HANDLE_WND()			(GET_APP_WND()->GetHandle_Wnd())
+#define GET_HANDLE_INST()			(GET_APP_WND()->GetHandle_Inst())
 
 #define GETTER(TYPE_DATA, NAME_FUNC, NAME_VAR)			virtual TYPE_DATA Get##NAME_FUNC(void) const { return NAME_VAR; }
 #define SETTER(TYPE_DATA, NAME_FUNC, NAME_VAR)			virtual void Set##NAME_FUNC(TYPE_DATA a_tVal) { NAME_VAR = a_tVal; }
@@ -95,4 +113,28 @@ enum class EBtnMouse
 	RIGHT,
 	MIDDLE,
 	MAX_VAL
+};
+
+/** 메쉬 정보 */
+struct STInfo_Mesh
+{
+	ID3DX10Mesh* m_pMesh;
+
+	std::vector<D3DMATERIAL9> m_oVectorMaterials;
+	std::vector<ID3D10ShaderResourceView*> m_oVectorViews_SR;
+};
+
+/** 이펙트 정보 */
+struct STInfo_Effect
+{
+
+};
+
+/** 웨이브 사운드 정보 */
+struct STInfo_WaveSnd
+{
+	int m_nNumBytes;
+	WAVEFORMATEX m_stInfo_Wave;
+
+	LPBYTE m_pnBytes;
 };

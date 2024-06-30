@@ -10,13 +10,13 @@ CManager_Time::~CManager_Time(void)
 	// Do Something
 }
 
-void CManager_Time::OnUpdate(const float a_fTimeDelta)
+void CManager_Time::Update(float a_fTime_Delta)
 {
-	auto oTimeCur = std::chrono::system_clock::now();
-	m_fTimeDelta = std::chrono::duration<float>(oTimeCur - m_oTimePrev).count();
-	m_fTimeRunning = std::chrono::duration<float>(oTimeCur - m_oTimeStart).count();
+	auto oTime_Cur = std::chrono::system_clock::now();
+	m_fTime_Delta = std::chrono::duration<float>(oTime_Cur - m_oTime_Prev).count();
+	m_fTime_Running = std::chrono::duration<float>(oTime_Cur - m_oTime_Start).count();
 
-	m_oTimePrev = oTimeCur;
+	m_oTime_Prev = oTime_Cur;
 }
 
 void CManager_Time::Init(void)

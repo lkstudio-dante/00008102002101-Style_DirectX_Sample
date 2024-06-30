@@ -10,8 +10,8 @@ class IUpdateable
 public:			// public 함수
 
 	/** 상태를 갱신한다 */
-	virtual void OnUpdate(const float a_fTimeDelta) { }
+	virtual void Update(float a_fTime_Delta) { }
 
 	/** 상태를 갱신한다 */
-	virtual void OnLateUpdate(const float a_fTimeDelta) { }
+	virtual void LateUpdate(float a_fTime_Delta) { }
 };

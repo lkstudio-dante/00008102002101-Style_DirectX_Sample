@@ -4,9 +4,9 @@
 
 namespace Func
 {
-	/** 멀티 샘플 퀄리티 수준을 반환한다 */
-	UINT GetLevelsMultiSampleQuality(DXGI_FORMAT a_eFmt, int a_nNumSamples);
+	/** 정점 선언 => 입력 요소로 변환한다 */
+	D3D10_INPUT_ELEMENT_DESC Element_VertexToDesc_InputElement(const D3DVERTEXELEMENT9& a_rstElement_Vertex);
 
-	/** 멀티 샘플 퀄리티 수준을 반환한다 */
-	DWORD GetLevelsMultiSampleQuality(D3DFORMAT a_eFmt, D3DMULTISAMPLE_TYPE a_eTypeMultiSample);
+	/** 9 메쉬 => 메쉬로 변환한다 */
+	ID3DX10Mesh* Mesh9ToMesh(LPD3DXMESH a_pMesh);
 }

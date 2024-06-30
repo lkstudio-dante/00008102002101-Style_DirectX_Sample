@@ -10,23 +10,23 @@ static CApp_Wnd* g_pInst = nullptr;
 /** 윈도우 프로시저 */
 static LRESULT CALLBACK WndProc(HWND a_hWnd, UINT a_nMsg, WPARAM a_wParams, LPARAM a_lParams)
 {
-	static CApp_Wnd* pAppWnd = nullptr;
+	static CApp_Wnd* pApp_Wnd = nullptr;
 
 	switch(a_nMsg)
 	{
 		case WM_CREATE:
 			auto pstCreateStruct = (LPCREATESTRUCT)a_lParams;
-			pAppWnd = (CApp_Wnd*)pstCreateStruct->lpCreateParams;
+			pApp_Wnd = (CApp_Wnd*)pstCreateStruct->lpCreateParams;
 
 			break;
 	}
 
-	return (pAppWnd != nullptr) ?
-		pAppWnd->WndProc(a_hWnd, a_nMsg, a_wParams, a_lParams) : DefWindowProc(a_hWnd, a_nMsg, a_wParams, a_lParams);
+	return (pApp_Wnd != nullptr) ?
+		pApp_Wnd->WndProc(a_hWnd, a_nMsg, a_wParams, a_lParams) : DefWindowProc(a_hWnd, a_nMsg, a_wParams, a_lParams);
 }
 
 CApp_Wnd::CApp_Wnd(HINSTANCE a_hInst,
-	int a_nOptShow, const SIZE& a_rstSizeWnd) : m_hInst(a_hInst), m_nOptShow(a_nOptShow), m_stSizeWnd(a_rstSizeWnd)
+	int a_nOpt_Show, const SIZE& a_rstSize_Wnd) : m_hInst(a_hInst), m_nOpt_Show(a_nOpt_Show), m_stSize_Wnd(a_rstSize_Wnd)
 {
 	assert(g_pInst == nullptr);
 	g_pInst = this;
@@ -37,25 +37,25 @@ CApp_Wnd::CApp_Wnd(HINSTANCE a_hInst,
 		m_pstWStream = freopen("CONOUT$", "w", stdout);
 	}
 
-	ZeroMemory(&m_stRectWnd, sizeof(m_stRectWnd));
-	ZeroMemory(&m_stWndClass, sizeof(m_stWndClass));
+	ZeroMemory(&m_stRect_Wnd, sizeof(m_stRect_Wnd));
+	ZeroMemory(&m_stWndCls, sizeof(m_stWndCls));
 }
 
 CApp_Wnd::~CApp_Wnd(void)
 {
 	FreeConsole();
 	SAFE_CLOSE(m_pstWStream);
-	UnregisterClass(m_stWndClass.lpszClassName, m_hInst);
+	UnregisterClass(m_stWndCls.lpszClassName, m_hInst);
 }
 
 void CApp_Wnd::Init(void)
 {
-	m_hWnd = this->CreateWnd(&m_stWndClass);
+	m_hWnd = this->CreateWnd(&m_stWndCls);
 }
 
 void CApp_Wnd::LateInit(void)
 {
-	ShowWindow(m_hWnd, m_nOptShow);
+	ShowWindow(m_hWnd, m_nOpt_Show);
 
 	CManager_Res::GetInst()->Init();
 	CManager_Snd::GetInst()->Init();
@@ -69,15 +69,15 @@ int CApp_Wnd::Run(void)
 	this->LateInit();
 
 	UpdateWindow(m_hWnd);
-	return this->RunLoopMsg();
+	return this->RunLoop_Msg();
 }
 
 LRESULT CApp_Wnd::WndProc(HWND a_hWnd, UINT a_nMsg, WPARAM a_wParams, LPARAM a_lParams)
 {
 	switch(a_nMsg)
 	{
-		case WM_SIZE: this->HandleMsgSize(a_hWnd, a_wParams, a_lParams); break;
-		case WM_DESTROY: this->HandleMsgDestroy(a_hWnd, a_wParams, a_lParams); break;
+		case WM_SIZE: this->HandleMsg_Size(a_hWnd, a_wParams, a_lParams); break;
+		case WM_DESTROY: this->HandleMsg_Destroy(a_hWnd, a_wParams, a_lParams); break;
 	}
 
 	return DefWindowProc(a_hWnd, a_nMsg, a_wParams, a_lParams);
@@ -88,7 +88,7 @@ CApp_Wnd* CApp_Wnd::GetInst(void)
 	return g_pInst;
 }
 
-int CApp_Wnd::RunLoopMsg(void)
+int CApp_Wnd::RunLoop_Msg(void)
 {
 	MSG stMsg;
 	ZeroMemory(&stMsg, sizeof(stMsg));
@@ -103,28 +103,29 @@ int CApp_Wnd::RunLoopMsg(void)
 		}
 
 		auto hDC = GetDC(m_hWnd);
-		auto hMemDC = CreateCompatibleDC(hDC);
-		auto hBitmap = CreateCompatibleBitmap(hDC, m_stSizeWnd.cx, m_stSizeWnd.cy);
+		auto hDC_Memory = CreateCompatibleDC(hDC);
+
+		auto hBitmap = CreateCompatibleBitmap(hDC, m_stSize_Wnd.cx, m_stSize_Wnd.cy);
 
 		__try
 		{
-			SelectObject(hMemDC, hBitmap);
-			FillRect(hMemDC, &m_stRectWnd, m_stWndClass.hbrBackground);
+			SelectObject(hDC_Memory, hBitmap);
+			FillRect(hDC_Memory, &m_stRect_Wnd, m_stWndCls.hbrBackground);
 
-			CManager_Time::GetInst()->OnUpdate(0.0f);
-			CManager_Input::GetInst()->OnUpdate(0.0f);
+			CManager_Time::GetInst()->Update(0.0f);
+			CManager_Input::GetInst()->Update(0.0f);
 
-			this->OnUpdate(CManager_Time::GetInst()->GetTimeDelta());
-			this->OnLateUpdate(CManager_Time::GetInst()->GetTimeDelta());
+			this->Update(CManager_Time::GetInst()->GetTime_Delta());
+			this->LateUpdate(CManager_Time::GetInst()->GetTime_Delta());
 
-			this->OnRender(hMemDC);
-			this->OnLateRender(hMemDC);
+			this->Render(hDC_Memory);
+			this->LateRender(hDC_Memory);
 
-			this->Present(hMemDC, hDC);
+			this->Present(hDC_Memory, hDC);
 		}
 		__finally
 		{
-			DeleteDC(hMemDC);
+			DeleteDC(hDC_Memory);
 			DeleteObject(hBitmap);
 
 			ReleaseDC(m_hWnd, hDC);
@@ -134,20 +135,20 @@ int CApp_Wnd::RunLoopMsg(void)
 	return stMsg.wParam;
 }
 
-void CApp_Wnd::HandleMsgSize(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
+void CApp_Wnd::HandleMsg_Size(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
 {
-	m_stSizeWnd.cx = m_stRectWnd.right = LOWORD(a_lParams);
-	m_stSizeWnd.cy = m_stRectWnd.bottom = HIWORD(a_lParams);
+	m_stSize_Wnd.cx = m_stRect_Wnd.right = LOWORD(a_lParams);
+	m_stSize_Wnd.cy = m_stRect_Wnd.bottom = HIWORD(a_lParams);
 }
 
-void CApp_Wnd::HandleMsgDestroy(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
+void CApp_Wnd::HandleMsg_Destroy(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
 {
 	PostQuitMessage(0);
 }
 
-HWND CApp_Wnd::CreateWnd(WNDCLASS* a_pstOutClassWnd)
+HWND CApp_Wnd::CreateWnd(WNDCLASS* a_pstOutWndCls)
 {
-	WNDCLASS stClassWnd =
+	WNDCLASS stWndCls =
 	{
 		CS_VREDRAW | CS_HREDRAW,
 		::WndProc,
@@ -161,22 +162,22 @@ HWND CApp_Wnd::CreateWnd(WNDCLASS* a_pstOutClassWnd)
 		_T("Example")
 	};
 
-	RegisterClass(&stClassWnd);
-	CopyMemory(a_pstOutClassWnd, &stClassWnd, sizeof(stClassWnd));
+	RegisterClass(&stWndCls);
+	CopyMemory(a_pstOutWndCls, &stWndCls, sizeof(stWndCls));
 
-	RECT stRectWnd =
+	RECT stRect_Wnd =
 	{
-		0, 0, m_stSizeWnd.cx, m_stSizeWnd.cy
+		0, 0, m_stSize_Wnd.cx, m_stSize_Wnd.cy
 	};
 
-	AdjustWindowRect(&stRectWnd, WS_OVERLAPPEDWINDOW, false);
+	AdjustWindowRect(&stRect_Wnd, WS_OVERLAPPEDWINDOW, false);
 
-	return CreateWindow(stClassWnd.lpszClassName,
-		stClassWnd.lpszClassName, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, stRectWnd.right - stRectWnd.left, stRectWnd.bottom - stRectWnd.top, GetDesktopWindow(), nullptr, this->GetHandleInst(), this);
+	return CreateWindow(stWndCls.lpszClassName,
+		stWndCls.lpszClassName, WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, stRect_Wnd.right - stRect_Wnd.left, stRect_Wnd.bottom - stRect_Wnd.top, GetDesktopWindow(), nullptr, this->GetHandle_Inst(), this);
 }
 
 void CApp_Wnd::Present(HDC a_hSrcDC, HDC a_hDestDC)
 {
 	StretchBlt(a_hDestDC,
-		0, 0, m_stSizeWnd.cx, m_stSizeWnd.cy, a_hSrcDC, 0, 0, m_stSizeWnd.cx, m_stSizeWnd.cy, SRCCOPY);
+		0, 0, m_stSize_Wnd.cx, m_stSize_Wnd.cy, a_hSrcDC, 0, 0, m_stSize_Wnd.cx, m_stSize_Wnd.cy, SRCCOPY);
 }

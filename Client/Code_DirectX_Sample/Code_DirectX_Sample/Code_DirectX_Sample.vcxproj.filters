@@ -34,11 +34,11 @@
     <Filter Include="Classes\Global\Utility\Sound">
       <UniqueIdentifier>{2f919ce1-c34b-4c68-ab07-b4941e4254e9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{cdfbdd1c-9c6e-46a9-a10f-7fb9819362dd}</UniqueIdentifier>
+    <Filter Include="Classes\Global\Access">
+      <UniqueIdentifier>{918cb3b9-c3c0-427d-9cff-b6f0925440f4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Sample">
-      <UniqueIdentifier>{9ebc4564-9ef7-4ea2-bbfa-d293f915ec6a}</UniqueIdentifier>
+    <Filter Include="Classes\Global\Utility\Mesh">
+      <UniqueIdentifier>{a7d3d52c-7264-40a8-97e2-6e9b0208c05c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -73,8 +73,17 @@
     <ClCompile Include="Classes\Global\Utility\Sound\CSnd.cpp">
       <Filter>Classes\Global\Utility\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Sample\CSample.cpp">
-      <Filter>Classes\Sample</Filter>
+    <ClCompile Include="Classes\Global\Utility\Base\CObj.cpp">
+      <Filter>Classes\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Access\Access+Global.cpp">
+      <Filter>Classes\Global\Access</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh.cpp">
+      <Filter>Classes\Global\Utility\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Global\Utility\Base\CObj_Render.cpp">
+      <Filter>Classes\Global\Utility\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,8 +129,17 @@
     <ClInclude Include="Classes\Global\Utility\Sound\CSnd.h">
       <Filter>Classes\Global\Utility\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Sample\CSample.h">
-      <Filter>Classes\Sample</Filter>
+    <ClInclude Include="Classes\Global\Utility\Base\CObj.h">
+      <Filter>Classes\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Access\Access+Global.h">
+      <Filter>Classes\Global\Access</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh.h">
+      <Filter>Classes\Global\Utility\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Base\CObj_Render.h">
+      <Filter>Classes\Global\Utility\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -8,6 +8,14 @@
  */
 class CManager_Res : public virtual IReleasable
 {
+public:
+
+	typedef std::unordered_map<std::string, STInfo_Mesh> T_MapInfos_Mesh;
+	typedef std::unordered_map<std::string, STInfo_WaveSnd> T_MapInfos_WaveSnd;
+
+	typedef std::unordered_map<std::string, ID3D10Effect*> T_MapEffects;
+	typedef std::unordered_map<std::string, ID3D10ShaderResourceView*> T_MapViews_SR;
+
 public:			// IReleasable
 
 	/** 해제한다 */
@@ -21,16 +29,29 @@ public:			// public 함수
 	/** 초기화 */
 	virtual void Init(void);
 
+	/** 메쉬 정보 프로퍼티 */
+	GETTER_PROPERTY(T_MapInfos_Mesh, Infos_Mesh, m_oMapInfos_Mesh);
+
+	/** 메쉬 정보 프로퍼티 */
+	GETTER_PROPERTY(T_MapInfos_WaveSnd, Infos_WaveSnd, m_oMapInfos_WaveSnd);
+
+	/** 메쉬 정보 프로퍼티 */
+	GETTER_PROPERTY(T_MapEffects, Effects, m_oMapEffects);
+
+	/** 메쉬 정보 프로퍼티 */
+	GETTER_PROPERTY(T_MapViews_SR, Views_SR, m_oMapViews_SR);
+
 public:			// public 접근 함수
 
+	/** 메쉬 정보를 반환한다 */
+	STInfo_Mesh GetInfo_Mesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto = true);
+
+	/** 웨이브 사운드 정보를 반환한다 */
+	STInfo_WaveSnd GetInfo_WaveSnd(const std::string& a_rPath_Snd, bool a_bIsCreate_Auto = true);
+
 	/** 이펙트를 반환한다 */
-	ID3D10Effect* GetEffect(const std::string& a_rPathEffect, bool a_bIsCreateAuto = true);
+	ID3D10Effect* GetEffect(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto = true);
 
 	/** 쉐이더 리소스 뷰를 반환한다 */
-	ID3D10ShaderResourceView* GetViewSR(const std::string& a_rPathTexture, bool a_bIsCreateAuto = true);
-
-private:			// private 변수
-
-	std::unordered_map<std::string, ID3D10Effect*> m_oMapEffects;
-	std::unordered_map<std::string, ID3D10ShaderResourceView*> m_oMapViewsSR;
+	ID3D10ShaderResourceView* GetView_SR(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto = true);
 };
