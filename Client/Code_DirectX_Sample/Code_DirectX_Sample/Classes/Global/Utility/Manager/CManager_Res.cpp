@@ -78,22 +78,35 @@ STInfo_Mesh CManager_Res::GetInfo_Mesh(const std::string& a_rPath_Mesh, bool a_b
 		STInfo_Mesh stInfo_Mesh = { 0 };
 
 		LPD3DXMESH pXMesh9 = nullptr;
+		LPD3DXBUFFER pXBuffer_Adjacency = nullptr;
 		LPD3DXBUFFER pXBuffer_Materials = nullptr;
 
+		std::filesystem::path oPath(a_rPath_Mesh);
+		auto oPath_Dir = oPath.parent_path();
+
 		D3DXLoadMeshFromXA(a_rPath_Mesh.c_str(),
-			D3DXMESH_32BIT, GET_APP_D3D()->GetDevice9(), nullptr, &pXBuffer_Materials, nullptr, &nNumMaterials, &pXMesh9);
+			D3DXMESH_32BIT, GET_APP_D3D()->GetDevice9(), &pXBuffer_Adjacency, &pXBuffer_Materials, nullptr, &nNumMaterials, &pXMesh9);
 
 		for(int i = 0; i < nNumMaterials; ++i)
 		{
 			D3DXMATERIAL stXMat;
 			memcpy(&stXMat, (LPBYTE)pXBuffer_Materials->GetBufferPointer() + (sizeof(stXMat) * i), sizeof(stXMat));
 
+			std::string oPath_Texture = oPath_Dir.string() + "/" + stXMat.pTextureFilename;
+
 			stInfo_Mesh.m_oVectorMaterials.push_back(stXMat.MatD3D);
-			stInfo_Mesh.m_oVectorViews_SR.push_back(this->GetView_SR(stXMat.pTextureFilename));
+			stInfo_Mesh.m_oVectorViews_SR.push_back(this->GetView_SR(oPath_Texture));
 		}
+
+		pXMesh9->Optimize(D3DXMESHOPT_ATTRSORT, 
+			(LPDWORD)pXBuffer_Adjacency->GetBufferPointer(), nullptr, nullptr, nullptr, &pXMesh9);
 
 		stInfo_Mesh.m_pXMesh = Func::XMesh9ToXMesh(pXMesh9);
 		m_oMapInfos_Mesh.insert(decltype(m_oMapInfos_Mesh)::value_type(a_rPath_Mesh, stInfo_Mesh));
+
+		SAFE_RELEASE(pXMesh9);
+		SAFE_RELEASE(pXBuffer_Adjacency);
+		SAFE_RELEASE(pXBuffer_Materials);
 	}
 
 	return m_oMapInfos_Mesh[a_rPath_Mesh];
@@ -193,12 +206,26 @@ ID3D10Effect* CManager_Res::GetEffect(const std::string& a_rPath_Effect, bool a_
 		if(pError != nullptr)
 		{
 			printf("CManager_Res.GetEffect: %s\n", (char*)pError->GetBufferPointer());
+			SAFE_RELEASE(pError);
 		}
 
 		m_oMapEffects.insert(decltype(m_oMapEffects)::value_type(a_rPath_Effect, pEffect));
 	}
 
 	return m_oMapEffects[a_rPath_Effect];
+}
+
+ID3D10InputLayout* CManager_Res::GetInputLayout(ID3DX10Mesh* a_pXMesh, 
+	const std::string& a_rPath_Effect, bool a_bIsCreate_Auto)
+{
+	// 입력 레이아웃이 없을 경우
+	if(a_bIsCreate_Auto && m_oMapInputLayouts.find(a_rPath_Effect) == m_oMapInputLayouts.end())
+	{
+		D3D10_PASS_DESC stDesc_Pass;
+		this->GetEffect(a_rPath_Effect)->GetTechniqueByIndex(0)->GetPassByIndex(0)->GetDesc(&stDesc_Pass);
+	}
+
+	return m_oMapInputLayouts[a_rPath_Effect];
 }
 
 ID3D10ShaderResourceView* CManager_Res::GetView_SR(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto)

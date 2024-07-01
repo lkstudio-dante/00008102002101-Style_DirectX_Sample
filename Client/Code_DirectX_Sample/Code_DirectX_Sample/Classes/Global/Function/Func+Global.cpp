@@ -5,10 +5,13 @@
 namespace Func
 {
 	/** 인덱스를 설정한다 */
-	static void SetupIndices(ID3DXMesh* a_pMesh9, ID3DX10Mesh* a_pOutXMesh);
+	static void SetupIndices(ID3DXMesh* a_pXMesh9, ID3DX10Mesh* a_pOutXMesh);
 
 	/** 정점을 설정한다 */
-	static void SetupVertices(ID3DXMesh* a_pMesh9, ID3DX10Mesh* a_pOutXMesh);
+	static void SetupVertices(ID3DXMesh* a_pXMesh9, ID3DX10Mesh* a_pOutXMesh);
+
+	/** 속성을 설정한다 */
+	static void SetupAttributes(ID3DXMesh* a_pXMesh9, ID3DX10Mesh* a_pOutXMesh);
 
 	D3D10_INPUT_ELEMENT_DESC Element_VertexToDesc_InputElement(const D3DVERTEXELEMENT9& a_rstElement_Vertex)
 	{
@@ -34,8 +37,8 @@ namespace Func
 
 		for(int i = 0; i < MAX_FVF_DECL_SIZE && astElements_Vertex[i].Stream != ELEMENT_END_VERTEX.Stream; ++i)
 		{
-			auto stDescInputElement = Func::Element_VertexToDesc_InputElement(astElements_Vertex[i]);
-			oVectorDescs_InputElement.push_back(stDescInputElement);
+			auto stDesc_InputElement = Func::Element_VertexToDesc_InputElement(astElements_Vertex[i]);
+			oVectorDescs_InputElement.push_back(stDesc_InputElement);
 		}
 
 		ID3DX10Mesh* pXMesh = nullptr;
@@ -45,11 +48,12 @@ namespace Func
 
 		Func::SetupIndices(a_pXMesh9, pXMesh);
 		Func::SetupVertices(a_pXMesh9, pXMesh);
+		Func::SetupAttributes(a_pXMesh9, pXMesh);
 
 		return pXMesh;
 	}
 
-	void SetupIndices(ID3DXMesh* a_pMesh9, ID3DX10Mesh* a_pOutXMesh)
+	void SetupIndices(ID3DXMesh* a_pXMesh9, ID3DX10Mesh* a_pOutXMesh)
 	{
 		ID3DX10MeshBuffer* pXBuffer_Idx = nullptr;
 		a_pOutXMesh->GetIndexBuffer(&pXBuffer_Idx);
@@ -58,18 +62,18 @@ namespace Func
 		LPVOID pvIndices9 = nullptr;
 
 		// 인덱스 설정이 불가능 할 경우
-		if(FAILED(pXBuffer_Idx->Map(&pvIndices, nullptr)) || FAILED(a_pMesh9->LockIndexBuffer(0, &pvIndices9)))
+		if(FAILED(pXBuffer_Idx->Map(&pvIndices, nullptr)) || FAILED(a_pXMesh9->LockIndexBuffer(0, &pvIndices9)))
 		{
 			return;
 		}
 
-		memcpy(pvIndices, pvIndices9, sizeof(DWORD) * a_pMesh9->GetNumFaces() * 3);
-
+		memcpy(pvIndices, pvIndices9, sizeof(DWORD) * a_pXMesh9->GetNumFaces() * 3);
 		pXBuffer_Idx->Unmap();
-		a_pMesh9->UnlockIndexBuffer();
+
+		a_pXMesh9->UnlockIndexBuffer();
 	}
 
-	void SetupVertices(ID3DXMesh* a_pMesh9, ID3DX10Mesh* a_pOutXMesh)
+	void SetupVertices(ID3DXMesh* a_pXMesh9, ID3DX10Mesh* a_pOutXMesh)
 	{
 		ID3DX10MeshBuffer* pXBuffer_Vertex = nullptr;
 		a_pOutXMesh->GetVertexBuffer(0, &pXBuffer_Vertex);
@@ -78,14 +82,37 @@ namespace Func
 		LPVOID pvVertices9 = nullptr;
 
 		// 정점 설정이 불가능 할 경우
-		if(FAILED(pXBuffer_Vertex->Map(&pvVertices, nullptr)) || FAILED(a_pMesh9->LockVertexBuffer(0, &pvVertices9)))
+		if(FAILED(pXBuffer_Vertex->Map(&pvVertices, nullptr)) || FAILED(a_pXMesh9->LockVertexBuffer(0, &pvVertices9)))
 		{
 			return;
 		}
 
-		memcpy(pvVertices, pvVertices9, a_pMesh9->GetNumBytesPerVertex() * a_pMesh9->GetNumVertices());
-
+		memcpy(pvVertices, pvVertices9, a_pXMesh9->GetNumBytesPerVertex() * a_pXMesh9->GetNumVertices());
 		pXBuffer_Vertex->Unmap();
-		a_pMesh9->UnlockVertexBuffer();
+
+		a_pXMesh9->UnlockVertexBuffer();
+	}
+
+	void SetupAttributes(ID3DXMesh* a_pXMesh9, ID3DX10Mesh* a_pOutXMesh)
+	{
+		ID3DX10MeshBuffer* pXBuffer_Attribute = nullptr;
+		a_pOutXMesh->GetAttributeBuffer(&pXBuffer_Attribute);
+
+		LPVOID pvAttributes = nullptr;
+		LPDWORD pnAttributes9 = nullptr;
+
+		// 속성 설정이 불가능 할 경우
+		if(FAILED(pXBuffer_Attribute->Map(&pvAttributes, nullptr)) || FAILED(a_pXMesh9->LockAttributeBuffer(0, &pnAttributes9)))
+		{
+			return;
+		}
+
+		DWORD nSize_Attributes = 0;
+		a_pXMesh9->GetAttributeTable(nullptr, &nSize_Attributes);
+
+		memcpy(pvAttributes, pnAttributes9, sizeof(D3DXATTRIBUTERANGE) * nSize_Attributes);
+		pXBuffer_Attribute->Unmap();
+
+		a_pXMesh9->UnlockAttributeBuffer();
 	}
 }

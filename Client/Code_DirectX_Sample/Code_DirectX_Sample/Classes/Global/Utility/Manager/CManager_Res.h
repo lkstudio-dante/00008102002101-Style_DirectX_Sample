@@ -21,6 +21,7 @@ public:
 	typedef std::unordered_map<std::string, CLoader_SkeletonMesh*> T_MapLoaders_SkeletonMesh;
 
 	typedef std::unordered_map<std::string, ID3D10Effect*> T_MapEffects;
+	typedef std::unordered_map<std::string, ID3D10InputLayout*> T_MapInputLayouts;
 	typedef std::unordered_map<std::string, ID3D10ShaderResourceView*> T_MapViews_SR;
 
 public:			// IReleasable
@@ -54,6 +55,9 @@ public:			// public 함수
 	/** 이펙트 프로퍼티 */
 	GETTER_PROPERTY(T_MapEffects, Effects, m_oMapEffects);
 
+	/** 입력 레이아웃 프로퍼티 */
+	GETTER_PROPERTY(T_MapInputLayouts, InputLayouts, m_oMapInputLayouts);
+
 	/** 쉐이더 리소스 뷰 프로퍼티 */
 	GETTER_PROPERTY(T_MapViews_SR, Views_SR, m_oMapViews_SR);
 
@@ -76,6 +80,9 @@ public:			// public 접근 함수
 
 	/** 이펙트를 반환한다 */
 	ID3D10Effect* GetEffect(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto = true);
+	
+	/** 입력 레이아웃을 반환한다 */
+	ID3D10InputLayout* GetInputLayout(ID3DX10Mesh* a_pXMesh, const std::string& a_rPath_Effect, bool a_bIsCreate_Auto = true);
 
 	/** 쉐이더 리소스 뷰를 반환한다 */
 	ID3D10ShaderResourceView* GetView_SR(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto = true);

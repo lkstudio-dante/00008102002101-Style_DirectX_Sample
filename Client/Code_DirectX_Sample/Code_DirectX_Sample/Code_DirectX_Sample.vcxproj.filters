@@ -52,6 +52,24 @@
     <Filter Include="Classes\Global\Utility\Loader">
       <UniqueIdentifier>{d7e89f33-fbd0-40f2-8368-25f4be071816}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{74a85920-1eca-47e6-935e-4e82c8abb0ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Meshes">
+      <UniqueIdentifier>{e0a0b3a5-7948-4680-adf6-03948645ad5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Meshes\Elementalist">
+      <UniqueIdentifier>{f5cf17a2-761e-4034-9d35-dc1117db7a93}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Meshes\GunShip">
+      <UniqueIdentifier>{d4e99000-5d3b-4049-966f-46c29f2087cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Meshes\WitchApprentice">
+      <UniqueIdentifier>{e9c52ad9-fcdb-42fa-b29a-3fd0c4096d0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Effects">
+      <UniqueIdentifier>{0a65a2bc-ef0a-463c-bb9d-f9a8bf487070}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code_DirectX_Sample.cpp" />
@@ -183,5 +201,62 @@
     <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkeletonMesh.h">
       <Filter>Classes\Global\Utility\Loader</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Meshes\Elementalist\Body_D.tga">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\Elementalist\Body_N.tga">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\Elementalist\Face_D.tga">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\Elementalist\Face_N.tga">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\Elementalist\Hair_D.tga">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\Elementalist\Hair_N.tga">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\GunShip\GunShip.tga">
+      <Filter>Resources\Meshes\GunShip</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\GunShip\GunShip_E.tga">
+      <Filter>Resources\Meshes\GunShip</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\GunShip\GunShip_N.tga">
+      <Filter>Resources\Meshes\GunShip</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\GunShip\GunshipGlass.tga">
+      <Filter>Resources\Meshes\GunShip</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\GunShip\GunshipGlass_N.tga">
+      <Filter>Resources\Meshes\GunShip</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_diff.bmp">
+      <Filter>Resources\Meshes\WitchApprentice</Filter>
+    </Image>
+    <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_w_diff.bmp">
+      <Filter>Resources\Meshes\WitchApprentice</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Meshes\Elementalist\Elementalist.x">
+      <Filter>Resources\Meshes\Elementalist</Filter>
+    </None>
+    <None Include="Resources\Meshes\GunShip\GunShip.x">
+      <Filter>Resources\Meshes\GunShip</Filter>
+    </None>
+    <None Include="Resources\Meshes\WitchApprentice\WitchApprentice.x">
+      <Filter>Resources\Meshes\WitchApprentice</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Effects\GunShip.fx">
+      <Filter>Resources\Effects</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

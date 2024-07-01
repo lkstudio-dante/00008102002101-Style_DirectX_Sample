@@ -9,6 +9,7 @@
 #include <chrono>
 #include <vector>
 #include <functional>
+#include <filesystem>
 #include <unordered_map>
 #include <d3d9.h>
 #include <d3dx9.h>
@@ -122,7 +123,7 @@ enum class EBtnMouse
 };
 
 /** 본 정보 */
-struct STInfo_Bone : D3DXFRAME
+struct STInfo_Bone : public D3DXFRAME
 { 
 	D3DXMATRIXA16 m_stMatrix_CombineTrans;
 };
@@ -144,7 +145,7 @@ struct STInfo_SkeletonMesh : public STInfo_Mesh
 };
 
 /** 메쉬 컨테이너 정보 */
-struct STInfo_MeshContainer : D3DXMESHCONTAINER
+struct STInfo_MeshContainer : public D3DXMESHCONTAINER
 {
 	// Do Something
 };

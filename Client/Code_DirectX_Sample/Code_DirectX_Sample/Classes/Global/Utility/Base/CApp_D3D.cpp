@@ -80,6 +80,7 @@ void CApp_D3D::Render(HDC a_hDC)
 	m_pDevice->OMSetDepthStencilState(m_pState_DS, 0);
 
 	m_pDevice->OMSetRenderTargets(1, &m_pView_RT, m_pView_DS);
+	m_pDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 	m_pDevice->ClearRenderTargetView(m_pView_RT, m_stColorClear);
 	m_pDevice->ClearDepthStencilView(m_pView_DS, D3D10_CLEAR_DEPTH | D3D10_CLEAR_STENCIL, 1.0f, 0);

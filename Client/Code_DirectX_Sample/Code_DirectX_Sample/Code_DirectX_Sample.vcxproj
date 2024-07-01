@@ -81,6 +81,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -177,6 +178,33 @@
     <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skeleton.h" />
     <ClInclude Include="Classes\Global\Utility\Sound\CSnd.h" />
     <ClInclude Include="Classes\Scene_Sample\CManager_SampleScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\Meshes\Elementalist\Body_D.tga" />
+    <Image Include="Resources\Meshes\Elementalist\Body_N.tga" />
+    <Image Include="Resources\Meshes\Elementalist\Face_D.tga" />
+    <Image Include="Resources\Meshes\Elementalist\Face_N.tga" />
+    <Image Include="Resources\Meshes\Elementalist\Hair_D.tga" />
+    <Image Include="Resources\Meshes\Elementalist\Hair_N.tga" />
+    <Image Include="Resources\Meshes\GunShip\GunShip.tga" />
+    <Image Include="Resources\Meshes\GunShip\GunshipGlass.tga" />
+    <Image Include="Resources\Meshes\GunShip\GunshipGlass_N.tga" />
+    <Image Include="Resources\Meshes\GunShip\GunShip_E.tga" />
+    <Image Include="Resources\Meshes\GunShip\GunShip_N.tga" />
+    <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_diff.bmp" />
+    <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_w_diff.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Meshes\Elementalist\Elementalist.x" />
+    <None Include="Resources\Meshes\GunShip\GunShip.x" />
+    <None Include="Resources\Meshes\WitchApprentice\WitchApprentice.x" />
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Resources\Effects\GunShip.fx">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main</EntryPointName>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
+    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
