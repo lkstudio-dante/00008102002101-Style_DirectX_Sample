@@ -42,14 +42,14 @@ namespace Access
 
 	DWORD GetLevels_MultiSampleQuality(D3DFORMAT a_eFmt, D3DMULTISAMPLE_TYPE a_eTypeMultiSample)
 	{
-		D3DCAPS9 stCapsDevice;
-		ZeroMemory(&stCapsDevice, sizeof(stCapsDevice));
+		D3DCAPS9 stCaps_Device;
+		ZeroMemory(&stCaps_Device, sizeof(stCaps_Device));
 
-		GET_APP_D3D()->GetD3D9()->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, &stCapsDevice);
+		GET_APP_D3D()->GetD3D9()->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, &stCaps_Device);
 		DWORD nNumQualityLevels = 0;
 
-		GET_APP_D3D()->GetD3D9()->CheckDeviceMultiSampleType(stCapsDevice.AdapterOrdinal,
-			stCapsDevice.DeviceType, a_eFmt, true, a_eTypeMultiSample, &nNumQualityLevels);
+		GET_APP_D3D()->GetD3D9()->CheckDeviceMultiSampleType(stCaps_Device.AdapterOrdinal,
+			stCaps_Device.DeviceType, a_eFmt, true, a_eTypeMultiSample, &nNumQualityLevels);
 
 		return nNumQualityLevels;
 	}

@@ -160,11 +160,11 @@ void CApp_D3D::HandleMsg_Size(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
 	CApp_Wnd::HandleMsg_Size(a_hWnd, a_wParams, a_lParams);
 	this->Release();
 
-	DXGI_SWAP_CHAIN_DESC stDescSwapChain;
-	m_pSwapChain->GetDesc(&stDescSwapChain);
+	DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
+	m_pSwapChain->GetDesc(&stDesc_SwapChain);
 
 	m_pSwapChain->ResizeBuffers(0,
-		this->GetSize_Wnd().cx, this->GetSize_Wnd().cy, stDescSwapChain.BufferDesc.Format, stDescSwapChain.Flags);
+		this->GetSize_Wnd().cx, this->GetSize_Wnd().cy, stDesc_SwapChain.BufferDesc.Format, stDesc_SwapChain.Flags);
 
 	this->SetupDevice();
 }
@@ -188,33 +188,33 @@ IDXGIFactory* CApp_D3D::CreateFactory(void)
 
 IDXGISwapChain* CApp_D3D::CreateSwapChain(void)
 {
-	DXGI_SWAP_CHAIN_DESC stDescSwapChain;
-	ZeroMemory(&stDescSwapChain, sizeof(stDescSwapChain));
+	DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
+	ZeroMemory(&stDesc_SwapChain, sizeof(stDesc_SwapChain));
 
-	stDescSwapChain.Windowed = true;
-	stDescSwapChain.OutputWindow = this->GetHandle_Wnd();
-	stDescSwapChain.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-	stDescSwapChain.Flags = 0;
+	stDesc_SwapChain.Windowed = true;
+	stDesc_SwapChain.OutputWindow = this->GetHandle_Wnd();
+	stDesc_SwapChain.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
+	stDesc_SwapChain.Flags = 0;
 
-	stDescSwapChain.BufferCount = 1;
-	stDescSwapChain.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
+	stDesc_SwapChain.BufferCount = 1;
+	stDesc_SwapChain.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 
-	stDescSwapChain.BufferDesc.Width = this->GetSize_Wnd().cx;
-	stDescSwapChain.BufferDesc.Height = this->GetSize_Wnd().cy;
-	stDescSwapChain.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	stDescSwapChain.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-	stDescSwapChain.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
+	stDesc_SwapChain.BufferDesc.Width = this->GetSize_Wnd().cx;
+	stDesc_SwapChain.BufferDesc.Height = this->GetSize_Wnd().cy;
+	stDesc_SwapChain.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
+	stDesc_SwapChain.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
+	stDesc_SwapChain.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
 
-	stDescSwapChain.BufferDesc.RefreshRate.Numerator = 1;
-	stDescSwapChain.BufferDesc.RefreshRate.Denominator = 60;
+	stDesc_SwapChain.BufferDesc.RefreshRate.Numerator = 1;
+	stDesc_SwapChain.BufferDesc.RefreshRate.Denominator = 60;
 
-	stDescSwapChain.SampleDesc.Count = 1;
+	stDesc_SwapChain.SampleDesc.Count = 1;
 
-	stDescSwapChain.SampleDesc.Quality = Access::GetLevels_MultiSampleQuality(stDescSwapChain.BufferDesc.Format,
-		stDescSwapChain.SampleDesc.Count) - 1;
+	stDesc_SwapChain.SampleDesc.Quality = Access::GetLevels_MultiSampleQuality(stDesc_SwapChain.BufferDesc.Format,
+		stDesc_SwapChain.SampleDesc.Count) - 1;
 
 	IDXGISwapChain* pSwapChain = nullptr;
-	m_pFactory->CreateSwapChain(m_pDevice, &stDescSwapChain, &pSwapChain);
+	m_pFactory->CreateSwapChain(m_pDevice, &stDesc_SwapChain, &pSwapChain);
 
 	return pSwapChain;
 }
@@ -244,77 +244,77 @@ ID3D10Device* CApp_D3D::CreateDevice(void)
 
 ID3D10RenderTargetView* CApp_D3D::CreateView_RT(void)
 {
-	ID3D10Texture2D* pBufferBack = nullptr;
-	m_pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (LPVOID*)&pBufferBack);
+	ID3D10Texture2D* pBuffer_Back = nullptr;
+	m_pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (LPVOID*)&pBuffer_Back);
 
 	ID3D10RenderTargetView* pView_RT = nullptr;
-	m_pDevice->CreateRenderTargetView(pBufferBack, nullptr, &pView_RT);
+	m_pDevice->CreateRenderTargetView(pBuffer_Back, nullptr, &pView_RT);
 
-	SAFE_RELEASE(pBufferBack);
+	SAFE_RELEASE(pBuffer_Back);
 	return pView_RT;
 }
 
 ID3D10DepthStencilView* CApp_D3D::CreateView_DS(void)
 {
-	auto pBufferDS = Factory::CreateTexture2D(this->GetSize_Wnd().cx,
+	auto pBuffer_DS = Factory::CreateTexture2D(this->GetSize_Wnd().cx,
 		this->GetSize_Wnd().cy, DXGI_FORMAT_D24_UNORM_S8_UINT, D3D10_BIND_DEPTH_STENCIL, FLAGS_CPU_ACCESS_NONE);
 
-	D3D10_TEXTURE2D_DESC stDescDSBuffer;
-	pBufferDS->GetDesc(&stDescDSBuffer);
+	D3D10_TEXTURE2D_DESC stDesc_DSBuffer;
+	pBuffer_DS->GetDesc(&stDesc_DSBuffer);
 
-	D3D10_DEPTH_STENCIL_VIEW_DESC stDescDSView;
-	ZeroMemory(&stDescDSView, sizeof(stDescDSView));
+	D3D10_DEPTH_STENCIL_VIEW_DESC stDesc_DSView;
+	ZeroMemory(&stDesc_DSView, sizeof(stDesc_DSView));
 
-	stDescDSView.Format = stDescDSBuffer.Format;
-	stDescDSView.ViewDimension = D3D10_DSV_DIMENSION_TEXTURE2D;
-	stDescDSView.Texture2D.MipSlice = 0;
+	stDesc_DSView.Format = stDesc_DSBuffer.Format;
+	stDesc_DSView.ViewDimension = D3D10_DSV_DIMENSION_TEXTURE2D;
+	stDesc_DSView.Texture2D.MipSlice = 0;
 
 	ID3D10DepthStencilView* pView_DS = nullptr;
-	m_pDevice->CreateDepthStencilView(pBufferDS, &stDescDSView, &pView_DS);
+	m_pDevice->CreateDepthStencilView(pBuffer_DS, &stDesc_DSView, &pView_DS);
 
-	SAFE_RELEASE(pBufferDS);
+	SAFE_RELEASE(pBuffer_DS);
 	return pView_DS;
 }
 
 ID3D10DepthStencilState* CApp_D3D::CreateState_DS(void)
 {
-	D3D10_DEPTH_STENCIL_DESC stDescDS;
-	ZeroMemory(&stDescDS, sizeof(stDescDS));
+	D3D10_DEPTH_STENCIL_DESC stDesc_DS;
+	ZeroMemory(&stDesc_DS, sizeof(stDesc_DS));
 
 	ID3D10DepthStencilState* pState_DS = nullptr;
-	m_pDevice->CreateDepthStencilState(&stDescDS, &pState_DS);
+	m_pDevice->CreateDepthStencilState(&stDesc_DS, &pState_DS);
 
 	return pState_DS;
 }
 
 ID3D10RasterizerState* CApp_D3D::CreateState_Rasterizer(void)
 {
-	D3D10_RASTERIZER_DESC stDescRasterizer;
-	ZeroMemory(&stDescRasterizer, sizeof(stDescRasterizer));
+	D3D10_RASTERIZER_DESC stDesc_Rasterizer;
+	ZeroMemory(&stDesc_Rasterizer, sizeof(stDesc_Rasterizer));
 
-	stDescRasterizer.CullMode = D3D10_CULL_BACK;
-	stDescRasterizer.FillMode = D3D10_FILL_SOLID;
+	stDesc_Rasterizer.CullMode = D3D10_CULL_BACK;
+	stDesc_Rasterizer.FillMode = D3D10_FILL_SOLID;
 
 	ID3D10RasterizerState* pState_Rasterizer = nullptr;
-	m_pDevice->CreateRasterizerState(&stDescRasterizer, &pState_Rasterizer);
+	m_pDevice->CreateRasterizerState(&stDesc_Rasterizer, &pState_Rasterizer);
 
 	return pState_Rasterizer;
 }
 
 ID3DX10Font* CApp_D3D::CreateXFont(void)
 {
-	D3DX10_FONT_DESC stXDescFont;
-	ZeroMemory(&stXDescFont, sizeof(stXDescFont));
+	D3DX10_FONT_DESC stXDesc_Font;
+	ZeroMemory(&stXDesc_Font, sizeof(stXDesc_Font));
 
-	stXDescFont.Width = 0;
-	stXDescFont.Height = 22;
-	stXDescFont.Weight = FW_BOLD;
-	stXDescFont.CharSet = DEFAULT_CHARSET;
-	stXDescFont.Quality = CLEARTYPE_NATURAL_QUALITY;
-	stXDescFont.OutputPrecision = OUT_DEFAULT_PRECIS;
+	stXDesc_Font.Width = 0;
+	stXDesc_Font.Height = 22;
+	stXDesc_Font.Weight = FW_BOLD;
+	stXDesc_Font.CharSet = DEFAULT_CHARSET;
+	stXDesc_Font.Quality = CLEARTYPE_NATURAL_QUALITY;
+	stXDesc_Font.OutputPrecision = OUT_DEFAULT_PRECIS;
 
 	ID3DX10Font* pXFont = nullptr;
-	D3DX10CreateFontIndirect(m_pDevice, &stXDescFont, &pXFont);
+	D3DX10CreateFontIndirect(m_pDevice, &stXDesc_Font, &pXFont);
 
 	return pXFont;
 }
@@ -334,10 +334,10 @@ LPDIRECT3D9 CApp_D3D::CreateD3D9(void)
 
 LPDIRECT3DDEVICE9 CApp_D3D::CreateDevice9(void)
 {
-	D3DCAPS9 stCapsDevice;
-	ZeroMemory(&stCapsDevice, sizeof(stCapsDevice));
+	D3DCAPS9 stCaps_Device;
+	ZeroMemory(&stCaps_Device, sizeof(stCaps_Device));
 
-	m_pD3D9->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, &stCapsDevice);
+	m_pD3D9->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, &stCaps_Device);
 
 	D3DPRESENT_PARAMETERS stParams;
 	ZeroMemory(&stParams, sizeof(stParams));
@@ -362,18 +362,18 @@ LPDIRECT3DDEVICE9 CApp_D3D::CreateDevice9(void)
 	stParams.MultiSampleQuality = Access::GetLevels_MultiSampleQuality(stParams.BackBufferFormat,
 		stParams.MultiSampleType) - 1;
 
-	DWORD nFlagsCreate = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
+	DWORD nFlags_Create = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
 
 	// 하드웨어 연산을 지원 할 경우
-	if(stCapsDevice.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT)
+	if(stCaps_Device.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT)
 	{
-		nFlagsCreate = D3DCREATE_HARDWARE_VERTEXPROCESSING;
+		nFlags_Create = D3DCREATE_HARDWARE_VERTEXPROCESSING;
 	}
 
 	LPDIRECT3DDEVICE9 pDevice = nullptr;
 
-	m_pD3D9->CreateDevice(stCapsDevice.AdapterOrdinal,
-		stCapsDevice.DeviceType, this->GetHandle_Wnd(), nFlagsCreate | D3DCREATE_MULTITHREADED, &stParams, &pDevice);
+	m_pD3D9->CreateDevice(stCaps_Device.AdapterOrdinal,
+		stCaps_Device.DeviceType, this->GetHandle_Wnd(), nFlags_Create | D3DCREATE_MULTITHREADED, &stParams, &pDevice);
 
 	return pDevice;
 }

@@ -27,8 +27,8 @@ namespace Factory
 	ID3D10Texture2D* CreateTexture2D(int a_nWidth,
 		int a_nHeight, DXGI_FORMAT a_eFmt, D3D10_BIND_FLAG a_eFlagsBind, D3D10_CPU_ACCESS_FLAG a_eFlagsCPUAccess, D3D10_USAGE a_eUsage, D3D10_SUBRESOURCE_DATA* a_pDataSubResource)
 	{
-		DXGI_SWAP_CHAIN_DESC stDescSwapChain;
-		GET_APP_D3D()->GetSwapChain()->GetDesc(&stDescSwapChain);
+		DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
+		GET_APP_D3D()->GetSwapChain()->GetDesc(&stDesc_SwapChain);
 
 		D3D10_TEXTURE2D_DESC stDescTexture2D;
 		ZeroMemory(&stDescTexture2D, sizeof(stDescTexture2D));
@@ -44,7 +44,7 @@ namespace Factory
 
 		stDescTexture2D.ArraySize = 1;
 		stDescTexture2D.MipLevels = 1;
-		stDescTexture2D.SampleDesc = stDescSwapChain.SampleDesc;
+		stDescTexture2D.SampleDesc = stDesc_SwapChain.SampleDesc;
 
 		ID3D10Texture2D* pTexture2D = nullptr;
 		GET_APP_D3D()->GetDevice()->CreateTexture2D(&stDescTexture2D, a_pDataSubResource, &pTexture2D);
