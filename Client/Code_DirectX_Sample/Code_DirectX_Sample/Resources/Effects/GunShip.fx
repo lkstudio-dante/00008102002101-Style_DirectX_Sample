@@ -33,6 +33,7 @@ float4x4 g_stMatrix_Projection: Projection;
 struct STVSInput
 {
 	float3 m_stPos: POSITION;
+	float4 m_stColor: COLOR;
 	float3 m_stNormal: NORMAL;
 	float3 m_stTangent: TANGENT;
 	float3 m_stBinormal: BINORMAL;
@@ -43,10 +44,11 @@ struct STVSInput
 struct STVSOutput
 {
 	float4 m_stPos: SV_POSITION;
-	float3 m_stNormal: TEXCOORD0;
-	float3 m_stTangent: TEXCOORD1;
-	float3 m_stBinormal: TEXCOORD2;
-	float2 m_stUV: TEXCOORD3;
+	float4 m_stColor: TEXCOORD0;
+	float3 m_stNormal: TEXCOORD1;
+	float3 m_stTangent: TEXCOORD2;
+	float3 m_stBinormal: TEXCOORD3;
+	float2 m_stUV: TEXCOORD4;
 };
 
 /** VS Main */
@@ -71,14 +73,26 @@ STVSOutput GunShip_Pass_0_Vertex_Shader_VSMain(STVSInput a_stInput)
 	return stOutput;
 }
 
+texture g_oTexture_Diffuse;
+
+sampler g_oSampler_DiffuseTexture = sampler_state
+{
+	Texture = g_oTexture_Diffuse;
+    
+	MipFilter = LINEAR;
+	MinFilter = LINEAR;
+	MagFilter = LINEAR;
+};
+
 /** PS Input */
 struct STPSInput
 {
 	float4 m_stPos: SV_POSITION;
-	float3 m_stNormal: TEXCOORD0;
-	float3 m_stTangent: TEXCOORD1;
-	float3 m_stBinormal: TEXCOORD2;
-	float2 m_stUV: TEXCOORD3;
+	float4 m_stColor: TEXCOORD0;
+	float3 m_stNormal: TEXCOORD1;
+	float3 m_stTangent: TEXCOORD2;
+	float3 m_stBinormal: TEXCOORD3;
+	float2 m_stUV: TEXCOORD4;
 };
 
 /** PS Main */
@@ -87,16 +101,16 @@ float4 GunShip_Pass_0_Pixel_Shader_PSMain(STPSInput a_stInput): SV_TARGET
 	return float4(0.0f, 1.0f, 0.0f, 1.0f);
 }
 
+
 //--------------------------------------------------------------//
 // Technique Section for GunShip
 //--------------------------------------------------------------//
-technique10 GunShip
+technique GunShip
 {
 	pass Pass_0
 	{
-		SetVertexShader(CompileShader(vs_4_0, GunShip_Pass_0_Vertex_Shader_VSMain()));
-		SetPixelShader(CompileShader(ps_4_0, GunShip_Pass_0_Pixel_Shader_PSMain()));
-
+		VertexShader = compile vs_3_0 GunShip_Pass_0_Vertex_Shader_VSMain();
+		PixelShader = compile ps_3_0 GunShip_Pass_0_Pixel_Shader_PSMain();
 	}
 
 }

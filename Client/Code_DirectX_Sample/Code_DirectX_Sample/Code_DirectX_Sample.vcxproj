@@ -142,14 +142,14 @@
     <ClCompile Include="Classes\Global\Utility\Base\CObj_Render.cpp" />
     <ClCompile Include="Classes\Global\Utility\Camera\CCamera.cpp" />
     <ClCompile Include="Classes\Global\Utility\Light\CLight.cpp" />
-    <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkeletonMesh.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkinningMesh.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Input.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Res.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Snd.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Time.cpp" />
     <ClCompile Include="Classes\Global\Utility\Material\CMat.cpp" />
     <ClCompile Include="Classes\Global\Utility\Mesh\CMesh.cpp" />
-    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh_Skeleton.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh_Skinning.cpp" />
     <ClCompile Include="Classes\Global\Utility\Sound\CSnd.cpp" />
     <ClCompile Include="Classes\Scene_Sample\CManager_SampleScene.cpp" />
     <ClCompile Include="Code_DirectX_Sample.cpp" />
@@ -168,14 +168,14 @@
     <ClInclude Include="Classes\Global\Utility\Interface\IRenderable.h" />
     <ClInclude Include="Classes\Global\Utility\Interface\IUpdateable.h" />
     <ClInclude Include="Classes\Global\Utility\Light\CLight.h" />
-    <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkeletonMesh.h" />
+    <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkinningMesh.h" />
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Input.h" />
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Res.h" />
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Snd.h" />
     <ClInclude Include="Classes\Global\Utility\Manager\CManager_Time.h" />
     <ClInclude Include="Classes\Global\Utility\Material\CMat.h" />
     <ClInclude Include="Classes\Global\Utility\Mesh\CMesh.h" />
-    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skeleton.h" />
+    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skinning.h" />
     <ClInclude Include="Classes\Global\Utility\Sound\CSnd.h" />
     <ClInclude Include="Classes\Scene_Sample\CManager_SampleScene.h" />
   </ItemGroup>
@@ -202,7 +202,7 @@
   <ItemGroup>
     <FxCompile Include="Resources\Effects\GunShip.fx">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">main</EntryPointName>
-      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">4.0</ShaderModel>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">2.0</ShaderModel>
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Effect</ShaderType>
     </FxCompile>
   </ItemGroup>

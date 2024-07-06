@@ -8,10 +8,9 @@ CMesh::CMesh(const std::string& a_rPath_Mesh, const std::string& a_rPath_Effect)
 	m_stInfo_Mesh = GET_MANAGER_RES()->GetInfo_Mesh(a_rPath_Mesh);
 }
 
-void CMesh::OnRender(ID3D10Device* a_pDevice, ID3D10EffectPass* a_pPass)
+void CMesh::OnRender(LPDIRECT3DDEVICE9 a_pDevice, int a_nIdx_Pass)
 {
-	CObj_Render::OnRender(a_pDevice, a_pPass);
-	m_stInfo_Mesh.m_pXMesh->CommitToDevice();
+	CObj_Render::OnRender(a_pDevice, a_nIdx_Pass);
 
 	for(int i = 0; i < m_stInfo_Mesh.m_oVectorMaterials.size(); ++i)
 	{

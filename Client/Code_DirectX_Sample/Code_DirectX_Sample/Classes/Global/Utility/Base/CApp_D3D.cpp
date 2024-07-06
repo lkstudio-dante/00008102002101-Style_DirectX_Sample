@@ -3,12 +3,15 @@
 #include "../../Factory/Factory+Global.h"
 #include "../Manager/CManager_Res.h"
 #include "../Manager/CManager_Time.h"
+#include "../Manager/CManager_Input.h"
+#include "../Light/CLight.h"
 #include "../Camera/CCamera.h"
 
 CApp_D3D::CApp_D3D(HINSTANCE a_hInst,
 	int a_nOpt_Show, const SIZE& a_rstSize_Wnd) : CApp_Wnd(a_hInst, a_nOpt_Show, a_rstSize_Wnd)
 {
-	this->SetColorClear(D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
+	this->SetColor_Clear(D3DXCOLOR(0.0f, 0.0f, 1.0f, 1.0f));
+	ZeroMemory(&m_stParams_Present, sizeof(m_stParams_Present));
 }
 
 CApp_D3D::~CApp_D3D(void)
@@ -20,17 +23,11 @@ void CApp_D3D::Init(void)
 {
 	CApp_Wnd::Init();
 
+	m_pLight = this->CreateLight();
 	m_pCamera = this->CreateCamera();
-	m_pFactory = this->CreateFactory();
 
+	m_pD3D = this->CreateD3D();
 	m_pDevice = this->CreateDevice();
-	m_pSwapChain = this->CreateSwapChain();
-
-	m_pState_DS = this->CreateState_DS();
-	m_pState_Rasterizer = this->CreateState_Rasterizer();
-
-	m_pXFont = this->CreateXFont();
-	m_pXSprite = this->CreateXSprite();
 }
 
 void CApp_D3D::LateInit(void)
@@ -41,31 +38,23 @@ void CApp_D3D::LateInit(void)
 
 void CApp_D3D::Release(bool a_bIsDestroy)
 {
-	SAFE_RELEASE(m_pD3D9);
-	SAFE_RELEASE(m_pDevice9);
-
-	SAFE_RELEASE(m_pView_RT);
-	SAFE_RELEASE(m_pView_DS);
+	SAFE_RELEASE(m_pXFont);
+	SAFE_RELEASE(m_pXSprite);
 
 	// 제거 모드 일 경우
 	if(a_bIsDestroy)
 	{
+		SAFE_DEL(m_pLight);
 		SAFE_DEL(m_pCamera);
 
-		SAFE_RELEASE(m_pXFont);
-		SAFE_RELEASE(m_pXSprite);
-
-		SAFE_RELEASE(m_pState_DS);
-		SAFE_RELEASE(m_pState_Rasterizer);
-
+		SAFE_RELEASE(m_pD3D);
 		SAFE_RELEASE(m_pDevice);
-		SAFE_RELEASE(m_pFactory);
-		SAFE_RELEASE(m_pSwapChain);
 	}
 }
 
 void CApp_D3D::Update(float a_fTime_Delta)
 {
+	m_pCamera->Update(a_fTime_Delta);
 	char szStrDebugInfo[MAX_PATH] = "";
 
 	sprintf(szStrDebugInfo, "Delta Time: %f sec\nRunning Time: %f sec",
@@ -76,39 +65,34 @@ void CApp_D3D::Update(float a_fTime_Delta)
 
 void CApp_D3D::Render(HDC a_hDC)
 {
-	m_pDevice->RSSetState(m_pState_Rasterizer);
-	m_pDevice->OMSetDepthStencilState(m_pState_DS, 0);
+	m_pDevice->Clear(0, 
+		nullptr, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER | D3DCLEAR_STENCIL, m_stColor_Clear, 1.0f, 0);
 
-	m_pDevice->OMSetRenderTargets(1, &m_pView_RT, m_pView_DS);
-	m_pDevice->IASetPrimitiveTopology(D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+	auto stMatrix_View = m_pCamera->GetMatrix_View();
+	auto stMatrix_Projection = m_pCamera->GetMatrix_Projection();
 
-	m_pDevice->ClearRenderTargetView(m_pView_RT, m_stColorClear);
-	m_pDevice->ClearDepthStencilView(m_pView_DS, D3D10_CLEAR_DEPTH | D3D10_CLEAR_STENCIL, 1.0f, 0);
-
-	for(auto& rstValType : GET_MANAGER_RES()->GetEffects())
+	for(auto& rstValType : GET_MANAGER_RES()->GetXEffects())
 	{
-		auto pCBuffer_ViewMatrix = rstValType.second->GetConstantBufferByName(NAME_VIEW_MATRIX_CBUFFER.c_str())->AsMatrix();
-		pCBuffer_ViewMatrix->SetMatrix(m_pCamera->GetMatrix_View());
-
-		auto pCBuffer_ProjectionMatrix = rstValType.second->GetConstantBufferByName(NAME_PROJECTION_MATRIX_CBUFFER.c_str())->AsMatrix();
-		pCBuffer_ProjectionMatrix->SetMatrix(m_pCamera->GetMatrix_Projection());
+		rstValType.second->SetMatrix(NAME_VIEW_MATRIX_CBUFFER.c_str(), &stMatrix_View);
+		rstValType.second->SetMatrix(NAME_PROJECTION_MATRIX_CBUFFER.c_str(), &stMatrix_Projection);
 	}
 
+	m_pDevice->BeginScene();
 	this->Render(m_pDevice);
 }
 
 void CApp_D3D::LateRender(HDC a_hDC)
 {
 	this->LateRender(m_pDevice);
-	m_pXSprite->Begin(D3DX10_SPRITE_SORT_TEXTURE | D3DX10_SPRITE_SAVE_STATE | D3DX10_SPRITE_SORT_DEPTH_BACK_TO_FRONT);
+	m_pXSprite->Begin(D3DXSPRITE_SORT_TEXTURE | D3DXSPRITE_SORT_DEPTH_BACKTOFRONT);
 
 	RECT stRectDebugInfo;
 	ZeroMemory(&stRectDebugInfo, sizeof(stRectDebugInfo));
 
-	m_pXFont->DrawTextA(m_pXSprite,
+	m_pXFont->DrawTextA(nullptr,
 		m_oStrDebugInfo.c_str(), m_oStrDebugInfo.size(), &stRectDebugInfo, DT_TOP | DT_LEFT | DT_CALCRECT, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
-	m_pXFont->DrawTextA(m_pXSprite,
+	m_pXFont->DrawTextA(nullptr,
 		m_oStrDebugInfo.c_str(), m_oStrDebugInfo.size(), &stRectDebugInfo, DT_TOP | DT_LEFT, D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f));
 
 	this->LateRender(m_pXSprite);
@@ -122,14 +106,19 @@ std::string CApp_D3D::GetPath_Effect(void)
 
 void CApp_D3D::SetupDevice(void)
 {
-	m_pView_RT = this->CreateView_RT();
-	m_pView_DS = this->CreateView_DS();
+	m_stParams_Present.BackBufferWidth = this->GetSize_Wnd().cx;
+	m_stParams_Present.BackBufferHeight = this->GetSize_Wnd().cy;
 
-	m_pD3D9 = this->CreateD3D9();
-	m_pDevice9 = this->CreateDevice9();
+	m_pDevice->Reset(&m_stParams_Present);
+	m_pDevice->Reset(&m_stParams_Present);
 
-	this->SetupCamera();
-	this->SetupViewport();
+	m_pXFont = this->CreateXFont();
+	m_pXSprite = this->CreateXSprite();
+
+	for(auto& rstValType : GET_MANAGER_RES()->GetXEffects())
+	{
+		rstValType.second->OnLostDevice();
+	}
 }
 
 void CApp_D3D::SetupCamera(void)
@@ -139,20 +128,20 @@ void CApp_D3D::SetupCamera(void)
 
 void CApp_D3D::SetupViewport(void)
 {
-	D3D10_VIEWPORT stViewport;
+	D3DVIEWPORT9 stViewport;
 	ZeroMemory(&stViewport, sizeof(stViewport));
 
-	stViewport.TopLeftX = 0;
-	stViewport.TopLeftY = 0;
+	stViewport.X = 0;
+	stViewport.Y = 0;
 
 	stViewport.Width = this->GetSize_Wnd().cx;
 	stViewport.Height = this->GetSize_Wnd().cy;
 
-	stViewport.MinDepth = 0.0f;
-	stViewport.MaxDepth = 1.0f;
+	stViewport.MinZ = 0.0f;
+	stViewport.MaxZ = 1.0f;
 
 	m_pCamera->SetViewport(stViewport);
-	m_pDevice->RSSetViewports(1, &stViewport);
+	m_pDevice->SetViewport(&stViewport);
 }
 
 void CApp_D3D::HandleMsg_Size(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
@@ -160,13 +149,17 @@ void CApp_D3D::HandleMsg_Size(HWND a_hWnd, WPARAM a_wParams, LPARAM a_lParams)
 	CApp_Wnd::HandleMsg_Size(a_hWnd, a_wParams, a_lParams);
 	this->Release();
 
-	DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
-	m_pSwapChain->GetDesc(&stDesc_SwapChain);
-
-	m_pSwapChain->ResizeBuffers(0,
-		this->GetSize_Wnd().cx, this->GetSize_Wnd().cy, stDesc_SwapChain.BufferDesc.Format, stDesc_SwapChain.Flags);
-
 	this->SetupDevice();
+	this->SetupCamera();
+	this->SetupViewport();
+}
+
+CLight* CApp_D3D::CreateLight(void)
+{
+	auto pLight = new CLight();
+	pLight->SetRotate(D3DXVECTOR3(45.0f, 45.0f, 0.0f));
+
+	return pLight;
 }
 
 CCamera* CApp_D3D::CreateCamera(void)
@@ -178,189 +171,37 @@ CCamera* CApp_D3D::CreateCamera(void)
 	return pCamera;
 }
 
-IDXGIFactory* CApp_D3D::CreateFactory(void)
-{
-	IDXGIFactory* pFactory = nullptr;
-	CreateDXGIFactory(__uuidof(IDXGIFactory), (LPVOID*)&pFactory);
-
-	return pFactory;
-}
-
-IDXGISwapChain* CApp_D3D::CreateSwapChain(void)
-{
-	DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
-	ZeroMemory(&stDesc_SwapChain, sizeof(stDesc_SwapChain));
-
-	stDesc_SwapChain.Windowed = true;
-	stDesc_SwapChain.OutputWindow = this->GetHandle_Wnd();
-	stDesc_SwapChain.SwapEffect = DXGI_SWAP_EFFECT_DISCARD;
-	stDesc_SwapChain.Flags = 0;
-
-	stDesc_SwapChain.BufferCount = 1;
-	stDesc_SwapChain.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
-
-	stDesc_SwapChain.BufferDesc.Width = this->GetSize_Wnd().cx;
-	stDesc_SwapChain.BufferDesc.Height = this->GetSize_Wnd().cy;
-	stDesc_SwapChain.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-	stDesc_SwapChain.BufferDesc.Scaling = DXGI_MODE_SCALING_UNSPECIFIED;
-	stDesc_SwapChain.BufferDesc.ScanlineOrdering = DXGI_MODE_SCANLINE_ORDER_UNSPECIFIED;
-
-	stDesc_SwapChain.BufferDesc.RefreshRate.Numerator = 1;
-	stDesc_SwapChain.BufferDesc.RefreshRate.Denominator = 60;
-
-	stDesc_SwapChain.SampleDesc.Count = 1;
-
-	stDesc_SwapChain.SampleDesc.Quality = Access::GetLevels_MultiSampleQuality(stDesc_SwapChain.BufferDesc.Format,
-		stDesc_SwapChain.SampleDesc.Count) - 1;
-
-	IDXGISwapChain* pSwapChain = nullptr;
-	m_pFactory->CreateSwapChain(m_pDevice, &stDesc_SwapChain, &pSwapChain);
-
-	return pSwapChain;
-}
-
-ID3D10Device* CApp_D3D::CreateDevice(void)
-{
-	IDXGIAdapter* pAdapter = nullptr;
-	std::vector<IDXGIAdapter*> oVectorAdapters;
-
-	for(int i = 0; SUCCEEDED(m_pFactory->EnumAdapters(i, &pAdapter)); ++i)
-	{
-		oVectorAdapters.push_back(pAdapter);
-	}
-
-	ID3D10Device* pDevice = nullptr;
-
-	D3D10CreateDevice(oVectorAdapters.front(),
-		D3D10_DRIVER_TYPE_HARDWARE, nullptr, 0, D3D10_SDK_VERSION, &pDevice);
-
-	for(auto pAdapter : oVectorAdapters)
-	{
-		SAFE_RELEASE(pAdapter);
-	}
-
-	return pDevice;
-}
-
-ID3D10RenderTargetView* CApp_D3D::CreateView_RT(void)
-{
-	ID3D10Texture2D* pBuffer_Back = nullptr;
-	m_pSwapChain->GetBuffer(0, __uuidof(ID3D10Texture2D), (LPVOID*)&pBuffer_Back);
-
-	ID3D10RenderTargetView* pView_RT = nullptr;
-	m_pDevice->CreateRenderTargetView(pBuffer_Back, nullptr, &pView_RT);
-
-	SAFE_RELEASE(pBuffer_Back);
-	return pView_RT;
-}
-
-ID3D10DepthStencilView* CApp_D3D::CreateView_DS(void)
-{
-	auto pBuffer_DS = Factory::CreateTexture2D(this->GetSize_Wnd().cx,
-		this->GetSize_Wnd().cy, DXGI_FORMAT_D24_UNORM_S8_UINT, D3D10_BIND_DEPTH_STENCIL, FLAGS_CPU_ACCESS_NONE);
-
-	D3D10_TEXTURE2D_DESC stDesc_DSBuffer;
-	pBuffer_DS->GetDesc(&stDesc_DSBuffer);
-
-	D3D10_DEPTH_STENCIL_VIEW_DESC stDesc_DSView;
-	ZeroMemory(&stDesc_DSView, sizeof(stDesc_DSView));
-
-	stDesc_DSView.Format = stDesc_DSBuffer.Format;
-	stDesc_DSView.ViewDimension = D3D10_DSV_DIMENSION_TEXTURE2D;
-	stDesc_DSView.Texture2D.MipSlice = 0;
-
-	ID3D10DepthStencilView* pView_DS = nullptr;
-	m_pDevice->CreateDepthStencilView(pBuffer_DS, &stDesc_DSView, &pView_DS);
-
-	SAFE_RELEASE(pBuffer_DS);
-	return pView_DS;
-}
-
-ID3D10DepthStencilState* CApp_D3D::CreateState_DS(void)
-{
-	D3D10_DEPTH_STENCIL_DESC stDesc_DS;
-	ZeroMemory(&stDesc_DS, sizeof(stDesc_DS));
-
-	ID3D10DepthStencilState* pState_DS = nullptr;
-	m_pDevice->CreateDepthStencilState(&stDesc_DS, &pState_DS);
-
-	return pState_DS;
-}
-
-ID3D10RasterizerState* CApp_D3D::CreateState_Rasterizer(void)
-{
-	D3D10_RASTERIZER_DESC stDesc_Rasterizer;
-	ZeroMemory(&stDesc_Rasterizer, sizeof(stDesc_Rasterizer));
-
-	stDesc_Rasterizer.CullMode = D3D10_CULL_BACK;
-	stDesc_Rasterizer.FillMode = D3D10_FILL_SOLID;
-
-	ID3D10RasterizerState* pState_Rasterizer = nullptr;
-	m_pDevice->CreateRasterizerState(&stDesc_Rasterizer, &pState_Rasterizer);
-
-	return pState_Rasterizer;
-}
-
-ID3DX10Font* CApp_D3D::CreateXFont(void)
-{
-	D3DX10_FONT_DESC stXDesc_Font;
-	ZeroMemory(&stXDesc_Font, sizeof(stXDesc_Font));
-
-	stXDesc_Font.Width = 0;
-	stXDesc_Font.Height = 22;
-	stXDesc_Font.Weight = FW_BOLD;
-	stXDesc_Font.CharSet = DEFAULT_CHARSET;
-	stXDesc_Font.Quality = CLEARTYPE_NATURAL_QUALITY;
-	stXDesc_Font.OutputPrecision = OUT_DEFAULT_PRECIS;
-
-	ID3DX10Font* pXFont = nullptr;
-	D3DX10CreateFontIndirect(m_pDevice, &stXDesc_Font, &pXFont);
-
-	return pXFont;
-}
-
-ID3DX10Sprite* CApp_D3D::CreateXSprite(void)
-{
-	ID3DX10Sprite* pXSprite = nullptr;
-	D3DX10CreateSprite(m_pDevice, 0, &pXSprite);
-
-	return pXSprite;
-}
-
-LPDIRECT3D9 CApp_D3D::CreateD3D9(void)
+LPDIRECT3D9 CApp_D3D::CreateD3D(void)
 {
 	return Direct3DCreate9(D3D_SDK_VERSION);
 }
 
-LPDIRECT3DDEVICE9 CApp_D3D::CreateDevice9(void)
+LPDIRECT3DDEVICE9 CApp_D3D::CreateDevice(void)
 {
 	D3DCAPS9 stCaps_Device;
 	ZeroMemory(&stCaps_Device, sizeof(stCaps_Device));
 
-	m_pD3D9->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_NULLREF, &stCaps_Device);
+	m_pD3D->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &stCaps_Device);
 
-	D3DPRESENT_PARAMETERS stParams;
-	ZeroMemory(&stParams, sizeof(stParams));
+	m_stParams_Present.Windowed = true;
+	m_stParams_Present.hDeviceWindow = this->GetHandle_Wnd();
+	m_stParams_Present.SwapEffect = D3DSWAPEFFECT_DISCARD;
+	m_stParams_Present.Flags = 0;
 
-	stParams.Windowed = true;
-	stParams.hDeviceWindow = this->GetHandle_Wnd();
-	stParams.SwapEffect = D3DSWAPEFFECT_DISCARD;
-	stParams.Flags = 0;
+	m_stParams_Present.EnableAutoDepthStencil = true;
+	m_stParams_Present.AutoDepthStencilFormat = D3DFMT_D24S8;
+	m_stParams_Present.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
+	m_stParams_Present.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 
-	stParams.EnableAutoDepthStencil = true;
-	stParams.AutoDepthStencilFormat = D3DFMT_D24S8;
-	stParams.FullScreen_RefreshRateInHz = D3DPRESENT_RATE_DEFAULT;
-	stParams.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
+	m_stParams_Present.BackBufferCount = 1;
+	m_stParams_Present.BackBufferWidth = this->GetSize_Wnd().cx;
+	m_stParams_Present.BackBufferHeight = this->GetSize_Wnd().cy;
+	m_stParams_Present.BackBufferFormat = D3DFMT_A8R8G8B8;
 
-	stParams.BackBufferCount = 1;
-	stParams.BackBufferWidth = this->GetSize_Wnd().cx;
-	stParams.BackBufferHeight = this->GetSize_Wnd().cy;
-	stParams.BackBufferFormat = D3DFMT_A8R8G8B8;
+	m_stParams_Present.MultiSampleType = D3DMULTISAMPLE_NONE;
 
-	stParams.MultiSampleType = D3DMULTISAMPLE_NONE;
-
-	stParams.MultiSampleQuality = Access::GetLevels_MultiSampleQuality(stParams.BackBufferFormat,
-		stParams.MultiSampleType) - 1;
+	m_stParams_Present.MultiSampleQuality = Access::GetLevels_MultiSampleQuality(m_stParams_Present.BackBufferFormat,
+		m_stParams_Present.MultiSampleType) - 1;
 
 	DWORD nFlags_Create = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
 
@@ -372,13 +213,40 @@ LPDIRECT3DDEVICE9 CApp_D3D::CreateDevice9(void)
 
 	LPDIRECT3DDEVICE9 pDevice = nullptr;
 
-	m_pD3D9->CreateDevice(stCaps_Device.AdapterOrdinal,
-		stCaps_Device.DeviceType, this->GetHandle_Wnd(), nFlags_Create | D3DCREATE_MULTITHREADED, &stParams, &pDevice);
+	m_pD3D->CreateDevice(stCaps_Device.AdapterOrdinal,
+		stCaps_Device.DeviceType, this->GetHandle_Wnd(), nFlags_Create | D3DCREATE_MULTITHREADED, &m_stParams_Present, &pDevice);
 
 	return pDevice;
 }
 
+LPD3DXFONT CApp_D3D::CreateXFont(void)
+{
+	D3DXFONT_DESCA stXDesc_Font;
+	ZeroMemory(&stXDesc_Font, sizeof(stXDesc_Font));
+
+	stXDesc_Font.Width = 0;
+	stXDesc_Font.Height = 22;
+	stXDesc_Font.Weight = FW_BOLD;
+	stXDesc_Font.CharSet = DEFAULT_CHARSET;
+	stXDesc_Font.Quality = CLEARTYPE_NATURAL_QUALITY;
+	stXDesc_Font.OutputPrecision = OUT_DEFAULT_PRECIS;
+
+	LPD3DXFONT pXFont = nullptr;
+	D3DXCreateFontIndirectA(m_pDevice, &stXDesc_Font, &pXFont);
+
+	return pXFont;
+}
+
+LPD3DXSPRITE CApp_D3D::CreateXSprite(void)
+{
+	LPD3DXSPRITE pXSprite = nullptr;
+	D3DXCreateSprite(m_pDevice, &pXSprite);
+
+	return pXSprite;
+}
+
 void CApp_D3D::Present(HDC a_hSrcDC, HDC a_hDestDC)
 {
-	m_pSwapChain->Present(0, 0);
+	m_pDevice->EndScene();
+	m_pDevice->Present(nullptr, nullptr, nullptr, nullptr);
 }

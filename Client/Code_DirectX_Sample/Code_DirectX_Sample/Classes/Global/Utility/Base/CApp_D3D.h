@@ -3,6 +3,7 @@
 #include "CApp_Wnd.h"
 #include "../../Define/KDefine+Global.h"
 
+class CLight;
 class CCamera;
 
 /**
@@ -36,43 +37,25 @@ public:			// IRenderable
 public:   // public 함수
 
 	/** 배경색 프로퍼티 */
-	GETTER_SETTER_PROPERTY_WITH_INIT(D3DXCOLOR, ColorClear, m_stColorClear, D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
+	GETTER_SETTER_PROPERTY_WITH_INIT(D3DXCOLOR, Color_Clear, m_stColor_Clear, D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f));
+
+	/** 광원 프로퍼티 */
+	GETTER_PROPERTY_WITH_INIT(CLight*, Light, m_pLight, nullptr);
 
 	/** 카메라 프로퍼티 */
 	GETTER_PROPERTY_WITH_INIT(CCamera*, Camera, m_pCamera, nullptr);
 
-	/** 팩토리 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(IDXGIFactory*, Factory, m_pFactory, nullptr);
-
-	/** 스왑 체인 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(IDXGISwapChain*, SwapChain, m_pSwapChain, nullptr);
+	/** Direct 3D 프로퍼티 */
+	GETTER_PROPERTY_WITH_INIT(LPDIRECT3D9, D3D, m_pD3D, nullptr);
 
 	/** 디바이스 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10Device*, Device, m_pDevice, nullptr);
-
-	/** 렌더 타겟 뷰 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10RenderTargetView*, View_RT, m_pView_RT, nullptr);
-
-	/** 깊이 스텐실 뷰 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10DepthStencilView*, View_DS, m_pView_DS, nullptr);
-
-	/** 깊이 스텐실 상태 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10DepthStencilState*, State_DS, m_pState_DS, nullptr);
-
-	/** 래스터라이저 상태 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3D10RasterizerState*, State_Rasterizer, m_pState_Rasterizer, nullptr);
+	GETTER_PROPERTY_WITH_INIT(LPDIRECT3DDEVICE9, Device, m_pDevice, nullptr);
 
 	/** 폰트 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3DX10Font*, XFont, m_pXFont, nullptr);
+	GETTER_PROPERTY_WITH_INIT(LPD3DXFONT, XFont, m_pXFont, nullptr);
 
 	/** 스프라이트 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(ID3DX10Sprite*, XSprite, m_pXSprite, nullptr);
-
-	/** Direct 3D 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(LPDIRECT3D9, D3D9, m_pD3D9, nullptr);
-
-	/** 디바이스 프로퍼티 */
-	GETTER_PROPERTY_WITH_INIT(LPDIRECT3DDEVICE9, Device9, m_pDevice9, nullptr);
+	GETTER_PROPERTY_WITH_INIT(LPD3DXSPRITE, XSprite, m_pXSprite, nullptr);
 
 public:			// public 함수
 
@@ -109,41 +92,23 @@ protected:			// protected 접근 함수
 
 protected:			// protected 팩토리 함수
 
+	/** 광원을 생성한다 */
+	virtual CLight* CreateLight(void);
+
 	/** 카메라를 생성한다 */
 	virtual CCamera* CreateCamera(void);
 
-	/** 팩토리를 생성한다 */
-	virtual IDXGIFactory* CreateFactory(void);
-
-	/** 스완 체인을 생성한다 */
-	virtual IDXGISwapChain* CreateSwapChain(void);
+	/** Direct 3D 을 생성한다 */
+	virtual LPDIRECT3D9 CreateD3D(void);
 
 	/** 디바이스를 생성한다 */
-	virtual ID3D10Device* CreateDevice(void);
-
-	/** 렌더 타겟 뷰를 생성한다 */
-	virtual ID3D10RenderTargetView* CreateView_RT(void);
-
-	/** 깊이 스텐실 뷰를 생성한다 */
-	virtual ID3D10DepthStencilView* CreateView_DS(void);
-
-	/** 깊이 스텐실 상태를 생성한다 */
-	virtual ID3D10DepthStencilState* CreateState_DS(void);
-
-	/** 래스터라이저 상태를 생성한다 */
-	virtual ID3D10RasterizerState* CreateState_Rasterizer(void);
+	virtual LPDIRECT3DDEVICE9 CreateDevice(void);
 
 	/** 폰트를 생성한다 */
-	virtual ID3DX10Font* CreateXFont(void);
+	virtual LPD3DXFONT CreateXFont(void);
 
-	/** 스프라이트를 생성한다 */
-	virtual ID3DX10Sprite* CreateXSprite(void);
-
-	/** Direct 3D 9 을 생성한다 */
-	virtual LPDIRECT3D9 CreateD3D9(void);
-
-	/** 디바이스 9 을 생성한다 */
-	virtual LPDIRECT3DDEVICE9 CreateDevice9(void);
+	/** 스프라이트를 생성한닫 */
+	virtual LPD3DXSPRITE CreateXSprite(void);
 
 private:			// private 함수
 
@@ -153,4 +118,5 @@ private:			// private 함수
 private:			// private 변수
 
 	std::string m_oStrDebugInfo = STR_EMPTY;
+	D3DPRESENT_PARAMETERS m_stParams_Present;
 };

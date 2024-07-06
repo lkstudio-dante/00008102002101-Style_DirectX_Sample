@@ -13,16 +13,13 @@
 #include <unordered_map>
 #include <d3d9.h>
 #include <d3dx9.h>
-#include <D3D10.h>
-#include <D3DX10.h>
-#include <DXGI.h>
 #include <dinput.h>
 #include <dsound.h>
 #include <Windows.h>
 #include <tchar.h>
 
 #define STR_EMPTY				(std::string(""))
-#define VER_EFFECT				(std::string("fx_4_0"))
+#define VER_EFFECT				(std::string("fx_2_0"))
 #define SEMANTIC_POS			(std::string("POSITION"))
 
 #define NAME_COLOR					(std::string("g_stColor"))
@@ -35,17 +32,18 @@
 #define NAME_VIEW_MATRIX_CBUFFER				(std::string("g_stMatrix_View"))
 #define NAME_PROJECTION_MATRIX_CBUFFER			(std::string("g_stMatrix_Projection"))
 
-#define FLAGS_CPU_ACCESS_NONE			((D3D10_CPU_ACCESS_FLAG)0)
-#define MAX_NUM_SFXS_DUPLICATE			(10)
-
 #define COLOR_BLACK			(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f))
 #define COLOR_WHITE			(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f))
+
+#define VEC_ONE				(D3DXVECTOR3(1.0f, 1.0f, 1.0f))
+#define VEC_ZERO			(D3DXVECTOR3(0.0f, 0.0f, 0.0f))
 
 #define VEC_WORLD_RIGHT				(D3DXVECTOR3(1.0f, 0.0f, 0.0f))
 #define VEC_WORLD_UP				(D3DXVECTOR3(0.0f, 1.0f, 0.0f))
 #define VEC_WORLD_FORWARD			(D3DXVECTOR3(0.0f, 0.0f, 1.0f))
 
-#define ELEMENT_END_VERTEX			(D3DVERTEXELEMENT9(D3DDECL_END()))
+#define ELEMENT_END_VERTEX				(D3DVERTEXELEMENT9(D3DDECL_END()))
+#define MAX_NUM_SFXS_DUPLICATE			(10)
 
 // 메모리 관리 {
 #define SAFE_FREE(TARGET)			if((TARGET) != nullptr) { free((TARGET)); (TARGET) = nullptr; }
@@ -113,7 +111,7 @@ static TYPE_CLS* GetInst(void)				\
 }
 
 /** 마우스 버튼 */
-enum class EBtnMouse
+enum class EMouseBtn
 {
 	NONE = -1,
 	LEFT,
@@ -122,23 +120,35 @@ enum class EBtnMouse
 	MAX_VAL
 };
 
+/** 정점 */
+struct STVertex
+{
+	D3DXVECTOR3 m_stPos;
+	D3DXVECTOR4 m_stColor;
+	D3DXVECTOR3 m_stNormal;
+	D3DXVECTOR3 m_stTangent;
+	D3DXVECTOR3 m_stBinormal;
+	D3DXVECTOR2 m_stUV;
+};
+
 /** 본 정보 */
 struct STInfo_Bone : public D3DXFRAME
-{ 
+{
 	D3DXMATRIXA16 m_stMatrix_CombineTrans;
 };
 
 /** 메쉬 정보 */
 struct STInfo_Mesh
 {
-	ID3DX10Mesh* m_pXMesh;
+	LPDWORD m_pnAdjacency;
+	LPD3DXMESH m_pXMesh;
 
 	std::vector<D3DMATERIAL9> m_oVectorMaterials;
-	std::vector<ID3D10ShaderResourceView*> m_oVectorViews_SR;
+	std::vector<LPDIRECT3DTEXTURE9> m_oVectorTextures;
 };
 
-/** 스켈레톤 메쉬 정보 */
-struct STInfo_SkeletonMesh : public STInfo_Mesh
+/** 스키닝 메쉬 정보 */
+struct STInfo_SkinningMesh : public STInfo_Mesh
 {
 	LPD3DXFRAME m_pstXFrame;
 	LPD3DXANIMATIONCONTROLLER m_pXController_Anim;

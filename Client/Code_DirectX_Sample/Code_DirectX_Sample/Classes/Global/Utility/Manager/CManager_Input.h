@@ -42,13 +42,13 @@ public:			// public 함수
 	bool IsRelease_Key(int a_nCodeKey);
 
 	/** 마우스 버튼 눌림 여부를 반환한다 */
-	bool IsDown_MouseBtn(EBtnMouse a_eBtnMouse);
+	bool IsDown_MouseBtn(EMouseBtn a_eMouseBtn);
 
 	/** 마우스 버튼 눌림 시작 여부를 반환한다 */
-	bool IsPress_MouseBtn(EBtnMouse a_eBtnMouse);
+	bool IsPress_MouseBtn(EMouseBtn a_eMouseBtn);
 
 	/** 마우스 버튼 눌림 종료 여부를 반환한다 */
-	bool IsRelease_MouseBtn(EBtnMouse a_eBtnMouse);
+	bool IsRelease_MouseBtn(EMouseBtn a_eMouseBtn);
 
 public:			// public 접근 함수
 

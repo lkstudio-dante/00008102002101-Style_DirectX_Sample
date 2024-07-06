@@ -21,13 +21,13 @@ public:			// IUpdateable
 public:			// IRenderable
 
 	/** 객체를 그린다 */
-	virtual void Render(ID3D10Device* a_pDevice) final override;
+	virtual void Render(LPDIRECT3DDEVICE9 a_pDevice) final override;
 
 	/** 객체를 그린다 */
-	virtual void LateRender(ID3D10Device* a_pDevice) final override;
+	virtual void LateRender(LPDIRECT3DDEVICE9 a_pDevice) final override;
 
 	/** 객체를 그린다 */
-	virtual void LateRender(ID3DX10Sprite* a_pXSprite) final override;
+	virtual void LateRender(LPD3DXSPRITE a_pXSprite) final override;
 
 public:			// public 함수
 
@@ -54,23 +54,14 @@ public:			// public 함수
 
 public:			// public 접근 함수
 
-	/** 로컬 X 축 방향을 반환한다 */
-	virtual D3DXVECTOR3 GetVec_LocalRight(void) const;
+	/** X 축 방향을 반환한다 */
+	virtual D3DXVECTOR3 GetVec_Right(void) const;
 
-	/** 로컬 Y 축 방향을 반환한다 */
-	virtual D3DXVECTOR3 GetVec_LocalUp(void) const;
+	/** Y 축 방향을 반환한다 */
+	virtual D3DXVECTOR3 GetVec_Up(void) const;
 
-	/** 로컬 Z 축 방향을 반환한다 */
-	virtual D3DXVECTOR3 GetVec_LocalForward(void) const;
-
-	/** 월드 X 축 방향을 반환한다 */
-	virtual D3DXVECTOR3 GetVec_WorldRight(void) const;
-
-	/** 월드 Y 축 방향을 반환한다 */
-	virtual D3DXVECTOR3 GetVec_WorldUp(void) const;
-
-	/** 월드 Z 축 방향을 반환한다 */
-	virtual D3DXVECTOR3 GetVec_WorldForward(void) const;
+	/** Z 축 방향을 반환한다 */
+	virtual D3DXVECTOR3 GetVec_Forward(void) const;
 
 	/** 로컬 변환 행렬을 반환한다 */
 	virtual D3DXMATRIXA16 GetMatrix_LocalTrans(void) const;
@@ -87,13 +78,13 @@ protected:			// protected 함수
 	virtual void OnLateUpdate(float a_fTime_Delta);
 
 	/** 객체를 그린다 */
-	virtual void OnRender(ID3D10Device* a_pDevice);
+	virtual void OnRender(LPDIRECT3DDEVICE9 a_pDevice);
 
 	/** 객체를 그린다 */
-	virtual void OnLateRender(ID3D10Device* a_pDevice);
+	virtual void OnLateRender(LPDIRECT3DDEVICE9 a_pDevice);
 
 	/** 객체를 그린다 */
-	virtual void OnLateRender(ID3DX10Sprite* a_pXSprite);
+	virtual void OnLateRender(LPD3DXSPRITE a_pXSprite);
 
 private:			// private 접근 함수
 

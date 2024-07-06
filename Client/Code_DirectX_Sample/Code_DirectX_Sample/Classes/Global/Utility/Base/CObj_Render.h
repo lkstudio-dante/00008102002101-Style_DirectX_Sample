@@ -20,14 +20,14 @@ public:			// public 함수
 protected:			// protected 함수
 
 	/** 객체를 그린다 */
-	virtual void OnRender(ID3D10Device* a_pDevice) final override;
+	virtual void OnRender(LPDIRECT3DDEVICE9 a_pDevice) final override;
 
 	/** 객체를 그린다 */
-	virtual void OnLateRender(ID3D10Device* a_pDevice) final override;
+	virtual void OnLateRender(LPDIRECT3DDEVICE9 a_pDevice) final override;
 
 	/** 객체를 그린다 */
-	virtual void OnRender(ID3D10Device* a_pDevice, ID3D10EffectPass* a_pPass);
+	virtual void OnRender(LPDIRECT3DDEVICE9 a_pDevice, int a_nIdx_Pass);
 
 	/** 객체를 그린다 */
-	virtual void OnLateRender(ID3D10Device* a_pDevice, ID3D10EffectPass* a_pPass);
+	virtual void OnLateRender(LPDIRECT3DDEVICE9 a_pDevice, int a_nIdx_Pass);
 };

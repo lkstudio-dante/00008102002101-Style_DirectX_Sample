@@ -51,21 +51,21 @@ bool CManager_Input::IsRelease_Key(int a_nCodeKey)
 	return !bIsDown_Key && (m_anStates_PrevKey[a_nCodeKey] & 0x80);
 }
 
-bool CManager_Input::IsDown_MouseBtn(EBtnMouse a_eBtnMouse)
+bool CManager_Input::IsDown_MouseBtn(EMouseBtn a_eMouseBtn)
 {
-	return m_stState_CurMouse.rgbButtons[(int)a_eBtnMouse] & 0x80;
+	return m_stState_CurMouse.rgbButtons[(int)a_eMouseBtn] & 0x80;
 }
 
-bool CManager_Input::IsPress_MouseBtn(EBtnMouse a_eBtnMouse)
+bool CManager_Input::IsPress_MouseBtn(EMouseBtn a_eMouseBtn)
 {
-	bool bIsDown_MouseBtn = this->IsDown_MouseBtn(a_eBtnMouse);
-	return bIsDown_MouseBtn && !(m_stState_PrevMouse.rgbButtons[(int)a_eBtnMouse] & 0x80);
+	bool bIsDown_MouseBtn = this->IsDown_MouseBtn(a_eMouseBtn);
+	return bIsDown_MouseBtn && !(m_stState_PrevMouse.rgbButtons[(int)a_eMouseBtn] & 0x80);
 }
 
-bool CManager_Input::IsRelease_MouseBtn(EBtnMouse a_eBtnMouse)
+bool CManager_Input::IsRelease_MouseBtn(EMouseBtn a_eMouseBtn)
 {
-	bool bIsDown_MouseBtn = this->IsDown_MouseBtn(a_eBtnMouse);
-	return !bIsDown_MouseBtn && (m_stState_PrevMouse.rgbButtons[(int)a_eBtnMouse] & 0x80);
+	bool bIsDown_MouseBtn = this->IsDown_MouseBtn(a_eMouseBtn);
+	return !bIsDown_MouseBtn && (m_stState_PrevMouse.rgbButtons[(int)a_eMouseBtn] & 0x80);
 }
 
 int CManager_Input::GetDelta_MouseWheel(void)

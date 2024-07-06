@@ -4,17 +4,22 @@
 #include "../Global/Utility/Base/CApp_D3D.h"
 
 class CMesh;
-class CMesh_Skeleton;
+class CMesh_Skinning;
 
 /**
  * 샘플 씬 관리자
  */
 class CManager_SampleScene : public CApp_D3D
 {
+public:			// IUpdateable
+
+	/** 상태를 갱신한다 */
+	virtual void Update(float a_fTime_Delta) override;
+
 public:			// IRenderable
 
 	/** 객체를 그린다 */
-	virtual void Render(ID3D10Device* a_pDevice) override;
+	virtual void Render(LPDIRECT3DDEVICE9 a_pDevice) override;
 
 public:			// public 함수
 
@@ -31,5 +36,5 @@ private:			// private 변수
 
 	CMesh* m_pGunShip = nullptr;
 	CMesh* m_pElementalist = nullptr;
-	CMesh_Skeleton* m_pWitchApprentice = nullptr;
+	CMesh_Skinning* m_pWitchApprentice = nullptr;
 };

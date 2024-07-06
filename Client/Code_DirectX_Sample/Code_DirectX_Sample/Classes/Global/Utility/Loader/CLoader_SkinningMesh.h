@@ -3,9 +3,9 @@
 #include "../../Define/KDefine+Global.h"
 
 /**
- * 스켈레톤 메쉬 로더
+ * 스키닝 메쉬 로더
  */
-class CLoader_SkeletonMesh : public ID3DXAllocateHierarchy
+class CLoader_SkinningMesh : public ID3DXAllocateHierarchy
 {
 public:			// ID3DXAllocateHierarchy
 
@@ -25,8 +25,8 @@ public:			// ID3DXAllocateHierarchy
 public:			// public 함수
 
 	/** 생성자 */
-	CLoader_SkeletonMesh(const std::string& a_rPath_Mesh);
+	CLoader_SkinningMesh(const std::string& a_rPath_Mesh);
 
-	/** 스켈레톤 메쉬 정보 프로퍼티 */
-	GETTER_PROPERTY(STInfo_SkeletonMesh, Info_SkeletonMesh, m_stInfo_SkeletonMesh);
+	/** 스키닝 메쉬 정보 프로퍼티 */
+	GETTER_PROPERTY(STInfo_SkinningMesh, Info_SkinningMesh, m_stInfo_SkinningMesh);
 };
