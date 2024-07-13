@@ -2,7 +2,7 @@
 #include "../../Function/Func+Global.h"
 #include "../Base/CApp_D3D.h"
 #include "../Material/CMat.h"
-#include "../Loader/CLoader_SkinningMesh.h"
+#include "../Loader/CLoader_SkeletalMesh.h"
 
 /** 리소스를 제거한다 */
 template <typename K, typename V>
@@ -47,17 +47,17 @@ CManager_Res::~CManager_Res(void)
 void CManager_Res::Release(bool a_bIsDestroy)
 {
 	::DelResources(m_oMapMaterials);
-	::DelResources(m_oMapLoaders_SkinningMesh);
+	::DelResources(m_oMapLoaders_SkeletalMesh);
 
 	::ReleaseResources(m_oMapTextures);
-	::ReleaseResources(m_oMapXEffects);
+	::ReleaseResources(m_oMapEffects);
 
 	for(auto& rstValType : m_oMapInfos_Mesh)
 	{
 		SAFE_FREE(rstValType.second.m_pnAdjacency);
 		SAFE_RELEASE(rstValType.second.m_pXMesh);
 
-		::ReleaseResources(rstValType.second.m_oVectorTextures);
+		::ReleaseResources(rstValType.second.m_oVectorViews_SR);
 	}
 
 	for(auto& rstValType : m_oMapInfos_WaveSnd)
@@ -79,15 +79,17 @@ STInfo_Mesh CManager_Res::GetInfo_Mesh(const std::string& a_rPath_Mesh, bool a_b
 		DWORD nNumMaterials = 0;
 		STInfo_Mesh stInfo_Mesh = { 0 };
 
-		LPD3DXMESH pXMesh = nullptr;
-		LPD3DXBUFFER pXBuffer_Adjacency = nullptr;
-		LPD3DXBUFFER pXBuffer_Materials = nullptr;
+		LPD3DXMESH pXMesh9 = nullptr;
+		LPD3DXMESH pXMesh_Clone9 = nullptr;
+
+		LPD3DXBUFFER pXBuffer_Adjacency9 = nullptr;
+		LPD3DXBUFFER pXBuffer_Materials9 = nullptr;
 
 		std::filesystem::path oPath(a_rPath_Mesh);
 		auto oPath_Dir = oPath.parent_path();
 
 		D3DXLoadMeshFromXA(a_rPath_Mesh.c_str(),
-			D3DXMESH_MANAGED | D3DXMESH_32BIT, GET_APP_D3D()->GetDevice(), &pXBuffer_Adjacency, &pXBuffer_Materials, nullptr, &nNumMaterials, &pXMesh);
+			D3DXMESH_MANAGED | D3DXMESH_32BIT, GET_APP_D3D()->GetDevice9(), &pXBuffer_Adjacency9, &pXBuffer_Materials9, nullptr, &nNumMaterials, &pXMesh9);
 
 		D3DVERTEXELEMENT9 astElements_Vertex[MAX_FVF_DECL_SIZE] =
 		{
@@ -100,30 +102,33 @@ STInfo_Mesh CManager_Res::GetInfo_Mesh(const std::string& a_rPath_Mesh, bool a_b
 			D3DDECL_END()
 		};
 
-		pXMesh->CloneMesh(pXMesh->GetOptions(), 
-			astElements_Vertex, GET_APP_D3D()->GetDevice(), &stInfo_Mesh.m_pXMesh);
+		pXMesh9->CloneMesh(pXMesh9->GetOptions(), 
+			astElements_Vertex, GET_APP_D3D()->GetDevice9(), &pXMesh_Clone9);
 
-		stInfo_Mesh.m_pnAdjacency = (LPDWORD)malloc(pXBuffer_Adjacency->GetBufferSize());
+		stInfo_Mesh.m_pnAdjacency = (LPDWORD)malloc(pXBuffer_Adjacency9->GetBufferSize());
 
 		for(int i = 0; i < nNumMaterials; ++i)
 		{
 			D3DXMATERIAL stXMat;
-			memcpy(&stXMat, (LPD3DXMATERIAL)pXBuffer_Materials->GetBufferPointer() + i, sizeof(stXMat));
+			memcpy(&stXMat, (LPD3DXMATERIAL)pXBuffer_Materials9->GetBufferPointer() + i, sizeof(stXMat));
 
 			std::string oPath_Texture = oPath_Dir.string() + "/" + stXMat.pTextureFilename;
 
-			stInfo_Mesh.m_oVectorTextures.push_back(this->GetTexture(oPath_Texture));
+			stInfo_Mesh.m_oVectorViews_SR.push_back(this->GetView_SR(oPath_Texture));
 			stInfo_Mesh.m_oVectorMaterials.push_back(stXMat.MatD3D);
 		}
 
-		stInfo_Mesh.m_pXMesh->Optimize(D3DXMESHOPT_ATTRSORT | D3DXMESHOPT_VERTEXCACHE,
-			(LPDWORD)pXBuffer_Adjacency->GetBufferPointer(), stInfo_Mesh.m_pnAdjacency, nullptr, nullptr, &stInfo_Mesh.m_pXMesh);
+		pXMesh_Clone9->Optimize(D3DXMESHOPT_ATTRSORT | D3DXMESHOPT_VERTEXCACHE,
+			(LPDWORD)pXBuffer_Adjacency9->GetBufferPointer(), stInfo_Mesh.m_pnAdjacency, nullptr, nullptr, &pXMesh_Clone9);
 
+		stInfo_Mesh.m_pXMesh = Func::XMesh9ToXMesh(pXMesh_Clone9);
 		m_oMapInfos_Mesh.insert(decltype(m_oMapInfos_Mesh)::value_type(a_rPath_Mesh, stInfo_Mesh));
 
-		SAFE_RELEASE(pXMesh);
-		SAFE_RELEASE(pXBuffer_Adjacency);
-		SAFE_RELEASE(pXBuffer_Materials);
+		SAFE_RELEASE(pXMesh9);
+		SAFE_RELEASE(pXMesh_Clone9);
+
+		SAFE_RELEASE(pXBuffer_Adjacency9);
+		SAFE_RELEASE(pXBuffer_Materials9);
 	}
 
 	return m_oMapInfos_Mesh[a_rPath_Mesh];
@@ -172,16 +177,16 @@ STInfo_WaveSnd CManager_Res::GetInfo_WaveSnd(const std::string& a_rPath_Snd, boo
 	return m_oMapInfos_WaveSnd[a_rPath_Snd];
 }
 
-STInfo_SkinningMesh CManager_Res::GetInfo_SkinningMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
+STInfo_SkeletalMesh CManager_Res::GetInfo_SkeletalMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
 {
-	// 스키닝 메쉬 정보가 없을 경우
-	if(a_bIsCreate_Auto && m_oMapInfos_SkinningMesh.find(a_rPath_Mesh) == m_oMapInfos_SkinningMesh.end())
+	// 스켈레톤 메쉬 정보가 없을 경우
+	if(a_bIsCreate_Auto && m_oMapInfos_SkeletalMesh.find(a_rPath_Mesh) == m_oMapInfos_SkeletalMesh.end())
 	{
-		auto pLoader_SkinningMesh = this->GetLoader_SkinningMesh(a_rPath_Mesh, a_bIsCreate_Auto);
-		m_oMapInfos_SkinningMesh.insert(decltype(m_oMapInfos_SkinningMesh)::value_type(a_rPath_Mesh, pLoader_SkinningMesh->GetInfo_SkinningMesh()));
+		auto pLoader_SkeletalMesh = this->GetLoader_SkeletalMesh(a_rPath_Mesh, a_bIsCreate_Auto);
+		m_oMapInfos_SkeletalMesh.insert(decltype(m_oMapInfos_SkeletalMesh)::value_type(a_rPath_Mesh, pLoader_SkeletalMesh->GetInfo_SkeletalMesh()));
 	}
 
-	return m_oMapInfos_SkinningMesh[a_rPath_Mesh];
+	return m_oMapInfos_SkeletalMesh[a_rPath_Mesh];
 }
 
 CMat* CManager_Res::GetMat(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto)
@@ -196,42 +201,28 @@ CMat* CManager_Res::GetMat(const std::string& a_rPath_Effect, bool a_bIsCreate_A
 	return m_oMapMaterials[a_rPath_Effect];
 }
 
-CLoader_SkinningMesh* CManager_Res::GetLoader_SkinningMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
+CLoader_SkeletalMesh* CManager_Res::GetLoader_SkeletalMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
 {
-	// 스키닝 메쉬 로더가 없을 경우
-	if(a_bIsCreate_Auto && m_oMapLoaders_SkinningMesh.find(a_rPath_Mesh) == m_oMapLoaders_SkinningMesh.end())
+	// 스켈레톤 메쉬 로더가 없을 경우
+	if(a_bIsCreate_Auto && m_oMapLoaders_SkeletalMesh.find(a_rPath_Mesh) == m_oMapLoaders_SkeletalMesh.end())
 	{
-		auto pLoader_SkinningMesh = new CLoader_SkinningMesh(a_rPath_Mesh);
-		m_oMapLoaders_SkinningMesh.insert(decltype(m_oMapLoaders_SkinningMesh)::value_type(a_rPath_Mesh, pLoader_SkinningMesh));
+		auto pLoader_SkeletalMesh = new CLoader_SkeletalMesh(a_rPath_Mesh);
+		m_oMapLoaders_SkeletalMesh.insert(decltype(m_oMapLoaders_SkeletalMesh)::value_type(a_rPath_Mesh, pLoader_SkeletalMesh));
 	}
 
-	return m_oMapLoaders_SkinningMesh[a_rPath_Mesh];
+	return m_oMapLoaders_SkeletalMesh[a_rPath_Mesh];
 }
 
-LPDIRECT3DTEXTURE9 CManager_Res::GetTexture(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto)
-{
-	// 텍스처가 없을 경우
-	if(a_bIsCreate_Auto && m_oMapTextures.find(a_rPath_Texture) == m_oMapTextures.end())
-	{
-		LPDIRECT3DTEXTURE9 pTexture = nullptr;
-		D3DXCreateTextureFromFileA(GET_APP_D3D()->GetDevice(), a_rPath_Texture.c_str(), &pTexture);
-
-		m_oMapTextures.insert(decltype(m_oMapTextures)::value_type(a_rPath_Texture, pTexture));
-	}
-
-	return m_oMapTextures[a_rPath_Texture];
-}
-
-LPD3DXEFFECT CManager_Res::GetXEffect(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto)
+ID3D10Effect* CManager_Res::GetEffect(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto)
 {
 	// 이펙트가 없을 경우
-	if(a_bIsCreate_Auto && m_oMapXEffects.find(a_rPath_Effect) == m_oMapXEffects.end())
+	if(a_bIsCreate_Auto && m_oMapEffects.find(a_rPath_Effect) == m_oMapEffects.end())
 	{
-		LPD3DXBUFFER pError = nullptr;
-		LPD3DXEFFECT pXEffect = nullptr;
+		ID3D10Blob* pError = nullptr;
+		ID3D10Effect* pEffect = nullptr;
 
-		D3DXCreateEffectFromFileA(GET_APP_D3D()->GetDevice(),
-			a_rPath_Effect.c_str(), nullptr, nullptr, D3DXSHADER_PACKMATRIX_ROWMAJOR, nullptr, &pXEffect, &pError);
+		D3DX10CreateEffectFromFileA(a_rPath_Effect.c_str(),
+			nullptr, nullptr, VER_EFFECT.c_str(), D3D10_SHADER_PACK_MATRIX_ROW_MAJOR, 0, GET_APP_D3D()->GetDevice(), nullptr, nullptr, &pEffect, &pError, nullptr);
 
 		// 에러가 존재 할 경우
 		if(pError != nullptr)
@@ -240,8 +231,35 @@ LPD3DXEFFECT CManager_Res::GetXEffect(const std::string& a_rPath_Effect, bool a_
 		}
 
 		SAFE_RELEASE(pError);
-		m_oMapXEffects.insert(decltype(m_oMapXEffects)::value_type(a_rPath_Effect, pXEffect));
+		m_oMapEffects.insert(decltype(m_oMapEffects)::value_type(a_rPath_Effect, pEffect));
 	}
 
-	return m_oMapXEffects[a_rPath_Effect];
+	return m_oMapEffects[a_rPath_Effect];
+}
+
+ID3D10InputLayout* CManager_Res::GetInputLayout(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
+{
+	// 입력 레이아웃이 없을 경우
+	if(a_bIsCreate_Auto && m_oMapInputLayouts.find(a_rPath_Mesh) == m_oMapInputLayouts.end())
+	{
+		auto stInfo_Mesh = this->GetInfo_Mesh(a_rPath_Mesh, a_bIsCreate_Auto);
+	}
+
+	return m_oMapInputLayouts[a_rPath_Mesh];
+}
+
+ID3D10ShaderResourceView* CManager_Res::GetView_SR(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto)
+{
+	// 쉐이더 리소스 뷰가 없을 경우
+	if(a_bIsCreate_Auto && m_oMapTextures.find(a_rPath_Texture) == m_oMapTextures.end())
+	{
+		ID3D10ShaderResourceView* pView_SR = nullptr;
+
+		D3DX10CreateShaderResourceViewFromFileA(GET_APP_D3D()->GetDevice(), 
+			a_rPath_Texture.c_str(), nullptr, nullptr, &pView_SR, nullptr);
+
+		m_oMapTextures.insert(decltype(m_oMapTextures)::value_type(a_rPath_Texture, pView_SR));
+	}
+
+	return m_oMapTextures[a_rPath_Texture];
 }

@@ -1,47 +1,47 @@
 #include "CMat.h"
+#include "../../Access/Access+Global.h"
 #include "../Manager/CManager_Res.h"
 
 CMat::CMat(const std::string& a_rPath_Effect)
 {
-	m_pXEffect = GET_MANAGER_RES()->GetXEffect(a_rPath_Effect);
+	m_pEffect = GET_MANAGER_RES()->GetEffect(a_rPath_Effect);
 }
 
-void CMat::EnumeratePasses(int a_nIdx_Technique, const std::function<void(int)>& a_rCallback)
+void CMat::EnumeratePasses(int a_nIdx_Technique, const std::function<void(ID3D10EffectPass*)>& a_rCallback)
 {
-	auto hTechnique = m_pXEffect->GetTechnique(a_nIdx_Technique);
-	m_pXEffect->SetTechnique(hTechnique);
+	auto pTechnique = m_pEffect->GetTechniqueByIndex(a_nIdx_Technique);
 
-	UINT nNumPasses = 0;
-	m_pXEffect->Begin(&nNumPasses, 0);
+	D3D10_TECHNIQUE_DESC stDesc_Technique;
+	pTechnique->GetDesc(&stDesc_Technique);
 
-	for(int i = 0; i < nNumPasses; ++i)
+	for(int i = 0; i < stDesc_Technique.Passes; ++i)
 	{
-		m_pXEffect->BeginPass(i);
-		a_rCallback(i);
+		auto pPass = pTechnique->GetPassByIndex(i);
+		pPass->Apply(0);
 
-		m_pXEffect->EndPass();
+		a_rCallback(pPass);
 	}
-
-	m_pXEffect->End();
 }
 
 void CMat::SetColor(const std::string& a_rKey, const D3DXCOLOR& a_rstColor)
 {
-	D3DXVECTOR4 stVec(a_rstColor.a, a_rstColor.g, a_rstColor.b, a_rstColor.a);
-	m_pXEffect->SetVector(a_rKey.c_str(), &stVec);
+	this->SetVec(a_rKey, D3DXVECTOR4(a_rstColor.a, a_rstColor.g, a_rstColor.b, a_rstColor.a));
+}
+
+void CMat::SetVec(const std::string& a_rKey, const D3DXVECTOR4& a_rstVec)
+{
+	auto pCBuffer_Vec = m_pEffect->GetConstantBufferByName(a_rKey.c_str())->AsVector();
+	pCBuffer_Vec->SetFloatVector(const_cast<D3DXVECTOR4&>(a_rstVec));
 }
 
 void CMat::SetMatrix(const std::string& a_rKey, const D3DXMATRIXA16& a_rstMatrix)
 {
-	m_pXEffect->SetMatrix(a_rKey.c_str(), &a_rstMatrix);
+	auto pCBuffer_Matrix = m_pEffect->GetConstantBufferByName(a_rKey.c_str())->AsMatrix();
+	pCBuffer_Matrix->SetMatrix(const_cast<D3DXMATRIXA16&>(a_rstMatrix));
 }
 
-void CMat::SetTexture(const std::string& a_rKey, LPDIRECT3DTEXTURE9 a_pTexture)
+void CMat::SetView_SR(const std::string& a_rKey, ID3D10ShaderResourceView* a_pView_SR)
 {
-	m_pXEffect->SetTexture(a_rKey.c_str(), a_pTexture);
-}
-
-void CMat::SetTexture_Cube(const std::string& a_rKey, LPDIRECT3DCUBETEXTURE9 a_pTexture_Cube)
-{
-	m_pXEffect->SetTexture(a_rKey.c_str(), a_pTexture_Cube);
+	auto pCBuffer_SRView = m_pEffect->GetConstantBufferByName(a_rKey.c_str())->AsShaderResource();
+	pCBuffer_SRView->SetResource(a_pView_SR);
 }

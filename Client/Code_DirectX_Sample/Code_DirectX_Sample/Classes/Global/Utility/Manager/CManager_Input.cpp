@@ -3,17 +3,17 @@
 
 CManager_Input::CManager_Input(void)
 {
-	ZeroMemory(m_anStates_CurKey, sizeof(m_anStates_CurKey));
-	ZeroMemory(m_anStates_PrevKey, sizeof(m_anStates_PrevKey));
+	ZeroMemory(m_anCurStates_Key, sizeof(m_anCurStates_Key));
+	ZeroMemory(m_anPrevStates_Key, sizeof(m_anPrevStates_Key));
 
-	ZeroMemory(&m_stState_CurMouse, sizeof(m_stState_CurMouse));
-	ZeroMemory(&m_stState_PrevMouse, sizeof(m_stState_PrevMouse));
+	ZeroMemory(&m_stCurState_Mouse, sizeof(m_stCurState_Mouse));
+	ZeroMemory(&m_stPrevState_Mouse, sizeof(m_stPrevState_Mouse));
 }
 
 CManager_Input::~CManager_Input(void)
 {
-	SAFE_UNACQUIRE(m_pDevice_Mouse);
-	SAFE_UNACQUIRE(m_pDevice_Keyboard);
+	SAFE_UNACQUIRE(m_pDevice9_Mouse);
+	SAFE_UNACQUIRE(m_pDevice9_Keyboard);
 
 	SAFE_RELEASE(m_pDInput);
 }
@@ -21,56 +21,66 @@ CManager_Input::~CManager_Input(void)
 void CManager_Input::Init(void)
 {
 	m_pDInput = this->CreateDInput();
-	m_pDevice_Mouse = this->CreateDevice_Mouse();
-	m_pDevice_Keyboard = this->CreateDevice_Keyboard();
+	m_pDevice9_Mouse = this->CreateDevice_Mouse();
+	m_pDevice9_Keyboard = this->CreateDevice_Keyboard();
 }
 
 void CManager_Input::Update(float a_fTime_Delta)
 {
-	CopyMemory(m_anStates_PrevKey, m_anStates_CurKey, sizeof(m_anStates_CurKey));
-	CopyMemory(&m_stState_PrevMouse, &m_stState_CurMouse, sizeof(m_stState_CurMouse));
+	CopyMemory(m_anPrevStates_Key, m_anCurStates_Key, sizeof(m_anCurStates_Key));
+	CopyMemory(&m_stPrevState_Mouse, &m_stCurState_Mouse, sizeof(m_stCurState_Mouse));
 
-	m_pDevice_Mouse->GetDeviceState(sizeof(m_stState_CurMouse), &m_stState_CurMouse);
-	m_pDevice_Keyboard->GetDeviceState(sizeof(m_anStates_CurKey), m_anStates_CurKey);
+	m_pDevice9_Mouse->GetDeviceState(sizeof(m_stCurState_Mouse), &m_stCurState_Mouse);
+	m_pDevice9_Keyboard->GetDeviceState(sizeof(m_anCurStates_Key), m_anCurStates_Key);
 }
 
 bool CManager_Input::IsDown_Key(int a_nCodeKey)
 {
-	return m_anStates_CurKey[a_nCodeKey] & 0x80;
+	return m_anCurStates_Key[a_nCodeKey] & 0x80;
 }
 
 bool CManager_Input::IsPress_Key(int a_nCodeKey)
 {
 	bool bIsDown_Key = this->IsDown_Key(a_nCodeKey);
-	return bIsDown_Key && !(m_anStates_PrevKey[a_nCodeKey] & 0x80);
+	return bIsDown_Key && !(m_anPrevStates_Key[a_nCodeKey] & 0x80);
 }
 
 bool CManager_Input::IsRelease_Key(int a_nCodeKey)
 {
 	bool bIsDown_Key = this->IsDown_Key(a_nCodeKey);
-	return !bIsDown_Key && (m_anStates_PrevKey[a_nCodeKey] & 0x80);
+	return !bIsDown_Key && (m_anPrevStates_Key[a_nCodeKey] & 0x80);
 }
 
 bool CManager_Input::IsDown_MouseBtn(EMouseBtn a_eMouseBtn)
 {
-	return m_stState_CurMouse.rgbButtons[(int)a_eMouseBtn] & 0x80;
+	return m_stCurState_Mouse.rgbButtons[(int)a_eMouseBtn] & 0x80;
 }
 
 bool CManager_Input::IsPress_MouseBtn(EMouseBtn a_eMouseBtn)
 {
 	bool bIsDown_MouseBtn = this->IsDown_MouseBtn(a_eMouseBtn);
-	return bIsDown_MouseBtn && !(m_stState_PrevMouse.rgbButtons[(int)a_eMouseBtn] & 0x80);
+	return bIsDown_MouseBtn && !(m_stPrevState_Mouse.rgbButtons[(int)a_eMouseBtn] & 0x80);
 }
 
 bool CManager_Input::IsRelease_MouseBtn(EMouseBtn a_eMouseBtn)
 {
 	bool bIsDown_MouseBtn = this->IsDown_MouseBtn(a_eMouseBtn);
-	return !bIsDown_MouseBtn && (m_stState_PrevMouse.rgbButtons[(int)a_eMouseBtn] & 0x80);
+	return !bIsDown_MouseBtn && (m_stPrevState_Mouse.rgbButtons[(int)a_eMouseBtn] & 0x80);
+}
+
+int CManager_Input::GetDelta_MouseX(void)
+{
+	return m_stCurState_Mouse.lX;
+}
+
+int CManager_Input::GetDelta_MouseY(void)
+{
+	return m_stCurState_Mouse.lY;
 }
 
 int CManager_Input::GetDelta_MouseWheel(void)
 {
-	return m_stState_CurMouse.lZ;
+	return m_stCurState_Mouse.lZ;
 }
 
 POINT CManager_Input::GetPos_Mouse(void)

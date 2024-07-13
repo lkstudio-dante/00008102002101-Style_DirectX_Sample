@@ -4,7 +4,7 @@
 #include "../Interface/IReleasable.h"
 
 class CMat;
-class CLoader_SkinningMesh;
+class CLoader_SkeletalMesh;
 
 /**
  * 리소스 관리자
@@ -15,13 +15,14 @@ public:
 
 	typedef std::unordered_map<std::string, STInfo_Mesh> T_MapInfos_Mesh;
 	typedef std::unordered_map<std::string, STInfo_WaveSnd> T_MapInfos_WaveSnd;
-	typedef std::unordered_map<std::string, STInfo_SkinningMesh> T_MapInfos_SkinningMesh;
+	typedef std::unordered_map<std::string, STInfo_SkeletalMesh> T_MapInfos_SkeletalMesh;
 
 	typedef std::unordered_map<std::string, CMat*> T_MapMaterials;
-	typedef std::unordered_map<std::string, CLoader_SkinningMesh*> T_MapLoaders_SkinningMesh;
+	typedef std::unordered_map<std::string, CLoader_SkeletalMesh*> T_MapLoaders_SkeletalMesh;
 
-	typedef std::unordered_map<std::string, LPDIRECT3DTEXTURE9> T_MapTextures;
-	typedef std::unordered_map<std::string, LPD3DXEFFECT> T_MapXEffects;
+	typedef std::unordered_map<std::string, ID3D10Effect*> T_MapEffects;
+	typedef std::unordered_map<std::string, ID3D10InputLayout*> T_MapInputLayouts;
+	typedef std::unordered_map<std::string, ID3D10ShaderResourceView*> T_MapViews_SR;
 
 public:			// IReleasable
 
@@ -42,20 +43,23 @@ public:			// public 함수
 	/** 웨이브 사운드 정보 프로퍼티 */
 	GETTER_PROPERTY(T_MapInfos_WaveSnd, Infos_WaveSnd, m_oMapInfos_WaveSnd);
 
-	/** 스키닝 메쉬 정보 프로퍼티 */
-	GETTER_PROPERTY(T_MapInfos_SkinningMesh, Infos_SkinningMesh, m_oMapInfos_SkinningMesh);
+	/** 스켈레톤 메쉬 정보 프로퍼티 */
+	GETTER_PROPERTY(T_MapInfos_SkeletalMesh, Infos_SkeletalMesh, m_oMapInfos_SkeletalMesh);
 
 	/** 재질 프로퍼티 */
 	GETTER_PROPERTY(T_MapMaterials, Materials, m_oMapMaterials);
 
-	/** 스키닝 메쉬 로더 프로퍼티 */
-	GETTER_PROPERTY(T_MapLoaders_SkinningMesh, Loaders_SkinningMesh, m_oMapLoaders_SkinningMesh);
-
-	/** 텍스처 프로퍼티 */
-	GETTER_PROPERTY(T_MapTextures, MapTextures, m_oMapTextures);
+	/** 스켈레톤 메쉬 로더 프로퍼티 */
+	GETTER_PROPERTY(T_MapLoaders_SkeletalMesh, Loaders_SkeletalMesh, m_oMapLoaders_SkeletalMesh);
 
 	/** 이펙트 프로퍼티 */
-	GETTER_PROPERTY(T_MapXEffects, XEffects, m_oMapXEffects);
+	GETTER_PROPERTY(T_MapEffects, Effects, m_oMapEffects);
+
+	/** 입력 레이아웃 프로퍼티 */
+	GETTER_PROPERTY(T_MapInputLayouts, InputLayouts, m_oMapInputLayouts);
+
+	/** 쉐이더 리소스 뷰 프로퍼티 */
+	GETTER_PROPERTY(T_MapViews_SR, MapTextures, m_oMapTextures);
 
 public:			// public 접근 함수
 
@@ -65,18 +69,21 @@ public:			// public 접근 함수
 	/** 웨이브 사운드 정보를 반환한다 */
 	STInfo_WaveSnd GetInfo_WaveSnd(const std::string& a_rPath_Snd, bool a_bIsCreate_Auto = true);
 
-	/** 스키닝 메쉬 정보를 반환한다 */
-	STInfo_SkinningMesh GetInfo_SkinningMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto = true);
+	/** 스켈레톤 메쉬 정보를 반환한다 */
+	STInfo_SkeletalMesh GetInfo_SkeletalMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto = true);
 
 	/** 재질을 반환한다 */
 	CMat* GetMat(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto = true);
 
-	/** 스키닝 메쉬 로더를 반환한다 */
-	CLoader_SkinningMesh* GetLoader_SkinningMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto = true);
-
-	/** 텍스처를 반환한다 */
-	LPDIRECT3DTEXTURE9 GetTexture(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto = true);
+	/** 스켈레톤 메쉬 로더를 반환한다 */
+	CLoader_SkeletalMesh* GetLoader_SkeletalMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto = true);
 
 	/** 이펙트를 반환한다 */
-	LPD3DXEFFECT GetXEffect(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto = true);
+	ID3D10Effect* GetEffect(const std::string& a_rPath_Effect, bool a_bIsCreate_Auto = true);
+
+	/** 입력 레이아웃을 반환한다 */
+	ID3D10InputLayout* GetInputLayout(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto = true);
+
+	/** 쉐이더 리소스 뷰를 반환한다 */
+	ID3D10ShaderResourceView* GetView_SR(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto = true);
 };

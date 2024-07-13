@@ -14,13 +14,10 @@ float CCamera::GetDistance(void) const
 
 D3DXMATRIXA16 CCamera::GetMatrix_View(void) const
 {
-	D3DXMATRIXA16 stMatrix_Pos;
-	D3DXMatrixTranslation(&stMatrix_Pos, this->GetPos().x, this->GetPos().y, this->GetPos().z);
+	auto stMatrix_Pos = this->GetMatrix_Pos();
+	auto stMatrix_Rotate = this->GetMatrix_Rotate();
 
-	D3DXMATRIXA16 stMatrix_Rotate;
-	D3DXMatrixRotationYawPitchRoll(&stMatrix_Rotate, this->GetRotate().y, this->GetRotate().x, this->GetRotate().z);
-
-	return *D3DXMatrixInverse(&stMatrix_Pos, nullptr, &stMatrix_Pos) *
+	return *D3DXMatrixInverse(&stMatrix_Pos, nullptr, &stMatrix_Pos) * 
 		*D3DXMatrixInverse(&stMatrix_Rotate, nullptr, &stMatrix_Rotate);
 }
 

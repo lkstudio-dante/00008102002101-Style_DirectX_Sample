@@ -23,7 +23,7 @@ public:			// public 함수
 	GETTER_SETTER_PROPERTY_WITH_INIT(float, Plane_Far, m_fPlane_Far, 25000.0f);
 
 	/** 뷰포트 프로퍼티 */
-	GETTER_SETTER_PROPERTY(D3DVIEWPORT9, Viewport, m_stViewport);
+	GETTER_SETTER_PROPERTY(D3D10_VIEWPORT, Viewport, m_stViewport);
 
 public:			// public 접근 함수
 

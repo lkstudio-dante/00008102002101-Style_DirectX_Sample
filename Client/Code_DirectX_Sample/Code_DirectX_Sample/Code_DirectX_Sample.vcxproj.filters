@@ -70,6 +70,12 @@
     <Filter Include="Resources\Effects">
       <UniqueIdentifier>{0a65a2bc-ef0a-463c-bb9d-f9a8bf487070}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Global\Utility\Debug">
+      <UniqueIdentifier>{6cb3a6e8-b1fe-4e12-a82e-7dde31b633a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Global\Utility\Scene">
+      <UniqueIdentifier>{6971249b-b011-4969-a292-f29f23a3225c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Code_DirectX_Sample.cpp" />
@@ -121,10 +127,10 @@
     <ClCompile Include="Classes\Global\Utility\Material\CMat.cpp">
       <Filter>Classes\Global\Utility\Material</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh_Skinning.cpp">
+    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh_Skeletal.cpp">
       <Filter>Classes\Global\Utility\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkinningMesh.cpp">
+    <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkeletalMesh.cpp">
       <Filter>Classes\Global\Utility\Loader</Filter>
     </ClCompile>
     <ClCompile Include="Classes\Global\Utility\Light\CLight.cpp">
@@ -195,11 +201,17 @@
     <ClInclude Include="Classes\Global\Utility\Light\CLight.h">
       <Filter>Classes\Global\Utility\Light</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skinning.h">
+    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skeletal.h">
       <Filter>Classes\Global\Utility\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkinningMesh.h">
+    <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkeletalMesh.h">
       <Filter>Classes\Global\Utility\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Debug\CGrid.h">
+      <Filter>Classes\Global\Utility\Debug</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\Global\Utility\Scene\CScene.h">
+      <Filter>Classes\Global\Utility\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

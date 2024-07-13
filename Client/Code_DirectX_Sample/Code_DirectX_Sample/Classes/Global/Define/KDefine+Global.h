@@ -13,24 +13,30 @@
 #include <unordered_map>
 #include <d3d9.h>
 #include <d3dx9.h>
+#include <D3D10.h>
+#include <D3DX10.h>
+#include <DXGI.h>
 #include <dinput.h>
 #include <dsound.h>
 #include <Windows.h>
 #include <tchar.h>
 
+#define FLAGS_MISC_NONE					((D3D10_RESOURCE_MISC_FLAG)0)
+#define FLAGS_CPU_ACCESS_NONE			((D3D10_CPU_ACCESS_FLAG)0)
+
 #define STR_EMPTY				(std::string(""))
-#define VER_EFFECT				(std::string("fx_2_0"))
+#define VER_EFFECT				(std::string("fx_4_0"))
 #define SEMANTIC_POS			(std::string("POSITION"))
 
-#define NAME_COLOR					(std::string("g_stColor"))
-#define NAME_COLOR_LIGHT			(std::string("g_stColor_Light"))
-
-#define NAME_NORMAL_MAP_CBUFFER				(std::string("g_oNormalMap"))
-#define NAME_DIFFUSE_MAP_CBUFFER			(std::string("g_oDiffuseMap"))
+#define NAME_COLOR_CBUFFER					(std::string("g_stColor"))
+#define NAME_COLOR_LIGHT_CBUFFER			(std::string("g_stColor_Light"))
 
 #define NAME_WORLD_MATRIX_CBUFFER				(std::string("g_stMatrix_World"))
 #define NAME_VIEW_MATRIX_CBUFFER				(std::string("g_stMatrix_View"))
 #define NAME_PROJECTION_MATRIX_CBUFFER			(std::string("g_stMatrix_Projection"))
+
+#define NAME_NORMAL_MAP_CBUFFER				(std::string("g_oNormalMap"))
+#define NAME_DIFFUSE_MAP_CBUFFER			(std::string("g_oDiffuseMap"))
 
 #define COLOR_BLACK			(D3DXCOLOR(0.0f, 0.0f, 0.0f, 1.0f))
 #define COLOR_WHITE			(D3DXCOLOR(1.0f, 1.0f, 1.0f, 1.0f))
@@ -141,14 +147,15 @@ struct STInfo_Bone : public D3DXFRAME
 struct STInfo_Mesh
 {
 	LPDWORD m_pnAdjacency;
-	LPD3DXMESH m_pXMesh;
+	ID3DX10Mesh* m_pXMesh;
 
 	std::vector<D3DMATERIAL9> m_oVectorMaterials;
-	std::vector<LPDIRECT3DTEXTURE9> m_oVectorTextures;
+	std::vector<D3D10_INPUT_ELEMENT_DESC> m_oVectorDescs_InputElement;
+	std::vector<ID3D10ShaderResourceView*> m_oVectorViews_SR;
 };
 
-/** 스키닝 메쉬 정보 */
-struct STInfo_SkinningMesh : public STInfo_Mesh
+/** 스켈레톤 메쉬 정보 */
+struct STInfo_SkeletalMesh : public STInfo_Mesh
 {
 	LPD3DXFRAME m_pstXFrame;
 	LPD3DXANIMATIONCONTROLLER m_pXController_Anim;

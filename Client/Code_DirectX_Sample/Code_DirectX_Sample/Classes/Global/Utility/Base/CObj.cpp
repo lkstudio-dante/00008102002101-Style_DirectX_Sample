@@ -34,7 +34,7 @@ void CObj::LateUpdate(float a_fTime_Delta)
 	}
 }
 
-void CObj::Render(LPDIRECT3DDEVICE9 a_pDevice)
+void CObj::Render(ID3D10Device* a_pDevice)
 {
 	this->OnRender(a_pDevice);
 
@@ -44,7 +44,7 @@ void CObj::Render(LPDIRECT3DDEVICE9 a_pDevice)
 	}
 }
 
-void CObj::LateRender(LPDIRECT3DDEVICE9 a_pDevice)
+void CObj::LateRender(ID3D10Device* a_pDevice)
 {
 	this->OnLateRender(a_pDevice);
 
@@ -54,7 +54,7 @@ void CObj::LateRender(LPDIRECT3DDEVICE9 a_pDevice)
 	}
 }
 
-void CObj::LateRender(LPD3DXSPRITE a_pXSprite)
+void CObj::LateRender(ID3DX10Sprite* a_pXSprite)
 {
 	this->OnLateRender(a_pXSprite);
 
@@ -96,17 +96,40 @@ void CObj::RemoveChild(CObj* a_pChild)
 
 D3DXVECTOR3 CObj::GetVec_Right(void) const
 {
-	return Access::GetVec_Trans(VEC_WORLD_RIGHT, this->GetMatrix_LocalTrans(), false);
+	auto stVec_Right = Access::GetVec_Trans(VEC_WORLD_RIGHT, this->GetMatrix_Rotate(), false);
+	return *D3DXVec3Normalize(&stVec_Right, &stVec_Right);
 }
 
 D3DXVECTOR3 CObj::GetVec_Up(void) const
 {
-	return Access::GetVec_Trans(VEC_WORLD_UP, this->GetMatrix_LocalTrans(), false);
+	auto stVec_Up = Access::GetVec_Trans(VEC_WORLD_UP, this->GetMatrix_Rotate(), false);
+	return *D3DXVec3Normalize(&stVec_Up, &stVec_Up);
 }
 
 D3DXVECTOR3 CObj::GetVec_Forward(void) const
 {
-	return Access::GetVec_Trans(VEC_WORLD_FORWARD, this->GetMatrix_LocalTrans(), false);
+	auto stVec_Forward = Access::GetVec_Trans(VEC_WORLD_FORWARD, this->GetMatrix_Rotate(), false);
+	return *D3DXVec3Normalize(&stVec_Forward, &stVec_Forward);
+}
+
+D3DXQUATERNION CObj::GetQuaternion(void) const
+{
+	return Access::GetQuaternion(m_stRotate);
+}
+
+D3DXMATRIXA16 CObj::GetMatrix_Pos(void) const
+{
+	return Access::GetMatrix_Pos(m_stPos);
+}
+
+D3DXMATRIXA16 CObj::GetMatrix_Scale(void) const
+{
+	return Access::GetMatrix_Scale(m_stScale);
+}
+
+D3DXMATRIXA16 CObj::GetMatrix_Rotate(void) const
+{
+	return Access::GetMatrix_Rotate(m_stRotate);
 }
 
 D3DXMATRIXA16 CObj::GetMatrix_LocalTrans(void) const
@@ -129,17 +152,17 @@ void CObj::OnLateUpdate(float a_fTime_Delta)
 	// Do Something
 }
 
-void CObj::OnRender(LPDIRECT3DDEVICE9 a_pDevice)
+void CObj::OnRender(ID3D10Device* a_pDevice)
 {
 	// Do Something
 }
 
-void CObj::OnLateRender(LPDIRECT3DDEVICE9 a_pDevice)
+void CObj::OnLateRender(ID3D10Device* a_pDevice)
 {
 	// Do Something
 }
 
-void CObj::OnLateRender(LPD3DXSPRITE a_pXSprite)
+void CObj::OnLateRender(ID3DX10Sprite* a_pXSprite)
 {
 	// Do Something
 }
