@@ -215,18 +215,20 @@ void CApp_D3D::SetupDevice(void)
 {
 	DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
 	m_pSwapChain->GetDesc(&stDesc_SwapChain);
-
-	HRESULT nResult = m_pSwapChain->ResizeBuffers(0, 
+	
+	m_pSwapChain->ResizeBuffers(stDesc_SwapChain.BufferCount, 
 		this->GetSize_Wnd().cx, this->GetSize_Wnd().cy, stDesc_SwapChain.BufferDesc.Format, stDesc_SwapChain.Flags);
 
 	m_pView_RT = this->CreateView_RT();
 	m_pView_DS = this->CreateView_DS();
 
+	// 디바이스 9 를 설정한다 {
 	m_stParams_Present.BackBufferWidth = this->GetSize_Wnd().cx;
 	m_stParams_Present.BackBufferHeight = this->GetSize_Wnd().cy;
 
 	m_pDevice9->Reset(&m_stParams_Present);
 	m_pDevice9->Reset(&m_stParams_Present);
+	// 디바이스 9 를 설정한다 }
 }
 
 void CApp_D3D::SetupCamera(void)
@@ -280,13 +282,12 @@ void CApp_D3D::SetScene(CScene* a_pScene)
 
 CScene* CApp_D3D::CreateScene(void)
 {
-	auto pScene = new CScene();
-	return pScene;
+	return Factory::CreateObj<CScene>();
 }
 
 CLight* CApp_D3D::CreateLight(void)
 {
-	auto pLight = new CLight();
+	auto pLight = Factory::CreateObj<CLight>();
 	pLight->SetRotate(D3DXVECTOR3(45.0f, 45.0f, 0.0f));
 
 	return pLight;
@@ -294,7 +295,7 @@ CLight* CApp_D3D::CreateLight(void)
 
 CCamera* CApp_D3D::CreateCamera(void)
 {
-	auto pCamera = new CCamera();
+	auto pCamera = Factory::CreateObj<CCamera>();
 	pCamera->SetFOV(D3DXToDegree(D3DX_PI / 4.0f));
 	pCamera->SetPos(D3DXVECTOR3(0.0f, 0.0f, -pCamera->GetDistance()));
 

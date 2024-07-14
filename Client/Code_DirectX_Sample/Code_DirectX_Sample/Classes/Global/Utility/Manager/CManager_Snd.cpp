@@ -103,7 +103,7 @@ CSnd* CManager_Snd::FindSFX_Playable(const std::string& a_rPath_Snd)
 	}
 
 	// 사운드 생성이 가능 할 경우
-	if(m_oMapSFXs[a_rPath_Snd].size() < MAX_NUM_SFXS_DUPLICATE)
+	if(m_oMapSFXs[a_rPath_Snd].size() < NUM_SFXS_MAX_DUPLICATE)
 	{
 		auto pSnd = new CSnd(a_rPath_Snd);
 		m_oMapSFXs[a_rPath_Snd].push_back(pSnd);

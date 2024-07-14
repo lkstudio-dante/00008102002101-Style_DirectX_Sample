@@ -13,6 +13,9 @@ public:			// public 함수
 	/** 생성자 */
 	CMesh_Skeletal(const std::string& a_rPath_Mesh, const std::string& a_rPath_Effect);
 
+	/** 생성자 */
+	CMesh_Skeletal(const STInfo_SkeletalMesh& a_rstInfo_SkeletalMesh, const std::string& a_rPath_Effect);
+
 	/** 스켈레톤 메쉬 정보 프로퍼티 */
 	GETTER_PROPERTY(STInfo_SkeletalMesh, Info_SkeletalMesh, m_stInfo_SkeletalMesh);
 

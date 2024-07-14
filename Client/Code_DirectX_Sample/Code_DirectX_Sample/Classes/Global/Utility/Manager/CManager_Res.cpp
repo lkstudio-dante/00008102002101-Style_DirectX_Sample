@@ -49,7 +49,7 @@ void CManager_Res::Release(bool a_bIsDestroy)
 	::DelResources(m_oMapMaterials);
 	::DelResources(m_oMapLoaders_SkeletalMesh);
 
-	::ReleaseResources(m_oMapTextures);
+	::ReleaseResources(m_oMapViews_SR);
 	::ReleaseResources(m_oMapEffects);
 
 	for(auto& rstValType : m_oMapInfos_Mesh)
@@ -140,6 +140,7 @@ STInfo_WaveSnd CManager_Res::GetInfo_WaveSnd(const std::string& a_rPath_Snd, boo
 	if(a_bIsCreate_Auto && m_oMapInfos_WaveSnd.find(a_rPath_Snd) == m_oMapInfos_WaveSnd.end())
 	{
 		auto hMMIO = mmioOpenA((LPSTR)a_rPath_Snd.c_str(), nullptr, MMIO_READ);
+		assert(hMMIO != nullptr);
 
 		STInfo_WaveSnd stInfo_WaveSnd;
 		ZeroMemory(&stInfo_WaveSnd, sizeof(stInfo_WaveSnd));
@@ -201,7 +202,8 @@ CMat* CManager_Res::GetMat(const std::string& a_rPath_Effect, bool a_bIsCreate_A
 	return m_oMapMaterials[a_rPath_Effect];
 }
 
-CLoader_SkeletalMesh* CManager_Res::GetLoader_SkeletalMesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
+CLoader_SkeletalMesh* CManager_Res::GetLoader_SkeletalMesh(const std::string& a_rPath_Mesh, 
+	bool a_bIsCreate_Auto)
 {
 	// 스켈레톤 메쉬 로더가 없을 경우
 	if(a_bIsCreate_Auto && m_oMapLoaders_SkeletalMesh.find(a_rPath_Mesh) == m_oMapLoaders_SkeletalMesh.end())
@@ -251,15 +253,15 @@ ID3D10InputLayout* CManager_Res::GetInputLayout(const std::string& a_rPath_Mesh,
 ID3D10ShaderResourceView* CManager_Res::GetView_SR(const std::string& a_rPath_Texture, bool a_bIsCreate_Auto)
 {
 	// 쉐이더 리소스 뷰가 없을 경우
-	if(a_bIsCreate_Auto && m_oMapTextures.find(a_rPath_Texture) == m_oMapTextures.end())
+	if(a_bIsCreate_Auto && m_oMapViews_SR.find(a_rPath_Texture) == m_oMapViews_SR.end())
 	{
 		ID3D10ShaderResourceView* pView_SR = nullptr;
 
 		D3DX10CreateShaderResourceViewFromFileA(GET_APP_D3D()->GetDevice(), 
 			a_rPath_Texture.c_str(), nullptr, nullptr, &pView_SR, nullptr);
 
-		m_oMapTextures.insert(decltype(m_oMapTextures)::value_type(a_rPath_Texture, pView_SR));
+		m_oMapViews_SR.insert(decltype(m_oMapViews_SR)::value_type(a_rPath_Texture, pView_SR));
 	}
 
-	return m_oMapTextures[a_rPath_Texture];
+	return m_oMapViews_SR[a_rPath_Texture];
 }

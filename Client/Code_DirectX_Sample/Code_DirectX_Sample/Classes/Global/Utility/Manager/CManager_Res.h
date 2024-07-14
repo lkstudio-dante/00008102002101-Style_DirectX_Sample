@@ -59,7 +59,7 @@ public:			// public 함수
 	GETTER_PROPERTY(T_MapInputLayouts, InputLayouts, m_oMapInputLayouts);
 
 	/** 쉐이더 리소스 뷰 프로퍼티 */
-	GETTER_PROPERTY(T_MapViews_SR, MapTextures, m_oMapTextures);
+	GETTER_PROPERTY(T_MapViews_SR, MapViews_SR, m_oMapViews_SR);
 
 public:			// public 접근 함수
 

@@ -12,6 +12,9 @@ public:			// public 함수
 	/** 생성자 */
 	CMesh(const std::string& a_rPath_Mesh, const std::string& a_rPath_Effect);
 
+	/** 생성자 */
+	CMesh(const STInfo_Mesh& a_rstInfo_Mesh, const std::string& a_rPath_Effect);
+
 	/** 메쉬 정보 프로퍼티 */
 	GETTER_PROPERTY(STInfo_Mesh, Info_Mesh, m_stInfo_Mesh);
 

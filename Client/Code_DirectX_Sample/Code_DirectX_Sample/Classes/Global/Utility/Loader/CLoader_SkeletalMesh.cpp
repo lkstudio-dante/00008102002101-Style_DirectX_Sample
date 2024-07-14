@@ -6,7 +6,7 @@ CLoader_SkeletalMesh::CLoader_SkeletalMesh(const std::string& a_rPath_Mesh)
 	ZeroMemory(&m_stInfo_SkeletalMesh, sizeof(m_stInfo_SkeletalMesh));
 
 	D3DXLoadMeshHierarchyFromXA(a_rPath_Mesh.c_str(),
-		D3DXMESH_32BIT, GET_APP_D3D()->GetDevice9(), this, nullptr, &m_stInfo_SkeletalMesh.m_pstXFrame, &m_stInfo_SkeletalMesh.m_pXController_Anim);
+		D3DXMESH_32BIT, GET_APP_D3D()->GetDevice9(), this, nullptr, &m_stInfo_SkeletalMesh.m_pstXBone, &m_stInfo_SkeletalMesh.m_pXController_Anim);
 }
 
 HRESULT CLoader_SkeletalMesh::CreateFrame(LPCSTR a_pszName, LPD3DXFRAME* a_pstOutXFrame)
@@ -25,13 +25,16 @@ HRESULT CLoader_SkeletalMesh::CreateFrame(LPCSTR a_pszName, LPD3DXFRAME* a_pstOu
 }
 
 HRESULT CLoader_SkeletalMesh::CreateMeshContainer(LPCSTR a_pszName, 
-	const D3DXMESHDATA* a_pstXData_Mesh, const D3DXMATERIAL* a_pstXMat, const D3DXEFFECTINSTANCE* a_pstXInst_Effect, DWORD a_nNumMaterials, const DWORD* a_pAdjacency, LPD3DXSKININFO a_pstXInfo_Skin, LPD3DXMESHCONTAINER* a_pstOutXContainer_Mesh)
+	const D3DXMESHDATA* a_pstXData_Mesh, const D3DXMATERIAL* a_pstXMat, const D3DXEFFECTINSTANCE* a_pstXInst_Effect, DWORD a_nNumMaterials, const DWORD* a_pnAdjacency, LPD3DXSKININFO a_pstXInfo_Skin, LPD3DXMESHCONTAINER* a_pstOutXContainer_Mesh)
 {
-	auto pstInfo_MeshContainer = (STInfo_MeshContainer*)malloc(sizeof(STInfo_MeshContainer));
+	auto pstInfo_MeshContainer = new STInfo_MeshContainer();
 	ZeroMemory(pstInfo_MeshContainer, sizeof(STInfo_MeshContainer));
 
 	pstInfo_MeshContainer->Name = (LPSTR)malloc(sizeof(CHAR) * (strlen(a_pszName) + 1));
 	strcpy(pstInfo_MeshContainer->Name, a_pszName);
+
+	pstInfo_MeshContainer->pAdjacency = (LPDWORD)malloc(sizeof(DWORD) * a_pstXData_Mesh->pMesh->GetNumFaces());
+	memcpy(pstInfo_MeshContainer->pAdjacency, a_pnAdjacency, sizeof(DWORD) * a_pstXData_Mesh->pMesh->GetNumFaces());
 
 	*a_pstOutXContainer_Mesh = pstInfo_MeshContainer;
 	return S_OK;
@@ -48,7 +51,8 @@ HRESULT CLoader_SkeletalMesh::DestroyFrame(LPD3DXFRAME a_pstXFrame)
 HRESULT CLoader_SkeletalMesh::DestroyMeshContainer(LPD3DXMESHCONTAINER a_pstXContainer_Mesh)
 {
 	SAFE_FREE(a_pstXContainer_Mesh->Name);
-	SAFE_FREE(a_pstXContainer_Mesh);
+	SAFE_FREE(a_pstXContainer_Mesh->pAdjacency);
 
+	SAFE_DEL(a_pstXContainer_Mesh);
 	return S_OK;
 }

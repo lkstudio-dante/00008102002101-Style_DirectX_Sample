@@ -10,6 +10,11 @@
  */
 class CObj : public virtual IReleasable, public virtual IUpdateable, public virtual IRenderable
 {
+public:			// IReleasable
+
+	/** 해제한다 */
+	virtual void Release(bool a_bIsDestroy = false) override;
+
 public:			// IUpdateable
 
 	/** 상태를 갱신한다 */
@@ -36,6 +41,9 @@ public:			// public 함수
 
 	/** 소멸자 */
 	virtual ~CObj(void) = 0;
+
+	/** 초기화 */
+	virtual void Init(void);
 
 	/** 자식 객체를 추가한다 */
 	void AddChild(CObj* a_pChild);

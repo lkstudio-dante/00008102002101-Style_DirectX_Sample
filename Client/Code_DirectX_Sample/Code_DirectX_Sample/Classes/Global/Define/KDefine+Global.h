@@ -49,7 +49,7 @@
 #define VEC_WORLD_FORWARD			(D3DXVECTOR3(0.0f, 0.0f, 1.0f))
 
 #define ELEMENT_END_VERTEX				(D3DVERTEXELEMENT9(D3DDECL_END()))
-#define MAX_NUM_SFXS_DUPLICATE			(10)
+#define NUM_SFXS_MAX_DUPLICATE			(10)
 
 // 메모리 관리 {
 #define SAFE_FREE(TARGET)			if((TARGET) != nullptr) { free((TARGET)); (TARGET) = nullptr; }
@@ -137,12 +137,6 @@ struct STVertex
 	D3DXVECTOR2 m_stUV;
 };
 
-/** 본 정보 */
-struct STInfo_Bone : public D3DXFRAME
-{
-	D3DXMATRIXA16 m_stMatrix_CombineTrans;
-};
-
 /** 메쉬 정보 */
 struct STInfo_Mesh
 {
@@ -154,17 +148,23 @@ struct STInfo_Mesh
 	std::vector<ID3D10ShaderResourceView*> m_oVectorViews_SR;
 };
 
-/** 스켈레톤 메쉬 정보 */
-struct STInfo_SkeletalMesh : public STInfo_Mesh
+/** 본 정보 */
+struct STInfo_Bone : public D3DXFRAME
 {
-	LPD3DXFRAME m_pstXFrame;
-	LPD3DXANIMATIONCONTROLLER m_pXController_Anim;
+	D3DXMATRIXA16 m_stMatrix_CombineTrans;
 };
 
 /** 메쉬 컨테이너 정보 */
 struct STInfo_MeshContainer : public D3DXMESHCONTAINER
 {
 	// Do Something
+};
+
+/** 스켈레톤 메쉬 정보 */
+struct STInfo_SkeletalMesh : public STInfo_Mesh
+{
+	LPD3DXFRAME m_pstXBone;
+	LPD3DXANIMATIONCONTROLLER m_pXController_Anim;
 };
 
 /** 웨이브 사운드 정보 */

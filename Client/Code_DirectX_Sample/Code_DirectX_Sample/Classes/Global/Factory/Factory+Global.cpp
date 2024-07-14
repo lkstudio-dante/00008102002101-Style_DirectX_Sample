@@ -5,7 +5,7 @@
 
 namespace Factory
 {
-	ID3D10Buffer* CreateBuffer(int a_nNumBytes, 
+	ID3D10Buffer* CreateBuffer(int a_nNumBytes,
 		D3D10_BIND_FLAG a_eFlags_Bind, D3D10_USAGE a_eUsage, D3D10_CPU_ACCESS_FLAG a_eFlags_CPUAccess, D3D10_SUBRESOURCE_DATA* a_pstData_SubResource)
 	{
 		D3D10_BUFFER_DESC stDesc_Buffer;
@@ -24,7 +24,7 @@ namespace Factory
 		return pBuffer;
 	}
 
-	ID3D10Texture2D* CreateTexture2D(int a_nWidth, 
+	ID3D10Texture2D* CreateTexture2D(int a_nWidth,
 		int a_nHeight, DXGI_FORMAT a_eFmt, D3D10_BIND_FLAG a_eFlags_Bind, D3D10_USAGE a_eUsage, D3D10_CPU_ACCESS_FLAG a_eFlags_CPUAccess, D3D10_SUBRESOURCE_DATA* a_pstData_SubResource)
 	{
 		DXGI_SWAP_CHAIN_DESC stDesc_SwapChain;
@@ -65,7 +65,7 @@ namespace Factory
 
 		LPDIRECTSOUNDBUFFER8 pBuffer_Snd = nullptr;
 
-		GET_MANAGER_SND()->GetDSnd()->CreateSoundBuffer(&stDesc_Buffer, 
+		GET_MANAGER_SND()->GetDSnd()->CreateSoundBuffer(&stDesc_Buffer,
 			(LPDIRECTSOUNDBUFFER*)&pBuffer_Snd, nullptr);
 
 		return pBuffer_Snd;

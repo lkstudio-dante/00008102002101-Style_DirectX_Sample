@@ -14,7 +14,7 @@ public:			// ID3DXAllocateHierarchy
 
 	/** 메쉬 컨테이너를 생성한다 */
 	virtual HRESULT STDMETHODCALLTYPE CreateMeshContainer(LPCSTR a_pszName,
-		const D3DXMESHDATA* a_pstXData_Mesh, const D3DXMATERIAL* a_pstXMat, const D3DXEFFECTINSTANCE* a_pstXInst_Effect, DWORD a_nNumMaterials, const DWORD* a_pAdjacency, LPD3DXSKININFO a_pstXInfo_Skin, LPD3DXMESHCONTAINER* a_pstOutXContainer_Mesh) override;
+		const D3DXMESHDATA* a_pstXData_Mesh, const D3DXMATERIAL* a_pstXMat, const D3DXEFFECTINSTANCE* a_pstXInst_Effect, DWORD a_nNumMaterials, const DWORD* a_pnAdjacency, LPD3DXSKININFO a_pstXInfo_Skin, LPD3DXMESHCONTAINER* a_pstOutXContainer_Mesh) override;
 
 	/** 프레임을 제거한다 */
 	virtual HRESULT STDMETHODCALLTYPE DestroyFrame(LPD3DXFRAME a_pstXFrame) override;

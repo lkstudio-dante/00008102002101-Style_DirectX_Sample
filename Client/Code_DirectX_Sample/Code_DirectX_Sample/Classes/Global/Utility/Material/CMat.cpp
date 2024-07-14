@@ -9,14 +9,12 @@ CMat::CMat(const std::string& a_rPath_Effect)
 
 void CMat::EnumeratePasses(int a_nIdx_Technique, const std::function<void(ID3D10EffectPass*)>& a_rCallback)
 {
-	auto pTechnique = m_pEffect->GetTechniqueByIndex(a_nIdx_Technique);
-
 	D3D10_TECHNIQUE_DESC stDesc_Technique;
-	pTechnique->GetDesc(&stDesc_Technique);
+	m_pEffect->GetTechniqueByIndex(a_nIdx_Technique)->GetDesc(&stDesc_Technique);
 
 	for(int i = 0; i < stDesc_Technique.Passes; ++i)
 	{
-		auto pPass = pTechnique->GetPassByIndex(i);
+		auto pPass = m_pEffect->GetTechniqueByIndex(a_nIdx_Technique)->GetPassByIndex(i);
 		pPass->Apply(0);
 
 		a_rCallback(pPass);
@@ -25,7 +23,8 @@ void CMat::EnumeratePasses(int a_nIdx_Technique, const std::function<void(ID3D10
 
 void CMat::SetColor(const std::string& a_rKey, const D3DXCOLOR& a_rstColor)
 {
-	this->SetVec(a_rKey, D3DXVECTOR4(a_rstColor.a, a_rstColor.g, a_rstColor.b, a_rstColor.a));
+	D3DXVECTOR4 stVec(a_rstColor.r, a_rstColor.g, a_rstColor.b, a_rstColor.a);
+	this->SetVec(a_rKey, stVec);
 }
 
 void CMat::SetVec(const std::string& a_rKey, const D3DXVECTOR4& a_rstVec)

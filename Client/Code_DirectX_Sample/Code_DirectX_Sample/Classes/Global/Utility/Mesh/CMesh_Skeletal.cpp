@@ -3,9 +3,18 @@
 
 CMesh_Skeletal::CMesh_Skeletal(const std::string& a_rPath_Mesh, const std::string& a_rPath_Effect)
 	:
-	CObj_Render(a_rPath_Effect)
+	CMesh_Skeletal(GET_MANAGER_RES()->GetInfo_SkeletalMesh(a_rPath_Mesh), a_rPath_Effect)
 {
-	m_stInfo_SkeletalMesh = GET_MANAGER_RES()->GetInfo_SkeletalMesh(a_rPath_Mesh);
+	// Do Something
+}
+
+CMesh_Skeletal::CMesh_Skeletal(const STInfo_SkeletalMesh& a_rstInfo_SkeletalMesh, 
+	const std::string& a_rPath_Effect)
+	:
+	CObj_Render(a_rPath_Effect),
+	m_stInfo_SkeletalMesh(a_rstInfo_SkeletalMesh)
+{
+	// Do Something
 }
 
 void CMesh_Skeletal::OnUpdate(float a_fTime_Delta)

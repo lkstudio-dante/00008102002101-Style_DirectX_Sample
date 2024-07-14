@@ -11,7 +11,28 @@ CObj::CObj(void)
 
 CObj::~CObj(void)
 {
+	this->Release(true);
+}
+
+void CObj::Init(void)
+{
 	// Do Something
+}
+
+void CObj::Release(bool a_bIsDestroy)
+{
+	// 제거 모드 일 경우
+	if(a_bIsDestroy || m_pParent == nullptr)
+	{
+		return;
+	}
+
+	for(auto pChild : m_oVectorChildren)
+	{
+		SAFE_DEL(pChild);
+	}
+
+	m_pParent->RemoveChild(this);
 }
 
 void CObj::Update(float a_fTime_Delta)

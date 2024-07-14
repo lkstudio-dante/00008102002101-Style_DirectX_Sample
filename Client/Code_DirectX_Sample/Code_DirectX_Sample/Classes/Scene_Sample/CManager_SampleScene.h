@@ -3,6 +3,7 @@
 #include "../Global/Define/KDefine+Global.h"
 #include "../Global/Utility/Base/CApp_D3D.h"
 
+class CGrid;
 class CMesh;
 class CMesh_Skeletal;
 
@@ -11,16 +12,6 @@ class CMesh_Skeletal;
  */
 class CManager_SampleScene : public CApp_D3D
 {
-public:			// IUpdateable
-
-	/** 상태를 갱신한다 */
-	virtual void Update(float a_fTime_Delta) override;
-
-public:			// IRenderable
-
-	/** 객체를 그린다 */
-	virtual void Render(ID3D10Device* a_pDevice) override;
-
 public:			// public 함수
 
 	/** 생성자 */
@@ -32,8 +23,15 @@ public:			// public 함수
 	/** 초기화 */
 	virtual void LateInit(void) override;
 
+	/** 상태를 갱신한다 */
+	virtual void Update(float a_fTime_Delta) override;
+
+	/** 객체를 그린다 */
+	virtual void Render(ID3D10Device* a_pDevice) override;
+
 private:			// private 변수
 
+	CGrid* m_pGrid = nullptr;
 	CMesh* m_pGunShip = nullptr;
 	CMesh* m_pElementalist = nullptr;
 	CMesh_Skeletal* m_pWitchApprentice = nullptr;

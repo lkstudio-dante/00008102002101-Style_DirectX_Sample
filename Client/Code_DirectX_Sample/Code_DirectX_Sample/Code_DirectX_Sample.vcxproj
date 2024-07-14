@@ -139,8 +139,10 @@
     <ClCompile Include="Classes\Global\Utility\Base\CApp_D3D.cpp" />
     <ClCompile Include="Classes\Global\Utility\Base\CApp_Wnd.cpp" />
     <ClCompile Include="Classes\Global\Utility\Base\CObj.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Base\CObj_Debug.cpp" />
     <ClCompile Include="Classes\Global\Utility\Base\CObj_Render.cpp" />
     <ClCompile Include="Classes\Global\Utility\Camera\CCamera.cpp" />
+    <ClCompile Include="Classes\Global\Utility\Debug\CGrid.cpp" />
     <ClCompile Include="Classes\Global\Utility\Light\CLight.cpp" />
     <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkeletalMesh.cpp" />
     <ClCompile Include="Classes\Global\Utility\Manager\CManager_Input.cpp" />
@@ -162,6 +164,7 @@
     <ClInclude Include="Classes\Global\Utility\Base\CApp_D3D.h" />
     <ClInclude Include="Classes\Global\Utility\Base\CApp_Wnd.h" />
     <ClInclude Include="Classes\Global\Utility\Base\CObj.h" />
+    <ClInclude Include="Classes\Global\Utility\Base\CObj_Debug.h" />
     <ClInclude Include="Classes\Global\Utility\Base\CObj_Render.h" />
     <ClInclude Include="Classes\Global\Utility\Camera\CCamera.h" />
     <ClInclude Include="Classes\Global\Utility\Debug\CGrid.h" />
@@ -197,6 +200,7 @@
     <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_w_diff.bmp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Classes\Global\Factory\Factory+Global.inl" />
     <None Include="Resources\Meshes\Elementalist\Elementalist.x" />
     <None Include="Resources\Meshes\GunShip\GunShip.x" />
     <None Include="Resources\Meshes\WitchApprentice\WitchApprentice.x" />
