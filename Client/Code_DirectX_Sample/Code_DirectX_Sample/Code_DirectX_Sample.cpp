@@ -8,7 +8,7 @@
 #pragma comment(lib, "dsound.lib")
 #pragma comment(lib, "winmm.lib")
 
-#include "Classes/Scene_Sample/CManager_SampleScene.h"
+#include "00009902000101-Code_DirectX_Sample/Classes/Scene_Sample/CManager_SampleScene.h"
 
 /** 메인 함수 */
 int WINAPI _tWinMain(HINSTANCE a_hInst, HINSTANCE a_hInst_Prev, LPTSTR a_pszCmdLine, int a_nOpt_Show)

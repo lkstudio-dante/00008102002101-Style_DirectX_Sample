@@ -1,286 +1,237 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Classes">
-      <UniqueIdentifier>{102f6826-0693-4e0f-bcc6-dca06135a17a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global">
-      <UniqueIdentifier>{3b560a44-8adc-4604-9e74-d0c8ae44d67e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Define">
-      <UniqueIdentifier>{e35fa2a3-366e-4d02-bc7b-a72467c2b95b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Factory">
-      <UniqueIdentifier>{44ade54a-6642-47c3-9dcb-117debdd41ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Function">
-      <UniqueIdentifier>{ded6bef1-5726-44f4-9770-a04d6eddab69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility">
-      <UniqueIdentifier>{73ae0d0b-381e-4eb3-827f-eeb174bbeb5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Base">
-      <UniqueIdentifier>{0132dea1-89fc-40ef-8a38-3f0146217fe7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Interface">
-      <UniqueIdentifier>{d8798d97-bf80-4f1d-ac4b-cdc7be98fba9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Manager">
-      <UniqueIdentifier>{2a210022-3080-46b5-a483-5af2fa6c7c1a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Camera">
-      <UniqueIdentifier>{467d45db-8ddf-414f-9444-33ccf38dac0e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Sound">
-      <UniqueIdentifier>{2f919ce1-c34b-4c68-ab07-b4941e4254e9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Access">
-      <UniqueIdentifier>{918cb3b9-c3c0-427d-9cff-b6f0925440f4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Mesh">
-      <UniqueIdentifier>{a7d3d52c-7264-40a8-97e2-6e9b0208c05c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Scene_Sample">
-      <UniqueIdentifier>{09e3ab4f-22e0-4fa0-805b-5703713bf75c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Material">
-      <UniqueIdentifier>{ae4429ba-59e0-489c-a782-064c4e6c4068}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Light">
-      <UniqueIdentifier>{4ad74b9e-42f9-43df-aea4-5fe6bf100414}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Loader">
-      <UniqueIdentifier>{d7e89f33-fbd0-40f2-8368-25f4be071816}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources">
-      <UniqueIdentifier>{74a85920-1eca-47e6-935e-4e82c8abb0ae}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Meshes">
-      <UniqueIdentifier>{e0a0b3a5-7948-4680-adf6-03948645ad5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Meshes\Elementalist">
-      <UniqueIdentifier>{f5cf17a2-761e-4034-9d35-dc1117db7a93}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Meshes\GunShip">
-      <UniqueIdentifier>{d4e99000-5d3b-4049-966f-46c29f2087cd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Meshes\WitchApprentice">
-      <UniqueIdentifier>{e9c52ad9-fcdb-42fa-b29a-3fd0c4096d0f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resources\Effects">
-      <UniqueIdentifier>{0a65a2bc-ef0a-463c-bb9d-f9a8bf487070}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Debug">
-      <UniqueIdentifier>{6cb3a6e8-b1fe-4e12-a82e-7dde31b633a9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Global\Utility\Scene">
-      <UniqueIdentifier>{6971249b-b011-4969-a292-f29f23a3225c}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="Code_DirectX_Sample.cpp" />
-    <ClCompile Include="Classes\Global\Factory\Factory+Global.cpp">
-      <Filter>Classes\Global\Factory</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access\Access+Global.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Function\Func+Global.cpp">
-      <Filter>Classes\Global\Function</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Base\CApp_D3D.cpp">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function\Func+Global.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Base\CApp_Wnd.cpp">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_D3D.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Manager\CManager_Input.cpp">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_Wnd.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Manager\CManager_Res.cpp">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Manager\CManager_Snd.cpp">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Debug.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Manager\CManager_Time.cpp">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Render.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Camera\CCamera.cpp">
-      <Filter>Classes\Global\Utility\Camera</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera\CCamera.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Sound\CSnd.cpp">
-      <Filter>Classes\Global\Utility\Sound</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug\CGrid.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Base\CObj.cpp">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light\CLight.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Access\Access+Global.cpp">
-      <Filter>Classes\Global\Access</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader\CLoader_SkeletalMesh.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh.cpp">
-      <Filter>Classes\Global\Utility\Mesh</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Input.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Base\CObj_Render.cpp">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Res.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Scene_Sample\CManager_SampleScene.cpp">
-      <Filter>Classes\Scene_Sample</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Snd.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Material\CMat.cpp">
-      <Filter>Classes\Global\Utility\Material</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Time.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Mesh\CMesh_Skeletal.cpp">
-      <Filter>Classes\Global\Utility\Mesh</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material\CMat.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Loader\CLoader_SkeletalMesh.cpp">
-      <Filter>Classes\Global\Utility\Loader</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Light\CLight.cpp">
-      <Filter>Classes\Global\Utility\Light</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh_Skeletal.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Base\CObj_Debug.cpp">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound\CSnd.cpp">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\Global\Utility\Debug\CGrid.cpp">
-      <Filter>Classes\Global\Utility\Debug</Filter>
+    <ClCompile Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.cpp">
+      <Filter>00009902000101-Code_DirectX_Sample\Classes\Scene_Sample</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\Global\Define\KDefine+Global.h">
-      <Filter>Classes\Global\Define</Filter>
+    <Filter Include="00009902000101-Code_DirectX_Sample">
+      <UniqueIdentifier>{a6f72d5c-b8ff-4f56-a621-eca7105bda2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages">
+      <UniqueIdentifier>{41e0c085-8f9d-4c20-9152-7c94a00d3f7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common">
+      <UniqueIdentifier>{c6dc4574-3905-4644-a9a6-9ae6a67dfcab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client">
+      <UniqueIdentifier>{4b17a8ef-6a64-4a52-b8e8-7b95d429fc2c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes">
+      <UniqueIdentifier>{42b8c1b4-4078-43e9-adec-7f075940c215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global">
+      <UniqueIdentifier>{eaf94ca2-4046-48e7-bc0a-2822125f09e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access">
+      <UniqueIdentifier>{3a240fd8-f322-446b-b267-d524b74d7d40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define">
+      <UniqueIdentifier>{a8bbd534-bdc2-4312-a6ab-269781504349}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory">
+      <UniqueIdentifier>{3adbbce8-477c-4810-bbe0-d349e1d5d19a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function">
+      <UniqueIdentifier>{39457347-fa31-4630-af2f-ea898c20a704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility">
+      <UniqueIdentifier>{1b49aa63-1f58-4343-be02-016127d112b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base">
+      <UniqueIdentifier>{bc22341b-5d6e-4e13-a26a-b1b83fd667d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera">
+      <UniqueIdentifier>{9c81114d-766c-4825-812d-1f89510a4ef3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug">
+      <UniqueIdentifier>{0c8858cb-4e67-402f-a9bc-a3b08abfae71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface">
+      <UniqueIdentifier>{a10b5527-50c9-4cf4-8f14-d450013103f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light">
+      <UniqueIdentifier>{88a9417c-2b95-4cb1-a949-54da51f728ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader">
+      <UniqueIdentifier>{432bd26c-e86f-43c5-98b9-bb263cf2bf79}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager">
+      <UniqueIdentifier>{147d3914-be3e-4559-a331-1a8c7b93b6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material">
+      <UniqueIdentifier>{3dfcf03a-0bf0-497b-a5d0-21ab2c0ec56f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh">
+      <UniqueIdentifier>{10b03041-ed4b-479b-8b5f-92d48425fb4e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene">
+      <UniqueIdentifier>{843e3fed-899f-431a-8c7e-1f67551d7a9d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound">
+      <UniqueIdentifier>{4301752b-3f6a-4b85-ae98-f5c8c106b72b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00009902000101-Code_DirectX_Sample\Classes">
+      <UniqueIdentifier>{8e12a81d-68b4-4bf9-a916-cc4715b2c8c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00009902000101-Code_DirectX_Sample\Classes\Global">
+      <UniqueIdentifier>{49cc1ccc-9347-4b10-a97b-c96c9f58ee6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00009902000101-Code_DirectX_Sample\Classes\Global\Define">
+      <UniqueIdentifier>{b9a53f42-a0b7-4719-8095-e7528562ea84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample">
+      <UniqueIdentifier>{e84f503d-7dcc-429a-957d-69f6c098c1ed}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access\Access+Global.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Factory\Factory+Global.h">
-      <Filter>Classes\Global\Factory</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define\KDefine+Abs.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Function\Func+Global.h">
-      <Filter>Classes\Global\Function</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Base\CApp_D3D.h">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function\Func+Global.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Base\CApp_Wnd.h">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_D3D.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Interface\IReleasable.h">
-      <Filter>Classes\Global\Utility\Interface</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_Wnd.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Interface\IRenderable.h">
-      <Filter>Classes\Global\Utility\Interface</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Interface\IUpdateable.h">
-      <Filter>Classes\Global\Utility\Interface</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Debug.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Manager\CManager_Input.h">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Render.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Manager\CManager_Res.h">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera\CCamera.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Manager\CManager_Snd.h">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug\CGrid.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Manager\CManager_Time.h">
-      <Filter>Classes\Global\Utility\Manager</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IReleasable.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Camera\CCamera.h">
-      <Filter>Classes\Global\Utility\Camera</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IRenderable.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Sound\CSnd.h">
-      <Filter>Classes\Global\Utility\Sound</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IUpdateable.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Base\CObj.h">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light\CLight.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Access\Access+Global.h">
-      <Filter>Classes\Global\Access</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader\CLoader_SkeletalMesh.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh.h">
-      <Filter>Classes\Global\Utility\Mesh</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Input.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Base\CObj_Render.h">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Res.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Scene_Sample\CManager_SampleScene.h">
-      <Filter>Classes\Scene_Sample</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Snd.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Material\CMat.h">
-      <Filter>Classes\Global\Utility\Material</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Time.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Light\CLight.h">
-      <Filter>Classes\Global\Utility\Light</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material\CMat.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Mesh\CMesh_Skeletal.h">
-      <Filter>Classes\Global\Utility\Mesh</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Loader\CLoader_SkeletalMesh.h">
-      <Filter>Classes\Global\Utility\Loader</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh_Skeletal.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Debug\CGrid.h">
-      <Filter>Classes\Global\Utility\Debug</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene\CScene.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Scene\CScene.h">
-      <Filter>Classes\Global\Utility\Scene</Filter>
+    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound\CSnd.h">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\Global\Utility\Base\CObj_Debug.h">
-      <Filter>Classes\Global\Utility\Base</Filter>
+    <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Global\Define\KDefine+Global.h">
+      <Filter>00009902000101-Code_DirectX_Sample\Classes\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.h">
+      <Filter>00009902000101-Code_DirectX_Sample\Classes\Scene_Sample</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Resources\Meshes\Elementalist\Body_D.tga">
-      <Filter>Resources\Meshes\Elementalist</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\Elementalist\Body_N.tga">
-      <Filter>Resources\Meshes\Elementalist</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\Elementalist\Face_D.tga">
-      <Filter>Resources\Meshes\Elementalist</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\Elementalist\Face_N.tga">
-      <Filter>Resources\Meshes\Elementalist</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\Elementalist\Hair_D.tga">
-      <Filter>Resources\Meshes\Elementalist</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\Elementalist\Hair_N.tga">
-      <Filter>Resources\Meshes\Elementalist</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\GunShip\GunShip.tga">
-      <Filter>Resources\Meshes\GunShip</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\GunShip\GunShip_E.tga">
-      <Filter>Resources\Meshes\GunShip</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\GunShip\GunShip_N.tga">
-      <Filter>Resources\Meshes\GunShip</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\GunShip\GunshipGlass.tga">
-      <Filter>Resources\Meshes\GunShip</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\GunShip\GunshipGlass_N.tga">
-      <Filter>Resources\Meshes\GunShip</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_diff.bmp">
-      <Filter>Resources\Meshes\WitchApprentice</Filter>
-    </Image>
-    <Image Include="Resources\Meshes\WitchApprentice\WitchApprentice_w_diff.bmp">
-      <Filter>Resources\Meshes\WitchApprentice</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Meshes\Elementalist\Elementalist.x">
-      <Filter>Resources\Meshes\Elementalist</Filter>
+    <None Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.inl">
+      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory</Filter>
     </None>
-    <None Include="Resources\Meshes\GunShip\GunShip.x">
-      <Filter>Resources\Meshes\GunShip</Filter>
-    </None>
-    <None Include="Resources\Meshes\WitchApprentice\WitchApprentice.x">
-      <Filter>Resources\Meshes\WitchApprentice</Filter>
-    </None>
-    <None Include="Classes\Global\Factory\Factory+Global.inl">
-      <Filter>Classes\Global\Factory</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Resources\Effects\GunShip.fx">
-      <Filter>Resources\Effects</Filter>
-    </FxCompile>
   </ItemGroup>
 </Project>

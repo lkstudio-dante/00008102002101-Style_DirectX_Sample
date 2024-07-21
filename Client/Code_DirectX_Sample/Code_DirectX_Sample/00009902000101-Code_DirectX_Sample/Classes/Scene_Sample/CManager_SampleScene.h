@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Global/Define/KDefine+Global.h"
-#include "../Global/Utility/Base/CApp_D3D.h"
+#include "../../../Packages/00000302000101-Module_DirectX_Common/Client/Classes/Global/Utility/Base/CApp_D3D.h"
 
 class CGrid;
 class CMesh;
