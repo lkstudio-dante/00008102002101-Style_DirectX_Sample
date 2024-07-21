@@ -60,22 +60,25 @@ namespace Func
 		return stDesc_InputElement;
 	}
 
-	std::vector<D3D10_INPUT_ELEMENT_DESC> VertexDeclToInputLayout(D3DVERTEXELEMENT9 a_pstElements_Vertex[],
-		int a_nSize)
+	std::vector<D3D10_INPUT_ELEMENT_DESC> VertexDeclToInputLayout(D3DVERTEXELEMENT9 a_pstElements_Vertex[])
 	{
+		auto pstElement_Vertex = a_pstElements_Vertex;
 		D3DVERTEXELEMENT9 stElement_EndVertex = D3DDECL_END();
+
 		std::vector<D3D10_INPUT_ELEMENT_DESC> oVectorDescs_InputElement;
 
-		for(int i = 0; i < a_nSize; ++i)
+		while(true)
 		{
 			// 변환이 불가능 할 경우
-			if(memcmp(a_pstElements_Vertex + i, &stElement_EndVertex, sizeof(stElement_EndVertex)) == 0)
+			if(memcmp(pstElement_Vertex, &stElement_EndVertex, sizeof(stElement_EndVertex)) == 0)
 			{
 				break;
 			}
 
-			auto stElement_Vertex = a_pstElements_Vertex[i];
-			oVectorDescs_InputElement.push_back(Func::Element_VertexToDesc_InputElement(stElement_Vertex));
+			auto stDesc_InputElement = Func::Element_VertexToDesc_InputElement(*pstElement_Vertex);
+			oVectorDescs_InputElement.push_back(stDesc_InputElement);
+
+			pstElement_Vertex += 1;
 		}
 
 		return oVectorDescs_InputElement;
@@ -86,9 +89,7 @@ namespace Func
 		D3DVERTEXELEMENT9 astElements_Vertex[MAX_FVF_DECL_SIZE];
 		a_pXMesh9->GetDeclaration(astElements_Vertex);
 
-		auto oVectorDescs_InputElement = Func::VertexDeclToInputLayout(astElements_Vertex, 
-			sizeof(astElements_Vertex) / sizeof(astElements_Vertex[0]));
-
+		auto oVectorDescs_InputElement = Func::VertexDeclToInputLayout(astElements_Vertex);
 		ID3DX10Mesh* pXMesh = nullptr;
 
 		D3DX10CreateMesh(GET_APP_D3D()->GetDevice(),

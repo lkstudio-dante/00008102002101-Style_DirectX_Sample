@@ -24,8 +24,4 @@ protected:			// protected 팩토리 함수
 
 	/** 메쉬를 생성한다 */
 	virtual CMesh* CreateMesh(const std::string& a_rPath_Effect);
-
-private:			// private 변수
-
-	std::string m_oPath_Effect = "";
 };

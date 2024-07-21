@@ -15,6 +15,9 @@ public:			// public 함수
 	/** 패스를 순회한다 */
 	void EnumeratePasses(int a_nIdx_Technique, const std::function<void(ID3D10EffectPass*)>& a_rCallback);
 
+	/** 이펙트 경로 프로퍼티 */
+	GETTER_PROPERTY_WITH_INIT(std::string, Path_Effect, m_oPath_Effect, "");
+
 	/** 이펙트 프로퍼티 */
 	GETTER_PROPERTY_WITH_INIT(ID3D10Effect*, Effect, m_pEffect, nullptr);
 

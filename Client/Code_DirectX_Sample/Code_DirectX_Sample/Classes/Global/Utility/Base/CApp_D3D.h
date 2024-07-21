@@ -88,7 +88,7 @@ public:			// public 함수
 	virtual ~CApp_D3D(void);
 
 	/** 초기화 */
-	virtual void Init(void) final override;
+	virtual void Init(void) override;
 
 	/** 광원 상태를 갱신한다 */
 	virtual void UpdateState_Light(void);

@@ -71,6 +71,17 @@ void CManager_Res::Init(void)
 	// Do Something
 }
 
+void CManager_Res::AddInputLayout(const std::string& a_rKey, ID3D10InputLayout* a_pInputLayout)
+{
+	// 입력 레이아웃 추가가 가능 할 경우
+	if(m_oMapInputLayouts.find(a_rKey) != m_oMapInputLayouts.end())
+	{
+		return;
+	}
+
+	m_oMapInputLayouts.insert(decltype(m_oMapInputLayouts)::value_type(a_rKey, a_pInputLayout));
+}
+
 STInfo_Mesh CManager_Res::GetInfo_Mesh(const std::string& a_rPath_Mesh, bool a_bIsCreate_Auto)
 {
 	// 메쉬 정보가 없을 경우
@@ -102,10 +113,11 @@ STInfo_Mesh CManager_Res::GetInfo_Mesh(const std::string& a_rPath_Mesh, bool a_b
 			D3DDECL_END()
 		};
 
-		pXMesh9->CloneMesh(pXMesh9->GetOptions(), 
+		pXMesh9->CloneMesh(pXMesh9->GetOptions(),
 			astElements_Vertex, GET_APP_D3D()->GetDevice9(), &pXMesh_Clone9);
 
 		stInfo_Mesh.m_pnAdjacency = (LPDWORD)malloc(pXBuffer_Adjacency9->GetBufferSize());
+		stInfo_Mesh.m_oVectorDescs_InputElement = Func::VertexDeclToInputLayout(astElements_Vertex);
 
 		for(int i = 0; i < nNumMaterials; ++i)
 		{
@@ -202,7 +214,7 @@ CMat* CManager_Res::GetMat(const std::string& a_rPath_Effect, bool a_bIsCreate_A
 	return m_oMapMaterials[a_rPath_Effect];
 }
 
-CLoader_SkeletalMesh* CManager_Res::GetLoader_SkeletalMesh(const std::string& a_rPath_Mesh, 
+CLoader_SkeletalMesh* CManager_Res::GetLoader_SkeletalMesh(const std::string& a_rPath_Mesh,
 	bool a_bIsCreate_Auto)
 {
 	// 스켈레톤 메쉬 로더가 없을 경우
@@ -244,7 +256,13 @@ ID3D10InputLayout* CManager_Res::GetInputLayout(const std::string& a_rPath_Mesh,
 	// 입력 레이아웃이 없을 경우
 	if(a_bIsCreate_Auto && m_oMapInputLayouts.find(a_rPath_Mesh) == m_oMapInputLayouts.end())
 	{
-		auto stInfo_Mesh = this->GetInfo_Mesh(a_rPath_Mesh, a_bIsCreate_Auto);
+		//auto stInfo_Mesh = this->GetInfo_Mesh(a_rPath_Mesh, a_bIsCreate_Auto);
+		//ID3D10InputLayout* pInputLayout = nullptr;
+
+		//GET_APP_D3D()->GetDevice()->CreateInputLayout(&stInfo_Mesh.m_oVectorDescs_InputElement[0],
+		//	stInfo_Mesh.m_oVectorDescs_InputElement.size(),
+
+		// TODO: 구현 필요
 	}
 
 	return m_oMapInputLayouts[a_rPath_Mesh];
@@ -257,7 +275,7 @@ ID3D10ShaderResourceView* CManager_Res::GetView_SR(const std::string& a_rPath_Te
 	{
 		ID3D10ShaderResourceView* pView_SR = nullptr;
 
-		D3DX10CreateShaderResourceViewFromFileA(GET_APP_D3D()->GetDevice(), 
+		D3DX10CreateShaderResourceViewFromFileA(GET_APP_D3D()->GetDevice(),
 			a_rPath_Texture.c_str(), nullptr, nullptr, &pView_SR, nullptr);
 
 		m_oMapViews_SR.insert(decltype(m_oMapViews_SR)::value_type(a_rPath_Texture, pView_SR));

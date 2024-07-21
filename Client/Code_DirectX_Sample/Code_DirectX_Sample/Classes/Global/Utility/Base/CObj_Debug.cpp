@@ -1,17 +1,17 @@
 #include "CObj_Debug.h"
 #include "../Mesh/CMesh.h"
+#include "../Material/CMat.h"
 
 CObj_Debug::CObj_Debug(const std::string& a_rPath_Effect)
 	:
-	CObj_Render(a_rPath_Effect),
-	m_oPath_Effect(a_rPath_Effect)
+	CObj_Render(a_rPath_Effect)
 {
 	// Do Something
 }
 
 void CObj_Debug::Init(void)
 {
-	m_pMesh = this->CreateMesh(m_oPath_Effect);
+	m_pMesh = this->CreateMesh(this->GetMat()->GetPath_Effect());
 	this->AddChild(m_pMesh);
 }
 

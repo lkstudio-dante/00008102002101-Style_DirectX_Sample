@@ -5,6 +5,7 @@
 CMat::CMat(const std::string& a_rPath_Effect)
 {
 	m_pEffect = GET_MANAGER_RES()->GetEffect(a_rPath_Effect);
+	m_oPath_Effect = a_rPath_Effect;
 }
 
 void CMat::EnumeratePasses(int a_nIdx_Technique, const std::function<void(ID3D10EffectPass*)>& a_rCallback)

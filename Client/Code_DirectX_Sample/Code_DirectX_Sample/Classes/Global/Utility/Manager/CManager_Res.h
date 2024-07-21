@@ -37,6 +37,9 @@ public:			// public 함수
 	/** 초기화 */
 	virtual void Init(void);
 
+	/** 입력 레이아웃을 추가한다 */
+	void AddInputLayout(const std::string& a_rKey, ID3D10InputLayout* a_pInputLayout);
+
 	/** 메쉬 정보 프로퍼티 */
 	GETTER_PROPERTY(T_MapInfos_Mesh, Infos_Mesh, m_oMapInfos_Mesh);
 

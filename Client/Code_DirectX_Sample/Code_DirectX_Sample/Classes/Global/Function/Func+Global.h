@@ -14,8 +14,7 @@ namespace Func
 	D3D10_INPUT_ELEMENT_DESC Element_VertexToDesc_InputElement(D3DVERTEXELEMENT9 a_stElement_Vertex);
 
 	/** 정점 선언 -> 입력 레이아웃으로 변환한다 */
-	std::vector<D3D10_INPUT_ELEMENT_DESC> VertexDeclToInputLayout(D3DVERTEXELEMENT9 a_pstElements_Vertex[], 
-		int a_nSize);
+	std::vector<D3D10_INPUT_ELEMENT_DESC> VertexDeclToInputLayout(D3DVERTEXELEMENT9 a_pstElements_Vertex[]);
 
 	/** 메쉬 9 -> 메쉬로 변환한다 */
 	ID3DX10Mesh* XMesh9ToXMesh(LPD3DXMESH a_pXMesh9);
