@@ -1,6 +1,6 @@
 #include "CManager_SampleScene.h"
-#include "../../../Packages/00000302000101-Module_DirectX_Common/Client/Classes/Global/Utility/Mesh/CMesh.h"
-#include "../../../Packages/00000302000101-Module_DirectX_Common/Client/Classes/Global/Utility/Mesh/CMesh_Skeletal.h"
+#include "Packages/00000302000101-Module_DirectX_Common/Client/Classes/Global/Utility/Mesh/CMesh.h"
+#include "Packages/00000302000101-Module_DirectX_Common/Client/Classes/Global/Utility/Mesh/CMesh_Skeletal.h"
 
 CManager_SampleScene::CManager_SampleScene(HINSTANCE a_hInst, int a_nOpt_Show, const SIZE& a_rstSize_Wnd)
 	:

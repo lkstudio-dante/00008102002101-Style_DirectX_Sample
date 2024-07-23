@@ -7,6 +7,7 @@
 #pragma comment(lib, "dinput8.lib")
 #pragma comment(lib, "dsound.lib")
 #pragma comment(lib, "winmm.lib")
+#pragma comment(lib, "00000302000101-Module_DirectX_Common.lib")
 
 #include "00009902000101-Code_DirectX_Sample/Classes/Scene_Sample/CManager_SampleScene.h"
 

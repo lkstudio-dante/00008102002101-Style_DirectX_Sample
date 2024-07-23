@@ -73,7 +73,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;D:\Projects\Common\00009902000101-Code_DirectX_Sample\main\Client\Code_DirectX_Sample\$(Configuration);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,6 +83,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalIncludeDirectories>D:\Projects\Common\00009902000101-Code_DirectX_Sample\main\Client\Code_DirectX_Sample;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,58 +137,10 @@
   <ItemGroup>
     <ClCompile Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.cpp" />
     <ClCompile Include="Code_DirectX_Sample.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access\Access+Global.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function\Func+Global.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_D3D.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_Wnd.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Debug.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Render.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera\CCamera.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug\CGrid.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light\CLight.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader\CLoader_SkeletalMesh.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Input.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Res.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Snd.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Time.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material\CMat.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh_Skeletal.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound\CSnd.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Global\Define\KDefine+Global.h" />
     <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access\Access+Global.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define\KDefine+Abs.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function\Func+Global.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_D3D.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_Wnd.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Debug.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Render.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera\CCamera.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug\CGrid.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IReleasable.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IRenderable.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IUpdateable.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light\CLight.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader\CLoader_SkeletalMesh.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Input.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Res.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Snd.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Time.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material\CMat.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh_Skeletal.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene\CScene.h" />
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound\CSnd.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

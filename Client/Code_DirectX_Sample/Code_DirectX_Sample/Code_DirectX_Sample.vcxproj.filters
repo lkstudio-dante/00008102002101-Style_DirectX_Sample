@@ -2,66 +2,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClCompile Include="Code_DirectX_Sample.cpp" />
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access\Access+Global.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function\Func+Global.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_D3D.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_Wnd.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Debug.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Render.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera\CCamera.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug\CGrid.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light\CLight.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader\CLoader_SkeletalMesh.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Input.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Res.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Snd.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Time.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material\CMat.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh_Skeletal.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
-    </ClCompile>
-    <ClCompile Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound\CSnd.cpp">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound</Filter>
-    </ClCompile>
     <ClCompile Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.cpp">
       <Filter>00009902000101-Code_DirectX_Sample\Classes\Scene_Sample</Filter>
     </ClCompile>
@@ -69,69 +9,6 @@
   <ItemGroup>
     <Filter Include="00009902000101-Code_DirectX_Sample">
       <UniqueIdentifier>{a6f72d5c-b8ff-4f56-a621-eca7105bda2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages">
-      <UniqueIdentifier>{41e0c085-8f9d-4c20-9152-7c94a00d3f7a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common">
-      <UniqueIdentifier>{c6dc4574-3905-4644-a9a6-9ae6a67dfcab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client">
-      <UniqueIdentifier>{4b17a8ef-6a64-4a52-b8e8-7b95d429fc2c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes">
-      <UniqueIdentifier>{42b8c1b4-4078-43e9-adec-7f075940c215}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global">
-      <UniqueIdentifier>{eaf94ca2-4046-48e7-bc0a-2822125f09e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access">
-      <UniqueIdentifier>{3a240fd8-f322-446b-b267-d524b74d7d40}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define">
-      <UniqueIdentifier>{a8bbd534-bdc2-4312-a6ab-269781504349}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory">
-      <UniqueIdentifier>{3adbbce8-477c-4810-bbe0-d349e1d5d19a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function">
-      <UniqueIdentifier>{39457347-fa31-4630-af2f-ea898c20a704}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility">
-      <UniqueIdentifier>{1b49aa63-1f58-4343-be02-016127d112b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base">
-      <UniqueIdentifier>{bc22341b-5d6e-4e13-a26a-b1b83fd667d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera">
-      <UniqueIdentifier>{9c81114d-766c-4825-812d-1f89510a4ef3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug">
-      <UniqueIdentifier>{0c8858cb-4e67-402f-a9bc-a3b08abfae71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface">
-      <UniqueIdentifier>{a10b5527-50c9-4cf4-8f14-d450013103f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light">
-      <UniqueIdentifier>{88a9417c-2b95-4cb1-a949-54da51f728ea}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader">
-      <UniqueIdentifier>{432bd26c-e86f-43c5-98b9-bb263cf2bf79}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager">
-      <UniqueIdentifier>{147d3914-be3e-4559-a331-1a8c7b93b6ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material">
-      <UniqueIdentifier>{3dfcf03a-0bf0-497b-a5d0-21ab2c0ec56f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh">
-      <UniqueIdentifier>{10b03041-ed4b-479b-8b5f-92d48425fb4e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene">
-      <UniqueIdentifier>{843e3fed-899f-431a-8c7e-1f67551d7a9d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound">
-      <UniqueIdentifier>{4301752b-3f6a-4b85-ae98-f5c8c106b72b}</UniqueIdentifier>
     </Filter>
     <Filter Include="00009902000101-Code_DirectX_Sample\Classes">
       <UniqueIdentifier>{8e12a81d-68b4-4bf9-a916-cc4715b2c8c8}</UniqueIdentifier>
@@ -147,91 +24,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access\Access+Global.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Access</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define\KDefine+Abs.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Define</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function\Func+Global.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Function</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_D3D.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CApp_Wnd.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Debug.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base\CObj_Render.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera\CCamera.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug\CGrid.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Debug</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IReleasable.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IRenderable.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface\IUpdateable.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light\CLight.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Light</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader\CLoader_SkeletalMesh.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Loader</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Input.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Res.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Snd.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager\CManager_Time.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material\CMat.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Material</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh\CMesh_Skeletal.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Mesh</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene\CScene.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound\CSnd.h">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Utility\Sound</Filter>
-    </ClInclude>
     <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Global\Define\KDefine+Global.h">
       <Filter>00009902000101-Code_DirectX_Sample\Classes\Global\Define</Filter>
     </ClInclude>
     <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.h">
       <Filter>00009902000101-Code_DirectX_Sample\Classes\Scene_Sample</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory\Factory+Global.inl">
-      <Filter>Packages\00000302000101-Module_DirectX_Common\Client\Classes\Global\Factory</Filter>
-    </None>
   </ItemGroup>
 </Project>
