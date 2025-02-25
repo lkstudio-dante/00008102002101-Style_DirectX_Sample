@@ -31,7 +31,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableUnitySupport>true</EnableUnitySupport>
+    <EnableUnitySupport>false</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -60,21 +60,25 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\00000300000001-Research.props" />
+    <Import Project="..\00000300000001-Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\00000300000001-Research.props" />
+    <Import Project="..\00000300000001-Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\00000300000001-Research.props" />
+    <Import Project="..\00000300000001-Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\00000300000001-Research.props" />
+    <Import Project="..\00000300000001-Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\x86;D:\Projects\Common\00009902000101-Code_DirectX_Sample\main\Client\Code_DirectX_Sample\$(Configuration);$(LibraryPath)</LibraryPath>
-  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -83,7 +87,6 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalOptions>/source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>D:\Projects\Common\00009902000101-Code_DirectX_Sample\main\Client\Code_DirectX_Sample;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,12 +138,106 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+DirectX_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+DirectX_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+WinAPI_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_File.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Real.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Abs.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Vec.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_D3D.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_WinAPI.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_D3D.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Debug.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Render.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_WinAPI.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Camera\CCamera.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGizmos.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGrid.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Light\CLight.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Loader\CLoader_SkeletalMesh.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_D3DRes.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Input.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Snd.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Time.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_WinAPIRes.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Material\CMat.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh_Skeletal.cpp" />
+    <ClCompile Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Sound\CSnd.cpp" />
     <ClCompile Include="Code_DirectX_Sample.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Global\Define\KDefine+Global.h" />
-    <ClInclude Include="00009902000101-Code_DirectX_Sample\Classes\Scene_Sample\CManager_SampleScene.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Map.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Vector.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+DirectX_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+Cpp_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+C_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+C_File.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Color.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Decl.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Name.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Path.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Semantic.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_TypeEnum.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_TypeStruct.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Vec.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+WinAPI_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+WinAPI_TypeEnum.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+WinAPI_TypeStruct.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+Cpp_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+DirectX_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+WinAPI_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_File.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Map.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Real.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Vec.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+WinAPI_Abs.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_D3D.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_WinAPI.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_D3D.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Debug.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Render.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_WinAPI.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Camera\CCamera.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGizmos.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGrid.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IInitializable.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IPresentable.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IReleasable.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IRenderable.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IRenderable_D3D.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IRenderable_WinAPI.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IUpdateable.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Light\CLight.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Loader\CLoader_SkeletalMesh.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_D3DRes.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Input.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Snd.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Time.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_WinAPIRes.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Material\CMat.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh_Skeletal.h" />
+    <ClInclude Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Utility\Sound\CSnd.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Map.inl" />
+    <None Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Vector.inl" />
+    <None Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+Cpp_Abs.inl" />
+    <None Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Abs.inl" />
+    <None Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Map.inl" />
+    <None Include="00009102002101-Code_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+WinAPI_Abs.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
