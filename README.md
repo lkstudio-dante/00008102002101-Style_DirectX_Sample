@@ -1,2 +1,2 @@
-# 00009102002101-Code_DirectX_Sample
-Code - DirectX Sample 프로젝트
+# 00008102002101-Style_DirectX_Sample
+Style - DirectX Sample 프로젝트
