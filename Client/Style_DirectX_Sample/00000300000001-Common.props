@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <IncludePath>D:\.developer\Framework\lua\include;D:\.developer\Framework\sqlite;D:\.developer\Framework\luatinker;D:\.developer\Framework\asio\include;D:\.developer\Framework\glew\include;D:\.developer\Framework\glfw\include;D:\.developer\Framework\glm;$(ProjectDir)..\..\..\..;%(AdditionalIncludeDirectories);$(IncludePath);C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Include</IncludePath>
+    <LibraryPath>D:\.developer\Framework\lua;D:\.developer\Framework\luatinker;D:\.developer\Framework\sqlite;D:\.developer\Framework\glew\lib\Release\$(Platform);D:\.developer\Framework\glfw\lib-vc2022;$(OutDir);%(AdditionalDependencies);$(LibraryPath);C:\Program Files %28x86%29\Microsoft DirectX SDK %28June 2010%29\Lib\$(Platform)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalOptions>/std:c++17 /source-charset:utf-8 %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>winmm.lib;ws2_32.lib;d3d9.lib;d3dx9.lib;d3d10.lib;d3dx10.lib;d3d11.lib;d3dx11.lib;d3d12.lib;dxgi.lib;dxguid.lib;dinput8.lib;dsound.lib;opengl32.lib;glew32.lib;glfw3.lib;sqlite3.lib;lua5.1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <PreBuildEvent>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+copy "D:\.developer\Framework\glew\bin\Release\$(Platform)\glew32.dll" "$(OutDir)"
+
+if not exist "$(OutDir)" mkdir "$(OutDir)"
+copy "D:\.developer\Framework\glfw\lib-vc2022\glfw3.dll" "$(OutDir)"
+
+if not exist "$(OutDir)" mkdir "$(OutDir)"
+copy "D:\.developer\Framework\sqlite\sqlite3.dll" "$(OutDir)"</Command>
+    </PreBuildEvent>
+    <FxCompile>
+      <EntryPointName>VSMain</EntryPointName>
+    </FxCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup />
+</Project>

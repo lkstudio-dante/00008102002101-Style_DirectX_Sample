@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Code_DirectX_Sample", "Code_DirectX_Sample\Code_DirectX_Sample.vcxproj", "{F55B62C0-C9DD-4A50-88F8-407813DD258B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Style_DirectX_Sample", "Style_DirectX_Sample\Style_DirectX_Sample.vcxproj", "{F55B62C0-C9DD-4A50-88F8-407813DD258B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

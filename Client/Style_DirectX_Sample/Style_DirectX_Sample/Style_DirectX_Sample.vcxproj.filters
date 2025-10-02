@@ -1,0 +1,354 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Style_DirectX_Sample.cpp" />
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+DirectX_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+DirectX_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+WinAPI_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_File.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Real.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Abs.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Vec.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_D3D.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_WinAPI.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_D3D.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Debug.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Render.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_WinAPI.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Camera\CCamera.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGizmos.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGrid.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Light\CLight.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Loader\CLoader_SkeletalMesh.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Loader</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_D3DRes.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Input.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Snd.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Time.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_WinAPIRes.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Material\CMat.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh_Skeletal.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Sound\CSnd.cpp">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Sound</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Map.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Vector.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+DirectX_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+Cpp_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+C_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+C_File.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Color.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Decl.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Name.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Path.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Semantic.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_TypeEnum.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_TypeStruct.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+DirectX_Vec.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+WinAPI_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+WinAPI_TypeEnum.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define\KCDefine+WinAPI_TypeStruct.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+Cpp_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+DirectX_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+WinAPI_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_File.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Map.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+C_Real.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+DirectX_Vec.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+WinAPI_Abs.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_D3D.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CApp_WinAPI.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_D3D.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Debug.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_Render.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base\CObj_WinAPI.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Camera\CCamera.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGizmos.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest\CGrid.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IInitializable.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IPresentable.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IReleasable.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IRenderable.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IRenderable_D3D.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IRenderable_WinAPI.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface\IUpdateable.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Light\CLight.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Loader\CLoader_SkeletalMesh.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Loader</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_D3DRes.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Input.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Snd.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_Time.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager\CManager_WinAPIRes.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Material\CMat.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh\CMesh_Skeletal.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Sound\CSnd.h">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Sound</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Map.inl">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </None>
+    <None Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access\CAccess+Cpp_Vector.inl">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access</Filter>
+    </None>
+    <None Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory\CFactory+Cpp_Abs.inl">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory</Filter>
+    </None>
+    <None Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Abs.inl">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </None>
+    <None Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+Cpp_Map.inl">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </None>
+    <None Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function\CFunc+WinAPI_Abs.inl">
+      <Filter>00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="00008102002101-Style_DirectX_Sample">
+      <UniqueIdentifier>{3fa4eab8-ddea-46fe-ac9c-55a5026f7887}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes">
+      <UniqueIdentifier>{b379d31f-a1a8-4734-a1d3-488ee1bade13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime">
+      <UniqueIdentifier>{61a368b1-b90f-417c-b004-2120b0c20ae2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global">
+      <UniqueIdentifier>{84d07034-8eca-4775-87cb-ab3d7edb4ae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Access">
+      <UniqueIdentifier>{0b6dece6-e3e5-4377-a226-f4dad280b11f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Define">
+      <UniqueIdentifier>{a5a21101-b6b8-4dd4-83c7-add102a82221}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Factory">
+      <UniqueIdentifier>{402da3bf-67cd-4d5b-8c63-38b497982eb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Function">
+      <UniqueIdentifier>{db28d4a7-5fc2-441c-bb04-5812cb542e05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility">
+      <UniqueIdentifier>{4e497a15-375a-410b-b774-132e2426e7ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Base">
+      <UniqueIdentifier>{ce9d77b4-28d8-4f09-8d76-421322f374a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Camera">
+      <UniqueIdentifier>{2a6b5918-dca3-4caa-a244-3af6547808b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\DebugTest">
+      <UniqueIdentifier>{051e114e-5e18-418c-9904-7ef276f5c490}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Interface">
+      <UniqueIdentifier>{2f5eb647-eb83-4772-8793-fc878f5beafb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Light">
+      <UniqueIdentifier>{3fe79b98-22de-49b4-a90a-9374a7e3e899}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Loader">
+      <UniqueIdentifier>{7a9fc809-01b5-4171-8fb7-cc557aa16d3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Manager">
+      <UniqueIdentifier>{7c8d925d-d99a-47ce-acec-8d5e7bdab89b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Material">
+      <UniqueIdentifier>{3a2e1d55-5a38-471c-a078-d749844492cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Mesh">
+      <UniqueIdentifier>{3e7e059d-21a5-4615-ba21-8577c2fa4eb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00008102002101-Style_DirectX_Sample\Classes\Runtime\Global\Utility\Sound">
+      <UniqueIdentifier>{a80175f8-6773-448e-a1f9-ea369d8cdacf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

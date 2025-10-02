@@ -1,4 +1,4 @@
-#include "00009102002101-Code_DirectX_Sample/Classes/Runtime/Global/Utility/Base/CApp_D3D.h"
+#include "00008102002101-Style_DirectX_Sample/Classes/Runtime/Global/Utility/Base/CApp_D3D.h"
 
 /**
 * 어플리케이션
